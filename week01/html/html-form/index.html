@@ -6,16 +6,22 @@
     <title>form</title>
   </head>
   <body>
-    <form action="">
+    <form action="#">
       <!-- required : 필수 값 지정-->
+      <!-- name : 서버로 보낼 파라미터의 이름 . 서버는 해당 파라미터를 통해 값에 접근할 수 있다. -->
       <input
         type="text"
         value="값"
+        name="text"
         placeholder="입력 필드에 출력되는 문구"
         required
       />
 
       <input type="password" />
+
+      <!-- submit을 누르면 서버로 폼이 전송된다. -->
+      <input type="submit" value="전송" />
+      <button type="submit">전송</button>
     </form>
   </body>
 </html>
