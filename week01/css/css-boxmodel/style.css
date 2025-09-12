@@ -61,3 +61,10 @@ span {
   /* 요소의 컨텐츠 (내용) + 패딩 + 테두리로 계산 */
   box-sizing: border-box;
 }
+
+/* 개발 시작 시 설정 값 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
