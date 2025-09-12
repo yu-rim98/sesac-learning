@@ -1,0 +1,19 @@
+.box-1 {
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  margin: 2rem;
+}
+
+/* relative 포지션 */
+.relative {
+  position: relative;
+}
+
+.left-10 {
+  /* 왼쪽에서 오른쪽으로 요소 이동 */
+  left: 100px;
+
+  /* 위에서 아래로 요소 이동 */
+  top: 100px;
+}
