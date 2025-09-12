@@ -11,7 +11,7 @@ span {
 }
 
 span {
-  color: red;
+  color: plum !important;
 }
 
 #bold {
