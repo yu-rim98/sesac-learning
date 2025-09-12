@@ -33,3 +33,15 @@ h2 {
 #bold {
   font-weight: 900;
 }
+
+/* 속성 선택자 : 특정 속성을 가진 요소를 선택한다. */
+[href] {
+  font-size: 30px;
+  text-decoration: none;
+}
+
+/* 특정 속성 값을 가지고 있는 요소를 선택한다. */
+[href="https://www.naver.com"]
+{
+  color: green;
+}
