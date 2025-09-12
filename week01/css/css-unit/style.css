@@ -45,3 +45,8 @@
   height: 100vh;
   background-color: aquamarine;
 }
+
+.parent-div {
+  color: aqua;
+  font-size: 10rem;
+}
