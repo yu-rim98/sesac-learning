@@ -38,3 +38,26 @@ span {
   height: 100px;
   background-color: cadetblue;
 }
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: lightpink;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 2rem;
+  padding: 20px;
+}
+
+.content-box {
+  /* 너비와 높이의 계산을 */
+  /* 요소의 컨텐츠 (내용)으로만 계산 */
+  /* padding, border는 별도로 추가되기 때문에 지정한 크기보다 커짐 */
+  box-sizing: content-box;
+}
+
+.border-box {
+  /* 너비와 높이의 계산을 */
+  /* 요소의 컨텐츠 (내용) + 패딩 + 테두리로 계산 */
+  box-sizing: border-box;
+}
