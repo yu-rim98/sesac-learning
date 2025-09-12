@@ -7,3 +7,24 @@
 h2 {
   color: red;
 }
+
+/* 클래스 선택자 : 특정 클래스의 모든 요소를 선택한다. (여러 요소에 같은 클래스 사용 가능, 하나의 요소에 여러 클래스 사용 가능) */
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: blue;
+}
+
+.font-100 {
+  font-size: 100;
+}
+
+.font-50 {
+  font-size: 50;
+}
