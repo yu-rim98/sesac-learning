@@ -60,3 +60,12 @@ div > p {
 body p {
   font-weight: 900;
 }
+
+/* 혼합 선택자 : 특정 태그의 특정 클래스인 요소를 선택한다. */
+span.red {
+  color: lightcoral;
+}
+
+span.green {
+  color: lightgreen;
+}
