@@ -1,0 +1,16 @@
+.parent {
+  background-color: cornflowerblue;
+  height: 600px;
+}
+
+.child-1 {
+  background-color: chocolate;
+  width: 50%;
+  height: 300px;
+}
+
+.child-2 {
+  background-color: brown;
+  width: 25%;
+  height: 300px;
+}
