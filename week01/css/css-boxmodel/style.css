@@ -13,4 +13,7 @@
   border-radius: 2rem;
   border-color: red;
   border-style: dotted;
+
+  /* 너비, 종류, 색 */
+  /* border: 10px, dashed, red; */
 }
