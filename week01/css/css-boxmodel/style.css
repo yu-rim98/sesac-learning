@@ -17,3 +17,24 @@
   /* 너비, 종류, 색 */
   /* border: 10px, dashed, red; */
 }
+
+span {
+  margin: 20px;
+}
+
+.margin-1 {
+  height: 100px;
+  background-color: aqua;
+  margin-bottom: 100px;
+}
+
+.margin-2 {
+  height: 100px;
+  background-color: beige;
+  margin-top: 200px;
+}
+
+.margin-3 {
+  height: 100px;
+  background-color: cadetblue;
+}
