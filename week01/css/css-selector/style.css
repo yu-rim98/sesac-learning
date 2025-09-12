@@ -22,11 +22,11 @@ h2 {
 }
 
 .font-100 {
-  font-size: 100;
+  font-size: 100px;
 }
 
 .font-50 {
-  font-size: 50;
+  font-size: 50px;
 }
 
 /* 아이디 선택자 : 고유한 id 속성을 가진 요소 하나를 선택한다. */
@@ -68,4 +68,19 @@ span.red {
 
 span.green {
   color: lightgreen;
+}
+
+/* 우선 순위 */
+/* 1. 인라인 스타일, 2. id 선택자, 3. class 선택자, 4. tag 선택자, - 우선 순위가 같은 경우에는 나중에 작성된 스타일의 우선순위가 높다. */
+/* !important : CSS 속성을 강제로 우선 설정한다. */
+div {
+  font-size: 30px !important;
+}
+
+#font-100 {
+  font-size: 100px;
+}
+
+.font-90 {
+  font-size: 90px;
 }
