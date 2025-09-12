@@ -45,3 +45,8 @@ h2 {
 {
   color: green;
 }
+
+/* 관계 선택자 - 자식 선택자 : 특정 부모 요소의 바로 아래 자식 요소만 선택한다. */
+div > p {
+  font-style: italic;
+}
