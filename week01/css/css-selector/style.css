@@ -50,3 +50,8 @@ h2 {
 div > p {
   font-style: italic;
 }
+
+/* 관계 선택자 : 자식 중 클래스가 child인 요소만 선택한다. */
+#parent > .child {
+  color: violet;
+}
