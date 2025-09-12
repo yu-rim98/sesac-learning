@@ -55,3 +55,8 @@ div > p {
 #parent > .child {
   color: violet;
 }
+
+/* 관계 선택자 - 자손 선택자 : 특정 부모 요소의 모든 하위 요소 선택한다. */
+body p {
+  font-weight: 900;
+}
