@@ -49,4 +49,9 @@
 .parent-div {
   color: aqua;
   font-size: 10rem;
+  border: 2px black solid;
+}
+
+.child-div {
+  border: 4px red dashed;
 }
