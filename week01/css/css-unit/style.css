@@ -38,3 +38,10 @@
 .rem-font-2 {
   font-size: 2rem;
 }
+
+/* viewport */
+.full-height {
+  /* 화면 높이 만큼의 100% 높이 */
+  height: 100vh;
+  background-color: aquamarine;
+}
