@@ -14,3 +14,27 @@
   width: 25%;
   height: 300px;
 }
+
+.parent-font {
+  font-size: 30px;
+}
+
+.child-font-1 {
+  font-size: 0.5em;
+}
+
+.child-font-2 {
+  font-size: 2em;
+}
+
+.child-child-font {
+  font-size: 2em;
+}
+
+.rem-font-1 {
+  font-size: 0.5rem;
+}
+
+.rem-font-2 {
+  font-size: 2rem;
+}
