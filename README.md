@@ -9,6 +9,16 @@
 SeSac 아카데미에서 수강 중인 풀스택 개발자 실전 과정의 학습 내용을 정리한 저장소입니다.  
 각 주차별 학습 내용을 정리합니다.
 
+<details>
+<summary> Week 1️⃣ </summary>
+<div markdown="1">
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week01/git/basic.md">Git</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week01/html/README.md">HTML</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week01/html/html-form/README.md">HTML-Form</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week01/css/README.md">CSS</a> <br />
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 -   주차별 폴더에 학습한 내용을 Markdown으로 기록
