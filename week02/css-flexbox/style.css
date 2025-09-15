@@ -1,8 +1,23 @@
 .flex-container {
   display: flex;
   background-color: brown;
-  height: 500px;
+  height: 1000px;
   width: 100vw;
+}
+
+.d-row-reverse {
+  /* 행, 역방향 : 오른쪽 -> 왼쪽 */
+  flex-direction: row-reverse;
+}
+
+.d-col {
+  /* 열, 정방향 */
+  flex-direction: column;
+}
+
+.d-col-reverse {
+  /* 열, 역방향 */
+  flex-direction: column-reverse;
 }
 
 .box {
