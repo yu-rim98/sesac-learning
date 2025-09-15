@@ -1,0 +1,15 @@
+.flex-container {
+  display: flex;
+  background-color: brown;
+  height: 500px;
+  width: 100vw;
+}
+
+.box {
+  width: 100px;
+  height: 200px;
+  background-color: burlywood;
+  margin: 20px;
+  /* 플렉스 아이템은 별도의 display 설정을 하지 않아도 된다. */
+  /* 부모 요소가 display : flex라면 자동으로 플렉스 아이템이 된다. */
+}
