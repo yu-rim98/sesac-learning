@@ -1,7 +1,7 @@
 .flex-container {
   display: flex;
   background-color: brown;
-  height: 1000px;
+  height: 600px;
   width: 100vw;
 }
 
@@ -52,6 +52,17 @@
   align-items: center;
 }
 
+/* 아이템의 줄바꿈 여부 */
+.flex-wrap {
+  /* 너비(높이)보다 내부 아이템의 너비(높이) 합이 크면 여러 줄 배치 */
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  /* 너비(높이)보다 내부 아이템의 너부(높이) 합이 크면 내부 아이템의 너비(높이)를 불여서 한 줄에 배치 */
+  flex-wrap: nowrap;
+}
+
 .box {
   width: 100px;
   height: 200px;
@@ -59,4 +70,11 @@
   margin: 20px;
   /* 플렉스 아이템은 별도의 display 설정을 하지 않아도 된다. */
   /* 부모 요소가 display : flex라면 자동으로 플렉스 아이템이 된다. */
+}
+
+.big-box {
+  background-color: aqua;
+  width: 500px;
+  height: 300px;
+  margin: 20px;
 }
