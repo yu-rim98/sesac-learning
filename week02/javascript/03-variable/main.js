@@ -11,4 +11,15 @@ console.log(message);
 
 // 변수 선언
 // 선언과 할당은 분리 가능
-message2;
+let message2;
+
+// 선언의 방식 2개
+// let : 데이터의 재할당 가능 - 변수
+let message3 = "Hello variable";
+
+// 변수 message3에 "Hello let variable" 재할당한다.
+message3 = "Hello let variable";
+
+// const : 데이터의 재할당 불가능 - 상수
+const message5 = "Hello Const";
+message5 = "Hello World"; // TypeError: Assignment to constant variable.
