@@ -4,3 +4,7 @@
 // "Hello World" 데이터를 저장한 공간의 이름이 message
 // 변수 message에 "Hello World"를 할당
 message = "Hello World";
+
+console.log(message);
+console.log(message);
+console.log(message);
