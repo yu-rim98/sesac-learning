@@ -23,3 +23,17 @@ console.log(`false || false -> ${falseDate || falseDate}`);
 console.log("! 연산자");
 console.log(`!true -> ${!trueData}`);
 console.log(`!false -> ${!falseDate}`);
+
+// 같다 : == vs === / 다르다 : != vs !==
+// == / != : 사용 X
+// 옛날 문법, 값만 비교함
+const number = 1;
+const str = "1";
+
+const bool1 = number == str;
+console.log(`bool1 : ${bool1}`); // true
+
+// === / !== : 사용
+// 데이터와 데이터 타입을 같이 비교
+const bool2 = number === str;
+console.log(`bool2 : ${bool2}`); // false
