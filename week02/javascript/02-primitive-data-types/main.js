@@ -27,3 +27,15 @@ console.log(typeof 1.1);
 // 참 / 거짓을 표현하며 true / false 2개의 데이터만 존재한다.
 console.log(true);
 console.log(typeof true);
+
+// 특별한 자료형
+
+// undefined
+// 변수에 값이 할당되지 않은 상태 / 비어있는 상태
+// 개발자가 의도하지 않은 비어있음을 표현
+console.log(typeof undefined);
+
+// null
+// 변수에 값이 할당되지 않은 상태 / 비어있는 상태 -> 값이 명시적으로 없음
+// 개발자가 의도한 비어있음을 표현
+console.log(typeof null);
