@@ -8,3 +8,7 @@ message = "Hello World";
 console.log(message);
 console.log(message);
 console.log(message);
+
+// 변수 선언
+// 선언과 할당은 분리 가능
+message2;
