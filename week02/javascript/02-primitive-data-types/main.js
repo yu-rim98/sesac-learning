@@ -22,3 +22,8 @@ console.log(typeof 10);
 console.log(typeof 0);
 console.log(typeof -1);
 console.log(typeof 1.1);
+
+// 논리형, 불리언 (Boolean)
+// 참 / 거짓을 표현하며 true / false 2개의 데이터만 존재한다.
+console.log(true);
+console.log(typeof true);
