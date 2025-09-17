@@ -32,3 +32,7 @@ const message5 = "Hello Const";
 let name = "최유림";
 let greet = `안녕하세요. ${name}입니다.`;
 console.log(greet);
+
+// var
+// 초기 버전의 변수 선언 방식
+// 변수 재선언, 변수에 값 재할당 가능
