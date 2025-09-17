@@ -22,4 +22,13 @@ message3 = "Hello let variable";
 
 // const : 데이터의 재할당 불가능 - 상수
 const message5 = "Hello Const";
-message5 = "Hello World"; // TypeError: Assignment to constant variable.
+// message5 = "Hello World"; // TypeError: Assignment to constant variable.
+
+// 템플릿 리터럴
+// 문자열 사이에 변수를 삽입해 문자열을 생성하는 방법
+// 1. 문자열을 백틱(`)으로 표현
+// 2. 변수 삽입 위치에 ${} 기호를 사용한다.
+// ${변수명}
+let name = "최유림";
+let greet = `안녕하세요. ${name}입니다.`;
+console.log(greet);
