@@ -96,3 +96,16 @@ if (score >= 90) {
 } else {
   console.log("모두 아님");
 }
+
+// 삼항 연산자 표현식
+// 표현식 : 데이터를 생성하는 코드
+// 조건식 결과는 무조건 참 또는 거짓
+// 조건식 ? 조건식 결과가 참일 때 데이터 : 조건식 결과가 거짓일 때 데이터;
+
+let msg = 2 > 1 ? "2는 1보다 크다" : "2는 1보다 크지 않다";
+console.log(msg);
+
+// 예시
+let isLoggined = true;
+const user = isLoggined ? "회원 사용자" : "비회원 사용자";
+console.log(user);
