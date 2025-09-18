@@ -35,3 +35,12 @@ if (5 > 10) {
     위 조건식이 모두 거짓일 떄
   }
 */
+
+let number = 1; // 변수 number 선언 및 숫자 1 할당
+
+// number가 0보다 크면 "양수"를 출력 / number 0보다 크지 않다면 "음수" 출력
+if (number > 0) {
+  console.log("양수");
+} else {
+  console.log("음수");
+}
