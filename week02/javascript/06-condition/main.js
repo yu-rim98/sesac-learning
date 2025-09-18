@@ -44,3 +44,17 @@ if (number > 0) {
 } else {
   console.log("음수");
 }
+
+// number2를 선언하고 숫자 0 할당
+// number2가 0보다 크면 "양수",
+// number2 0보다 작으면 "음수",
+// 둘 다 아니라면 "0" 출력
+let number2 = 0;
+
+if (number2 > 0) {
+  console.log("양수");
+} else if (number2 < 0) {
+  console.log("음수");
+} else {
+  console.log("0");
+}
