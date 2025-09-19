@@ -11,3 +11,13 @@ function add(number1, number2, number3) {
 const result = add(10, 10, 10);
 
 console.log(result);
+
+// 호이스팅 : 끌어올리다
+
+// 호이스팅 현상으로 인해 함수 선언 전에 함수를 호출해도 함수가 실행된다.
+// 함수 선언을 위로 끌어올려 먼저 선언하기 때문
+const result2 = getStr("유림");
+
+function getStr(str) {
+  return "Hello " + str;
+}
