@@ -77,3 +77,25 @@ const determineArrow = (number) => {
 };
 
 determineArrow(0);
+
+// 함수 선언식
+// 매개변수가 짝수면 true 반환
+// 매개변수가 홀수면 false 반환
+console.log("매개변수 판별 / 함수 선언식:");
+
+function evenOdd(number) {
+  return number % 2 === 0 ? true : false;
+}
+
+const result3 = evenOdd(3);
+
+console.log(result3);
+
+// 화살표 함수 표현
+console.log("매개변수 판별 / 화살표 함수:");
+
+const result4 = (number) => {
+  return number % 2 === 0 ? true : false;
+};
+
+console.log(result4(2));
