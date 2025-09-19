@@ -44,7 +44,7 @@ var b = 3;
 // 호이스팅 : let or const
 // let or const로 선언하면 Temporal Dead Zone (TDZ)라서 에러
 // ReferenceError: Cannot access 'a2' before initialization 에러
-console.log(a2 + b2);
+// console.log(a2 + b2);
 
 let a2 = 1;
 let b2 = 2;
