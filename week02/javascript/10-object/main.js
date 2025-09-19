@@ -65,3 +65,11 @@ console.log(valueArray);
 // 모든 key, value를 배열로 반환
 let allArray = Object.entries(person2);
 console.log(allArray);
+
+console.log("객체 반복");
+// 객체 반복문
+// 배열처럼 인덱스를 통한 반복문은 사용할 수 없음
+// for...in 반복문을 사용
+for (let key in person2) {
+  console.log(person2[key]); // 반복 변수는 문자열 키가 되기 때문에 속성 값을 접근하려면 obj[key]처럼 대괄호 표기법을 반드시 사용해야 한다.
+}
