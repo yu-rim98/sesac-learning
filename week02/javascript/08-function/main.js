@@ -21,3 +21,10 @@ const result2 = getStr("유림");
 function getStr(str) {
   return "Hello " + str;
 }
+
+// 함수 표현식(익명 함수) 정의
+const sub = function (number1, number2) {
+  return number1 - number2;
+};
+
+console.log(sub(20, 10));
