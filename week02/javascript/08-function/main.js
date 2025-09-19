@@ -48,3 +48,32 @@ var b = 3;
 
 let a2 = 1;
 let b2 = 2;
+
+console.log("전달받은 매개변수가 음수, 0, 양수인지 판단 / 함수 선언문 :");
+determine(1);
+
+// 전달받은 매개변수가 음수, 0, 양수인지 판단
+function determine(number) {
+  if (number < 0) {
+    console.log("음수");
+  } else if (number === 0) {
+    console.log("0");
+  } else {
+    console.log("양수");
+  }
+}
+
+console.log("전달받은 매개변수가 음수, 0, 양수인지 판단 / 화살표 함수:");
+
+// 화살표 함수 표현
+const determineArrow = (number) => {
+  if (number < 0) {
+    console.log("음수");
+  } else if (number === 0) {
+    console.log("0");
+  } else {
+    console.log("양수");
+  }
+};
+
+determineArrow(0);
