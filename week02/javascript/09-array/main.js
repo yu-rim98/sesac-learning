@@ -43,3 +43,20 @@ console.log(array3);
 let number = array3.pop(); // array3의 마지막 요소를 가져온다.
 console.log(array3);
 console.log(number);
+
+// 배열 길이 : .length
+
+let array4 = [1, 2, 3];
+console.log(array4.length);
+
+// for 만복문을 활용해 01ㅜ터 배열 길이 -1까지 반복
+for (let i = 0; i <= array4.length; i++) {
+  console.log(i);
+}
+
+// for...of 반복문
+// 인덱스(위치번호) 활용 X
+// 배열에서 직접 원소를 꺼내옴
+for (let element of array4) {
+  console.log(element);
+}
