@@ -28,3 +28,8 @@ const sub = function (number1, number2) {
 };
 
 console.log(sub(20, 10));
+
+// 화살표 함수 정의
+const multi = (number1, number2) => {
+  return number1 + number2;
+};
