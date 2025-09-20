@@ -19,6 +19,14 @@ SeSac 아카데미에서 수강 중인 풀스택 개발자 실전 과정의 학�
 </div>
 </details>
 
+<details>
+<summary> Week 2️⃣ </summary>
+<div markdown="2">
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week02/javascript/README.md">JavaScript</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week02/javascript/08-function/README.md">호이스팅 (Hoisting) 정리</a> <br />
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 -   주차별 폴더에 학습한 내용을 Markdown으로 기록
