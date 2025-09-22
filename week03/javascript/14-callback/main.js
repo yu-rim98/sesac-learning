@@ -30,3 +30,9 @@ console.log("=======");
 higherOrderFunction(numbers, (value) => {
   return value * value;
 });
+
+console.log("forEach 출력");
+// forEach() 예시
+numbers.forEach((element) => {
+  console.log(element + 1);
+});
