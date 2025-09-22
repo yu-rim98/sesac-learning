@@ -60,3 +60,14 @@ for (let i = 0; i <= array4.length; i++) {
 for (let element of array4) {
   console.log(element);
 }
+
+// 참조 자료형
+const array2 = [1, 2, 3, 4];
+array2[0] = 12;
+
+console.log(array2);
+
+const array1 = [11, 11, 11, 11];
+array2 = array1;
+
+console.log(array2);
