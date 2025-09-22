@@ -57,3 +57,22 @@ numbers2.forEach((element) => {
     console.log(element);
   }
 });
+
+console.log("=======");
+
+const newArr = [];
+
+numbers2.forEach((element) => {
+  newArr.push(element + 1);
+});
+
+console.log(newArr);
+
+console.log("=======");
+
+// map() 활용 : 콜백 함수의 반환값을 모아 새로운 배열을 생성해준다.
+const newArrMap = numbers2.map((element) => {
+  return element + 1;
+});
+
+console.log(newArrMap);
