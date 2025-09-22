@@ -9,3 +9,6 @@ console.log(substract(2, 2));
 console.log(multiply(2, 2));
 console.log(devide(2, 2));
 console.log(PI);
+
+import Add from "./계산기.js";
+console.log(Add(3, 3));
