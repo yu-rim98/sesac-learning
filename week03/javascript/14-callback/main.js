@@ -13,7 +13,7 @@ function higherOrderFunction(array, callbackFunction) {
   }
 }
 
-numbers = [1, 2, 3, 4, 5];
+const numbers = [1, 2, 3, 4, 5];
 
 // 콜백 함수를 인자로 전달
 higherOrderFunction(numbers, multiTwo);
@@ -35,6 +35,25 @@ console.log("forEach 출력");
 // forEach() 예시
 numbers.forEach((element) => {
   if (element % 2 !== 0) {
+    console.log(element);
+  }
+});
+
+console.log("=======");
+
+const numbers2 = [1, 2, 3, 4, 5];
+
+// 각 원소에 + 1을 한 결과를 출력
+console.log("각 원소에 +1 결과 출력");
+numbers2.forEach((element) => {
+  // 배열 원소에 반복적으로 수행할 로직 작성
+  console.log(element + 1);
+});
+
+// 각 원소 중 짝수만 출력
+console.log("각 원소 중 짝수만 출력");
+numbers2.forEach((element) => {
+  if (element % 2 === 0) {
     console.log(element);
   }
 });
