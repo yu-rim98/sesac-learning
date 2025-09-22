@@ -76,3 +76,14 @@ const newArrMap = numbers2.map((element) => {
 });
 
 console.log(newArrMap);
+
+console.log("=======");
+
+// map()을 활용해 * 2를 한 반환 값을 모아 새 배열 생성
+console.log("map()을 활용해 * 2를 한 반환 값을 모아 새 배열 생성");
+
+const newNumsArr = numbers2.map((element) => {
+  return element * 2;
+});
+
+console.log(newNumsArr);
