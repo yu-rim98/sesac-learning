@@ -23,3 +23,21 @@ try {
 }
 
 console.log("시스템 로직 ...");
+
+// finally를 굳이 사용해야 하는 이유
+function errorFunction() {
+  try {
+    console.log(number);
+    return true;
+  } catch (error) {
+    console.log(error.message);
+    return false;
+  } finally {
+    console.log("finally 코드");
+  }
+
+  console.log("무조건 실행되어야 하는 코드");
+}
+
+const result = errorFunction();
+console.log(result);
