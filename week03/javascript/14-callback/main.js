@@ -98,3 +98,40 @@ const result = numbers3.reduce((accValue, currElement) => {
 }, 1); // 콜백 함수 다음 인자는 초기값을 전달한다.
 
 console.log(result);
+
+// sort()
+// 배열을 정렬하는 고차 메서드
+// 원소를 2개씩 비교하며 정렬
+
+let numbers4 = [2, 6, 1, 9, 7];
+numbers4.sort((a, b) => {
+  // 정렬 기준
+  // 반환 값이 양수일 때 a가 뒤로 배치
+  // 반환 값이 음수일 때 a가 앞으로 배치
+  // 반환 값이 0이면 같음 (배치 X)
+
+  return a - b; // 오름차순 축약
+  // return b - a; // 내림차순 축약
+
+  // 오름차순
+  // if (a < b) {
+  //   return -1;
+  // }
+  // if (b < a) {
+  //   return 1;
+  // }
+  // // 같음
+  // return 0;
+
+  // 내림차순
+  // if (a < b) {
+  //   return 1;
+  // }
+  // if (b < a) {
+  //   return -1;
+  // }
+  // // 같음
+  // return 0;
+});
+
+console.log(numbers4); // [ 1, 2, 6, 7, 9 ]
