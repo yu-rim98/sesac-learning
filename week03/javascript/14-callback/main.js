@@ -95,6 +95,6 @@ const result = numbers3.reduce((accValue, currElement) => {
   // accValue : 이전 반복동안 반환된 값을 누적한 데이터
   // currElement : 현재 원소의 값
   return accValue + currElement;
-});
+}, 1); // 콜백 함수 다음 인자는 초기값을 전달한다.
 
 console.log(result);
