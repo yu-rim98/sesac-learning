@@ -34,5 +34,7 @@ higherOrderFunction(numbers, (value) => {
 console.log("forEach 출력");
 // forEach() 예시
 numbers.forEach((element) => {
-  console.log(element + 1);
+  if (element % 2 !== 0) {
+    console.log(element);
+  }
 });
