@@ -87,3 +87,14 @@ const newNumsArr = numbers2.map((element) => {
 });
 
 console.log(newNumsArr);
+
+// reduce()
+// 배열의 누적 값을 반환한다.
+const numbers3 = [1, 2, 3, 4, 5];
+const result = numbers3.reduce((accValue, currElement) => {
+  // accValue : 이전 반복동안 반환된 값을 누적한 데이터
+  // currElement : 현재 원소의 값
+  return accValue + currElement;
+});
+
+console.log(result);
