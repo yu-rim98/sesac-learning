@@ -36,3 +36,22 @@ console.log(greet);
 // var
 // 초기 버전의 변수 선언 방식
 // 변수 재선언, 변수에 값 재할당 가능
+
+// const 정리
+// const로 선언된 변수는 선언 시 값 할당이 필수이며, 할당된 값 자체를 변경할 수 없다.
+const name2 = "이름";
+
+// 저장된 안녕하세요 값을 변경하려면 에러
+// name2 = "이름 변경"; // TypeError: Assignment to constant variable.
+console.log(name2);
+
+// 배열 or 객체 (참조형)
+const obj = { name: "이름" };
+
+obj.name = "이름 변경"; // obj의 참조값(메모리 주소)이 아니라 obj가 가리키는 객체 내부의 속성을 변경하므로 가능
+
+const obj2 = { age: 20 };
+
+obj = obj2; // obj의 참조값(메모리 주소)을 변경하는 것은 불가함
+
+console.log(obj);
