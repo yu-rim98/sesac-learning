@@ -9,6 +9,7 @@
   </head>
   <body>
     <div id="parent"></div>
+    <button>버튼</button>
     <script>
       // API 사용을 위한 기본 주소 - URL
       const DOMAIN_NAME = "https://dummyjson.com";
@@ -31,7 +32,14 @@
         });
       };
 
-      getProducts();
+      // getProducts();
+
+      // button 요소의 클릭 이벤트가 발생했을 때 getProducts() 호출
+      const buttonTag = document.querySelector("button");
+
+      buttonTag.addEventListener("click", () => {
+        getProducts();
+      });
 
       // 통신 연결 테스트
       async function testConnect() {
