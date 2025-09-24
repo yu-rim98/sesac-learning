@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- axios CDN 링크 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="parent"></div>
+    <script>
+      // API 사용을 위한 기본 주소 - URL
+      const DOMAIN_NAME = "https://dummyjson.com";
+
+      // id가 parent인 div 선택
+      const parentTag = document.querySelector("#parent");
+
+      // 상품 목록을 요청할 비동기 함수
+      const getProducts = async () => {
+        const config = { url: `${DOMAIN_NAME}/products`, method: "get" };
+
+        const response = await axios(config);
+        const products = response.data.products;
+
+        const titles = products.forEach((product) => {
+          const pTag = document.createElement("p");
+          pTag.textContent = product.title;
+
+          parentTag.append(pTag);
+        });
+      };
+
+      getProducts();
+
+      // 통신 연결 테스트
+      async function testConnect() {
+        const config = { url: `${DOMAIN_NAME}/test`, method: "get" };
+
+        // axios를 활용해 API 호출 및 응답 결과 저장
+        const response = await axios(config);
+
+        console.log(response.data);
+      }
+
+      // testConnect();
+    </script>
+  </body>
+</html>
