@@ -11,6 +11,8 @@
 
     <input type="text" />
     <p id="message"></p>
+
+    <a href="https://naver.com">네이버</a>
     <script>
       const inputTag = document.querySelector("input");
 
@@ -49,6 +51,12 @@
 
         // 이벤트가 발생한 요소
         console.log(event.target);
+      });
+
+      // a태그 선택 후 변수 link에 할당
+      const link = document.querySelector("a");
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
       });
     </script>
   </body>
