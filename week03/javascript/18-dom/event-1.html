@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- event-1 html -->
+    <!-- onclick 속성에 함수를 지정한다.  -->
+    <!-- onclick 속성은 HTML 문서에 포함된다. -->
+    <!-- HTML 인라인 이벤트 속성 방법은 바닐라 JS에서는 권장하지 않는 방법이다. (문서와 동작을 나눴는데 겹치니까) 
+          하지만 리액트의 경우 HTML과 JS를 합친 JSX 문법을 만들었기 때문에 권장되는 방식이다. (리액트는 문서와 동작을 하나의 파일에서 관리함 -> 즉, 나누지 않음) 
+     -->
+    <button onclick="clickEvent()">클릭</button>
+
+    <!-- oninput 속성 : 입력했을 때 발생하는 이벤트 -->
+    <input type="text" oninput="console.log('입력')" />
+    <script>
+      function clickEvent() {
+        alert("클릭");
+      }
+    </script>
+  </body>
+</html>
