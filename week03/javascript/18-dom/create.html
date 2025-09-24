@@ -10,12 +10,17 @@
       // div 태그 요소 생성 및 변수 할당
       const divTag = document.createElement("div");
 
+      // div 태그에 id 속성 "container" 지정
+      divTag.setAttribute("id", "container");
+
       // p 태그 요소 생성 및 변수 할당
       const pTag = document.createElement("p");
+      pTag.textContent = "p 태그";
 
       // append() 메서드로 body 태그에 divTag를 추가
       const bodyTag = document.querySelector("body");
-      bodyTag.append(divTag);
+      bodyTag.append(divTag, pTag); // divTag와 pTag 추가
+      bodyTag.append("안녕");
     </script>
   </body>
 </html>
