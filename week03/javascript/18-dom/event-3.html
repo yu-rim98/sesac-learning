@@ -8,7 +8,29 @@
   <body>
     <!-- event-3 html -->
     <button>클릭</button>
+
+    <input type="text" />
+    <p id="message"></p>
     <script>
+      const inputTag = document.querySelector("input");
+
+      // input 요소에 input 이벤트 핸들러 등록
+      inputTag.addEventListener("input", (event) => {
+        console.log(event.target.value);
+
+        const value = event.target.value;
+
+        // value의 길이가 8 미만이면 p 태그에 택스트 설정
+        // "글자가 8글자 미만입니다."
+        // value가 8 이상이면 p 태그에 빈 문자열 설정
+        const pTag = document.querySelector("#message");
+        if (value.length >= 8) {
+          pTag.textContent = "";
+        } else {
+          pTag.textContent = "글자가 8글자 미만입니다.";
+        }
+      });
+
       const buttonTag = document.querySelector("button");
 
       // 클릭 이벤트와 이벤트 발생 시 실행되어야 하는 콜백 함수를 인자로 전달한다.
@@ -19,8 +41,14 @@
         alert(buttonTag.textContent);
       });
 
-      buttonTag.addEventListener("mouseover", () => {
-        alert("두번째 핸들러");
+      buttonTag.addEventListener("click", (event) => {
+        // 이벤트 발생 시 이벤트 객체를 매개변수로 받음
+
+        // 발생한 이벤트 종류
+        console.log(event.type);
+
+        // 이벤트가 발생한 요소
+        console.log(event.target);
       });
     </script>
   </body>
