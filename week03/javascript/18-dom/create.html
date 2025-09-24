@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <div id="parent">
+      <div id="child"></div>
+    </div>
   </head>
   <body>
     <script>
@@ -21,6 +25,17 @@
       const bodyTag = document.querySelector("body");
       bodyTag.append(divTag, pTag); // divTag와 pTag 추가
       bodyTag.append("안녕");
+
+      const h1Tag = document.createElement("h1");
+      h1Tag.textContent = "h1";
+
+      // id가 child인 요소 선택 및 변수에 할당
+      const childTag = document.querySelector("#child");
+
+      // insertBefore() : 특정 자식 앞에 삽입, 노드만 가능 (부모 요소, 자식 요소, 추가할 요소)
+      // parent의 child 자식 앞에 추가하기
+      const parentTag = document.querySelector("#parent");
+      parentTag.insertBefore(h1Tag, childTag); // parentTag의 childTag 앞에 h1Tag를 추가한다.
     </script>
   </body>
 </html>
