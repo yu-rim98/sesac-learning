@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <style>
+      .red {
+        color: red;
+      }
+
+      .green {
+        color: green;
+      }
+    </style>
   </head>
   <body>
     <div class="parent">
@@ -20,6 +30,9 @@
       <p></p>
     </div>
 
+    <a href="" id="naver">네이버</a>
+    <h1 id="red">red</h1>
+    <h1 id="green">green</h1>
     <script>
       // 태그 이름이 div인 요소 하나를 선택
       console.log("태그 이름이 div인 요소 하나를 선택");
@@ -81,6 +94,21 @@
       // 2. 텍스트를 빈 문자열 ""로 설정
       const divEl4 = document.querySelector(".parent");
       divEl4.textContent = ""; // 모든 자식 요소 제거됨
+
+      // a 태그를 선택해 link 변수에 담고, href 속성을 https://naver.com 으로 변경하기
+      const link = document.querySelector("a");
+      link.setAttribute("href", "https://naver.com");
+
+      // 1. id가 red인 요소 선택 및 변수 할당
+      const redH1 = document.querySelector("#red");
+      // id가 red인 요소의 클래스명을 red로 지정
+      redH1.className = "red";
+
+      // 2. id가 green인 요소 선택 및 변수 할당
+      const greenH1 = document.querySelector("#green");
+
+      // id가 green인 요소의 클래스명을 green으로 지정
+      greenH1.className = "green";
     </script>
   </body>
 </html>
