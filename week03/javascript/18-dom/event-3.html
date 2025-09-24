@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- event-3 html -->
+    <button>클릭</button>
+    <script>
+      const buttonTag = document.querySelector("button");
+
+      // 클릭 이벤트와 이벤트 발생 시 실행되어야 하는 콜백 함수를 인자로 전달한다.
+      buttonTag.addEventListener("click", () => {
+        // alert("클릭");
+
+        // button 요소에 작성된 텍스트를 alert()로 띄우기
+        alert(buttonTag.textContent);
+      });
+
+      buttonTag.addEventListener("mouseover", () => {
+        alert("두번째 핸들러");
+      });
+    </script>
+  </body>
+</html>
