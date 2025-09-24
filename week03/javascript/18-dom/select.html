@@ -11,6 +11,9 @@
       <div class="child"></div>
       <div class="child"></div>
       <div class="child"></div>
+      <p></p>
+      <p></p>
+      <p></p>
     </div>
     <script>
       // 태그 이름이 div인 요소 하나를 선택
@@ -41,6 +44,23 @@
       // id는 문서 내 식별자 역할을 하므로 동일한 값이 1개 이상이 있으면 안되기 때문에 모두 선택을 생각하면 안된다.
       // 1. id 속성이 first인 요소를 선택
       const firstChild = document.querySelector("#first");
+
+      // 선택된 요소는 모두 객체(object)
+
+      // textContent 속성을 조작 : 요소의 텍스트를 조작
+      firstChild.textContent = "첫번째 자식";
+
+      // 3초 뒤 firstChild 요소의 텍스트를 "3초 뒤"로 조작
+      setTimeout(() => {
+        firstChild.textContent = "3초 뒤";
+      }, 3000);
+
+      // 1. p 태그를 모두 선택
+      // 2. p 태그 요소의 텍스트를 "p 태그"로 조작
+      const pEl = document.querySelectorAll("p");
+      pEl.forEach((e) => {
+        e.textContent = "p 태그";
+      });
     </script>
   </body>
 </html>
