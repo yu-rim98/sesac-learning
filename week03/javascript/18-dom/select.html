@@ -7,7 +7,11 @@
   </head>
   <body>
     <div class="parent">
-      <div class="child" id="first"></div>
+      <div class="child" id="first">
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
       <div class="child"></div>
       <div class="child"></div>
       <div class="child"></div>
@@ -15,6 +19,7 @@
       <p></p>
       <p></p>
     </div>
+
     <script>
       // 태그 이름이 div인 요소 하나를 선택
       console.log("태그 이름이 div인 요소 하나를 선택");
@@ -48,6 +53,7 @@
       // 선택된 요소는 모두 객체(object)
 
       // textContent 속성을 조작 : 요소의 텍스트를 조작
+      // textContent를 조작하면 해당 요소의 자식 태그는 모두 삭제된다.
       firstChild.textContent = "첫번째 자식";
 
       // 3초 뒤 firstChild 요소의 텍스트를 "3초 뒤"로 조작
@@ -61,6 +67,20 @@
       pEl.forEach((e) => {
         e.textContent = "p 태그";
       });
+
+      // 자식 선택자 기본 구조 : '부모 선택자' > '자식 선택자'
+      // 1. id가 first인 요소의 자식 p 태그를 모두 선택
+      // 2. 선택한 p 태그 요소들의 텍스트를 "first의 자식 p 태그"로 조작
+      const pEl2 = document.querySelectorAll("#first > p");
+
+      pEl2.forEach((e) => {
+        e.textContent = "first 자식 p 태그";
+      });
+
+      // 1. class가 parent인 div를 선택
+      // 2. 텍스트를 빈 문자열 ""로 설정
+      const divEl4 = document.querySelector(".parent");
+      divEl4.textContent = ""; // 모든 자식 요소 제거됨
     </script>
   </body>
 </html>
