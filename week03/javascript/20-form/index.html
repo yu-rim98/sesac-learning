@@ -7,8 +7,8 @@
   </head>
   <body>
     <form id="form">
-      <input type="text" name="email" />
       <input type="password" name="password" />
+      <input type="password" name="password-confirm" />
 
       <input type="submit" />
     </form>
@@ -18,12 +18,15 @@
 
       formTag.addEventListener("submit", (event) => {
         event.preventDefault();
-        console.log(formTag.elements);
 
-        // 요소의 name으로 접근 가능함
-        console.log(formTag.elements.password.value);
-
-        console.log("제출");
+        // 제출 시 두 비밀번호의 값을 비교해 동일한지
+        const password = formTag.elements.password.value;
+        const passwordConfirm = formTag.elements["password-confirm"].value;
+        if (password === passwordConfirm) {
+          console.log("같습니다");
+        } else {
+          console.log("다릅니다");
+        }
       });
     </script>
   </body>
