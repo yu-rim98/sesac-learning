@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" name="email" />
+      <input type="password" name="password" />
+
+      <input type="submit" />
+    </form>
+
+    <script>
+      const formTag = document.querySelector("#form");
+
+      formTag.addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log(formTag.elements);
+
+        // 요소의 name으로 접근 가능함
+        console.log(formTag.elements.password.value);
+
+        console.log("제출");
+      });
+    </script>
+  </body>
+</html>
