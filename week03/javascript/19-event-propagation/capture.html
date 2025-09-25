@@ -16,6 +16,7 @@
       const parent = document.querySelector("#parent");
       const child = document.querySelector("#child");
       const button = document.querySelector("#button");
+      const body = document.querySelector("body");
 
       // addEventListener()로 핸들러 등록
 
@@ -29,6 +30,10 @@
 
       button.addEventListener("click", () => {
         console.log("button 클릭");
+      });
+
+      body.addEventListener("click", () => {
+        console.log("body 클릭");
       });
     </script>
   </body>
