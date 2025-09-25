@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>조회</button>
+    <button id="delete">삭제</button>
+    <p></p>
+    <script>
+      // 로컬스토리지에 데이터 저장
+      // 데이터 저장 시 객체 형태({key: value})로 저장된다.
+      localStorage.setItem("key", "value");
+      localStorage.setItem("키", "값");
+
+      const button = document.querySelector("button");
+      button.addEventListener("click", () => {
+        alert(localStorage.getItem("키"));
+      });
+
+      const deleteButton = document.querySelector("#delete");
+      deleteButton.addEventListener("click", () => {
+        localStorage.removeItem("키");
+      });
+    </script>
+  </body>
+</html>
