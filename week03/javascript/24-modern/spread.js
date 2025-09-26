@@ -26,3 +26,21 @@ obj3.name = "고길동";
 
 console.log(obj1);
 console.log(obj3);
+
+console.log("얕은 복사 vs 깊은 복사");
+const user = {
+  name: "홍홍홍",
+  age: 20,
+  addr: {
+    location: "서울",
+    country: "대한민국",
+  },
+};
+
+const user2 = { ...user };
+console.log(user);
+console.log(user2);
+
+user.addr.location = "대구";
+console.log(user);
+console.log(user2);
