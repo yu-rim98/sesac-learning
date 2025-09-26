@@ -24,12 +24,12 @@ obj.func(); // obj를 가리킴
 const user = {
   name: "고길동",
   age: 20,
-  greet: function (name, age) {
-    console.log(`제 이름은 ${name}이고 나이는 ${age} 입니다.`);
+  greet: function () {
+    console.log(`제 이름은 ${this.name}이고 나이는 ${this.age} 입니다.`);
   },
 };
 
-user.greet("고길동", "20");
+user.greet();
 
 // 화살표 함수로 표현한 메서드는 함수 선언식(function 키워드를 사용한 함수)과 작동 방식이 다르다.
 const user2 = {
