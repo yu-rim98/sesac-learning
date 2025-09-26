@@ -11,6 +11,14 @@ export default function App() {
       <div>1</div>
       <div>2</div>
       <div>3</div>
+      {/* 닫는 태그가 필수 */}
+      {/* <input> : 불가 */}
+
+      {/* 속성명은 카멜케이스 : className="" onClick={}*/}
+      <p className="font-bold text-red-900">p 태그</p>
+
+      {/* style은 객체로 작성한다. : style={{key: value}} 형태 */}
+      <p style={{ font: "bold", fontSize: "3rem" }}>p 태그</p>
     </>
   );
 }
