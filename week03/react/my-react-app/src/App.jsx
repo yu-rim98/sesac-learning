@@ -1,7 +1,5 @@
 import React from "react";
-// App.module.css 불러오기
-import styles from "./App.module.css";
 
 export default function App() {
-  return <div className={styles.red}>App</div>;
+  return <h1 className="text-3xl font-bold text-red-500">Hello World</h1>;
 }
