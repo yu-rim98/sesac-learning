@@ -1,12 +1,16 @@
 // this 키워드
 
-// 일반 함수에서 this는 전역 객체를 참조한다. (브라우저 환경 : window 객체 참조, Node 환경 : global 객체 참조)
+// 일반 함수에서 this는 '호출 시점'에 결정되며,
+// 전역 컨텍스트에서 호출될 경우 this는 전역 객체를 참조한다.
+// (브라우저: window / Node.js: global)
 function func() {
   console.log("함수");
   console.log(this);
 }
 
+// 전역에서 호출하니까 전역 객체 가리킴
 func();
+
 // 객체 : key - value 속성으로 구성됨
 // 함수도 value가 될 수 있음 (객체 속성에 포함될 수 있음)
 // 객체에 포함된 함수는 메서드라고 함
