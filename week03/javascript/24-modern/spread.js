@@ -45,3 +45,9 @@ console.log(user2);
 user.addr.location = "대구";
 console.log(user); // 대구
 console.log(user2); // 대구
+
+console.log("깊은 복사");
+const user3 = structuredClone(user); // 중첩 객체의 참조 값 내부의 값까지 복사함
+user3.addr.location = "서울";
+console.log(user); // 대구
+console.log(user3); // 서울
