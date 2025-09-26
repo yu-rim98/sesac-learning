@@ -37,10 +37,11 @@ const user = {
   },
 };
 
+console.log("얕은 복사");
 const user2 = { ...user };
 console.log(user);
 console.log(user2);
 
 user.addr.location = "대구";
-console.log(user);
-console.log(user2);
+console.log(user); // 대구
+console.log(user2); // 대구
