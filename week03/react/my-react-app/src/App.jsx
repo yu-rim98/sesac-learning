@@ -6,5 +6,11 @@ import React from "react";
 export default function App() {
   // div 요소 3개 반환 -> 하나의 요소만 반환해야하므로 에러
   // return <div>App</div><dvi>2</dvi> <div>2</div>;
-  return <div>App</div>;
+  return (
+    <div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  );
 }
