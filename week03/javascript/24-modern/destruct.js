@@ -29,3 +29,16 @@ const object2 = {
 let { title, price } = object2;
 console.log(title);
 console.log(price);
+
+// 배열 구조 분해 할당
+const array = [1, 2, 3, 4, 5];
+
+// 배열은 인덱스에 이름이 없기 때문에 변수는 자유
+// 순서대로 할당됨
+let [a, b, c, d, e] = array;
+console.log(a);
+console.log(b);
+console.log(c);
+console.log(d);
+console.log(e);
+
