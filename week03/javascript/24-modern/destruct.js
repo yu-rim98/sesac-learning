@@ -42,3 +42,15 @@ console.log(c);
 console.log(d);
 console.log(e);
 
+// 객체 구조 분해 할당
+// 객체를 인자로 전달받는 함수
+function func({ name, age }) {
+  console.log(`Hello ${name}, I'm ${age}`);
+}
+
+const user = {
+  name: "짱구",
+  age: 8,
+};
+
+func(user);
