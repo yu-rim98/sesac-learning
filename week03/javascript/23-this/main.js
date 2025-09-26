@@ -39,3 +39,6 @@ const user2 = {
     console.log(this);
   },
 };
+
+user2.greet();
+console.log(this);
