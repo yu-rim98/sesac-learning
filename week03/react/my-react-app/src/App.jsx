@@ -1,10 +1,10 @@
 import React from "react";
-import Rule from "./components/jsx/Rule";
+import InterPolation from "./components/jsx/InterPolation";
 
 export default function App() {
   return (
     <div>
-      <Rule />
+      <InterPolation />
     </div>
   );
 }
