@@ -37,7 +37,12 @@ SeSac 아카데미에서 수강 중인 풀스택 개발자 실전 과정의 학�
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/18-dom/README.md">돔(DOM : Document Object Model) 정리</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/23-this/README.md">자바스크립트의 this와 객체지향(OOP)</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/24-modern/README.md">객체 복사와 참조 : 얕은 복사와 깊은 복사</a> <br />
+<br />
+<a href="https://github.com/yu-rim98/learning-react/blob/main/01/DOM/README.md">DOM과 리액트 가상 돔 (Virtual DOM)</a> <br />
+<a href="https://github.com/yu-rim98/learning-react/tree/main/02/hello-react">JSX</a> <br />
+<a href="https://github.com/yu-rim98/learning-react/blob/main/03/component/README.md">컴포넌트(Component)</a> <br />
 
+  
 </div>
 </details>
 
