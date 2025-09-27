@@ -27,6 +27,20 @@ SeSac 아카데미에서 수강 중인 풀스택 개발자 실전 과정의 학�
 </div>
 </details>
 
+<details>
+<summary> Week 3️⃣ </summary>
+<div markdown="3">
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week03/javascript/11-scope">변수 스코프</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/13-exception/README.md">예외처리(Exception Handling)</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/14-callback/README.md">콜백 함수(Callback Function)</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/15-async/README.md">JavaScript 비동기 처리와 이벤트 루프</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/18-dom/README.md">돔(DOM : Document Object Model) 정리</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/23-this/README.md">자바스크립트의 this와 객체지향(OOP)</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/24-modern/README.md">객체 복사와 참조 : 얕은 복사와 깊은 복사</a> <br />
+
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 -   주차별 폴더에 학습한 내용을 Markdown으로 기록
