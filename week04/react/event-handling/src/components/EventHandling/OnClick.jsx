@@ -4,7 +4,13 @@ const OnClick = () => {
   // 클릭 이벤트 핸들링 함수
   // 핸들링 함수명은 관례적으로 `handle이벤트명`으로 작성한다.
   function handleClick() {
+    // 매개변수가 없는 함수
     alert("클릭");
+  }
+
+  function handleParamClick(param) {
+    // 매개변수가 있는 함수
+    alert(param);
   }
 
   return (
@@ -15,9 +21,21 @@ const OnClick = () => {
           handleClick();
         }}
       >
-        화살표 함수클릭
+        화살표 함수 클릭
+      </button>
+      <button
+        onClick={() => {
+          handleParamClick("Hello World");
+        }}
+      >
+        매개변수가 있는 화살표 함수 클릭
       </button>
       <button onClick={handleClick}>함수 참조 클릭</button>
+
+      {/* <button onClick={handleParamClick("Hello World")}>
+        **컴포넌트가 렌더링 시 바로 실행됨**
+        매개변수가 있는 함수 참조 클릭
+      </button> */}
     </div>
   );
 };
