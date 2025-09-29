@@ -7,9 +7,9 @@ const ProfileContainer = () => {
   const isAdmin = true;
   return (
     <div>
-      {/* <Profile name="현우" age={22} isAdmin={true} /> */}
-      <Profile name={name} age={age} isAdmin={isAdmin} />
-      {/* <Profile name="수진" age={21} isAdmin={false} /> */}
+      <Profile name="현우" age={22} isAdmin={true} />
+      {/* <Profile name={name} age={age} isAdmin={isAdmin} /> */}
+      <Profile name="수진" age={21} isAdmin={false} />
     </div>
   );
 };
