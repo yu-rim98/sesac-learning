@@ -1,16 +1,9 @@
-# React + Vite
+# React Props & 함수 전달 정리
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. React Props 기본 이해
 
-Currently, two official plugins are available:
+### 1.1 Props
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Props(properties)는 부모 컴포넌트에서 자식 컴포넌트로 전달하는 **읽기 전용 데이터**를 의미한다.
+- 컴포넌트의 **입력값** 역할을 의미하며 UI 렌더링에 필요한 정보 또는 행동(함수)을 전달한다.
+- 리액트의 **단방향 데이터 흐름**을 구현하는 핵심 메커니즘이다.
