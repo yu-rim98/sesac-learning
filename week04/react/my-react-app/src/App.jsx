@@ -1,9 +1,9 @@
-import Parent from "./components/Props/Parent";
+import ProfileContainer from "./components/Props/PropsExample/ProfileContainer";
 
 function App() {
   return (
     <>
-      <Parent />
+      <ProfileContainer />
     </>
   );
 }
