@@ -1,18 +1,69 @@
-# React + Vite
+# 1. React 이벤트 핸들링의 두가지 방식
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 화살표 함수 사용
 
-Currently, two official plugins are available:
+```jsx
+<button
+  onClick={() => {
+    handleClick();
+  }}
+>
+  화살표 함수 클릭
+</button>
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 특징
+  - **이벤트 발생 시** 내부 함수를 호출할 수 있도록 `새로운 함수`를 생성한다.
+  - 주로 사용되는 경우
+    - 함수에 매개변수를 전달해야 할 때
+    - 이벤트 처리 외에 다른 작업이 추가로 필요할 때
+  - 주의사항
+    - 매 렌더링마다 **새로운 함수 객체가 생성된다.** -> 불필요한 함수 재생성은 성능에 작은 오버헤드가 발생할 수 있다.
+    - 불필요한 재렌더링의 원인이 될 수 있다.
 
-## React Compiler
+### 함수 참조 전달
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```jsx
+<button onClick={handleClick}>함수 참조 클릭</button>
+```
 
-Note: This will impact Vite dev & build performances.
+- 특징
+  - 함수 이름만 전달한다.
+    - 이벤트 발생 시 리액트가 해당 함수를 **자동으로 실행**하고, **이벤트 객체(event)** 를 자동으로 넘겨준다.
+    - 코드가 더 간결하고, **불필요한 함수 생성이 없다.**
+  * 권장 사용
+    - 함수에 매개변수가 없고, 단순히 호출만 하는 경우
 
-## Expanding the ESLint configuration
+# 2. 매개변수가 있는 핸들러 사용 시 주의
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```jsx
+<button onClick={handleClick("Hello")}> // 즉시 실행됨!
+```
+
+- 위 코드는 렌더링 시점에 함수가 **즉시 실행된다.** 즉, 클릭이 아니라 컴포넌트 렌더링만으로도 실행된다.
+
+```jsx
+<button onClick={() => handleClick("Hello")}> // 화살표 함수를 전달하면 버튼 클릭 시 실행된다.
+```
+
+# 3. 이벤트 객체 자동 전달
+
+```jsx
+function handleChange(event) {
+  console.log(event.target.value);
+}
+
+<input type="text" onChange={handleChange} />;
+```
+
+- `handleChange`와 같은 이벤트 핸들러는 이벤트(`on~`)가 발생하면 리액트가 자동으로 `event` 객체를 넘겨준다.
+- 따라서 `onChange={(event) => handleChange(event)}` 래핑 처리는 하지 않아도 된다.
+
+## 표로 정리
+
+| 구분                    | 화살표 함수 (`() => handleClick()`) | 함수 참조 (`handleClick`) |
+| ----------------------- | ----------------------------------- | ------------------------- |
+| 매개변수 전달           | 가능                                | 불가                      |
+| 렌더링마다 새 함수 생성 | 생성됨                              | 없음                      |
+| 코드 간결성             | 덜 간결                             | 간결                      |
+| 추천 상황               | 복잡한 로직, 매개변수 필요 시       | 단순한 함수 실행 시       |
