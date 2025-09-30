@@ -1,11 +1,11 @@
 import React from "react";
-import Container from "./components/State/Container";
-import StringState from "./components/State/StringState";
+
+import NumberState from "./components/State/NumberState";
 
 const App = () => {
   return (
     <div>
-      <StringState />
+      <NumberState />
     </div>
   );
 };
