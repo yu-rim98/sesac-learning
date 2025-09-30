@@ -1,11 +1,11 @@
 import React from "react";
 
-import ObjectState from "./components/State/ObjectState";
+import ArrayState from "./components/State/ArrayState";
 
 const App = () => {
   return (
     <div>
-      <ObjectState />
+      <ArrayState />
     </div>
   );
 };
