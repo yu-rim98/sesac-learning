@@ -11,11 +11,19 @@ const ObjectState = () => {
     setObjectState(newObjectState);
   };
 
+  const deleteObjectState = () => {
+    // 구조 분해 할당
+    // objectState에서 age를 제외한 나머지 객체 속성과 값을 복사한다.
+    const { age, ...newObjectState } = objectState;
+    setObjectState(newObjectState);
+  };
+
   return (
     <div>
       <p>이름: {objectState.name}</p>
-      <p>나이: {objectState.age}</p>
-      <button onClick={updateObjectState}>나이 증가</button>
+      <p>나이: {objectState.age || "없음"}</p>
+      <button onClick={updateObjectState}>나이 증가</button> <br />
+      <button onClick={deleteObjectState}>나이 제거</button>
     </div>
   );
 };
