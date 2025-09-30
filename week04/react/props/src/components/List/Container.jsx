@@ -20,7 +20,7 @@ const Container = () => {
 
       {/* userArray map()을 활용해 반복 */}
       {userArray.map((user) => (
-        <User user={user} />
+        <User key={user.id} user={user} />
       ))}
     </div>
   );
