@@ -1,13 +1,7 @@
-import ProfileContainer from "./components/Props/PropsExample/ProfileContainer";
-import Parent from "./components/PropsChildren/Parent";
-import CardContainer from "./PropsFunction/CardContainer";
+import React from "react";
 
-function App() {
-  return (
-    <>
-      <Parent />
-    </>
-  );
-}
+const App = () => {
+  return <div>App</div>;
+};
 
 export default App;
