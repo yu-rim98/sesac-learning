@@ -1,10 +1,11 @@
 import React from "react";
-import Basic from "./Basic";
+
+import RequestData from "./RequestData";
 
 const Container = () => {
   return (
     <div>
-      <Basic />
+      <RequestData />
     </div>
   );
 };
