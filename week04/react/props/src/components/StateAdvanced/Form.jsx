@@ -7,17 +7,28 @@ const Form = () => {
     email: "",
   });
 
+  const [isChecked, setIsChecked] = useState(false);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     const newForm = { ...form, [name]: value };
 
     setForm(newForm);
   };
 
+  const handleClick = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <div>
       <form>
+        <input
+          type="checkbox"
+          name=""
+          checked={isChecked}
+          onChange={handleClick}
+        />
         {/* 3개 input 요소의 값을 상태로 관리 */}
         <input
           className="border-2"
