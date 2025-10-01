@@ -1,11 +1,9 @@
-import React from "react";
-
-import ArrayState from "./components/State/ArrayState";
+import Container from "./components/StateAdvanced/Container";
 
 const App = () => {
   return (
     <div>
-      <ArrayState />
+      <Container />
     </div>
   );
 };
