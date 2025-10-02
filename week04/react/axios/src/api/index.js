@@ -22,4 +22,26 @@ const axiosInstance = axios.create({
   // 등등..
 });
 
+// 응답 인터셉터 : 서버가 사용자에게 응답으로 전달하는 데이터를 가로채 추가 작업을 수행
+axiosInstance.interceptors.response.use(
+  // 2개의 함수 전달
+  // 요청 성공 시 함수
+  (response) => {
+    console.log("요청 성공 응답 인터셉터");
+    return response.data;
+  },
+  // 요청 실패 시 함수
+  (error) => {
+    if (error.response) {
+      if (error.response.status === 401) {
+        alert("인증에 문제가 발생했습니다.");
+      } else if (error.response.status === 404) {
+        alert("페이지를 찾을 수 없습니다.");
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 export default axiosInstance;
