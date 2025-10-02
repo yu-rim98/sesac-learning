@@ -32,7 +32,7 @@ const MovieDetail = () => {
     getMovieDetail();
   }, []);
 
-  return <div>영확 제목 : {detail.title}</div>;
+  return <div>영화 제목 : {detail.title}</div>;
 };
 
 export default MovieDetail;
