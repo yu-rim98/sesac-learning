@@ -1,9 +1,10 @@
+import MovieDetail from "./components/TMDB/MovieDetail";
 import MovieList from "./components/TMDB/MovieList";
 
 function App() {
   return (
     <>
-      <MovieList />
+      <MovieDetail />
     </>
   );
 }
