@@ -4,9 +4,11 @@ import PostList from "../pages/RootPages/PostList";
 import PostDetail from "../pages/RootPages/PostDetail";
 import Home from "../pages/RootPages/Home";
 
+import PATHS from "../constants/Paths";
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: PATHS.ROOT.INDEX,
     Component: RootLayout,
     children: [
       {
@@ -14,11 +16,11 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "posts",
+        path: PATHS.ROOT.POSTS,
         Component: PostList,
       },
       {
-        path: "posts/:postId",
+        path: PATHS.ROOT.POST_DETAIL,
         Component: PostDetail,
       },
     ],

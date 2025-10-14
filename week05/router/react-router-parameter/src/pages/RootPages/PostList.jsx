@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import PATHS from "../../constants/Paths";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -51,7 +52,7 @@ const PostList = () => {
       <ul>
         {posts.map((post) => (
           <li>
-            <Link key={post.id} to={`/posts/${post.id}`}>
+            <Link key={post.id} to={PATHS.ROOT.getPostDetail(post.id)}>
               {post.title}
             </Link>
           </li>
