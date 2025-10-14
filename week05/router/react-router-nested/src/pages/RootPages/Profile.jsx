@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import PATHS from "../../constants/Paths";
 
 const Profile = () => {
   // 로그인 상태
@@ -12,7 +13,7 @@ const Profile = () => {
   if (!isLogin) {
     // <Navigate> 컴포넌트를 반환
     // replace : history(사용자가 접속한 기록)에 남지 않음
-    return <Navigate to="/" replace />;
+    return <Navigate to={PATHS.ROOT.INDEX} replace />;
   }
 
   return (

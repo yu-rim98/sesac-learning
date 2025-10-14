@@ -1,3 +1,4 @@
+import PATHS from "../../constants/Paths";
 import AuthLayout from "../../layout/AuthLayout";
 import AuthHome from "../../pages/AuthPages/AuthHome";
 import Login from "../../pages/AuthPages/Login";
@@ -15,11 +16,11 @@ const authRoutes = [
         Component: AuthHome,
       },
       {
-        path: "login",
+        path: PATHS.AUTH.LOGIN,
         Component: Login,
       },
       {
-        path: "signup",
+        path: PATHS.AUTH.SIGNUP,
         Component: Signup,
       },
     ],

@@ -1,5 +1,6 @@
 // RootLayout과 RootLayout에 중첩된 페이지 경로 배열 정의
 
+import PATHS from "../../constants/Paths";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 import RootLayout from "../../layout/RootLayout";
 import About from "../../pages/RootPages/About";
@@ -8,7 +9,7 @@ import Profile from "../../pages/RootPages/Profile";
 
 const rootRoutes = [
   {
-    path: "/",
+    path: PATHS.ROOT.INDEX,
     Component: RootLayout,
     children: [
       // 중첩할 자식 경로 객체를 정의하는 배열
@@ -17,7 +18,7 @@ const rootRoutes = [
         Component: Home,
       },
       {
-        path: "about",
+        path: PATHS.ROOT.ABOUT,
         Component: About,
       },
     ],
@@ -30,7 +31,7 @@ const rootRoutes = [
     // 로그인 상태일 경우 Outlet을 통해 Profile 컴포넌트를 보여준다
     children: [
       {
-        path: "profile",
+        path: PATHS.ROOT.PROFILE,
         Component: Profile,
       },
     ],
