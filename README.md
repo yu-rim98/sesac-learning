@@ -2,11 +2,11 @@
 
 ## 📅 교육 기간
 
-2025년 9월 8일 ~ 2025년 2월 27일
+2025년 9월 8일 ~ 2026년 2월 27일
 
 ## 📚 학습 기록
 
-SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에서 학습한 내용을 기록하는 공간입니다.   
+SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에서 학습한 내용을 기록하는 공간입니다.  
 교육 과정 중 학습한 내용과 추가적으로 공부한 내용을 각 주차별로 정리합니다.
 
 <details>
@@ -42,11 +42,20 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 <a href="https://github.com/yu-rim98/learning-react/tree/main/02/hello-react">JSX</a> <br />
 <a href="https://github.com/yu-rim98/learning-react/blob/main/03/component/README.md">컴포넌트(Component)</a> <br />
 
-  
+</div>
+</details>
+
+<details>
+<summary> Week 4️⃣ </summary>
+<div markdown="4">
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week04/react/event-handling">이벤트 핸들링</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week04/react/props">Props</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week04/react/hooks_">Hooks</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week04/react/axios">Axios</a> <br />
 </div>
 </details>
 
 ## 🗂️ 정리 방식
 
--   각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
--   Git commit을 통해 진행 상황을 기록하며 학습 과정을 점검합니다.
+- 각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
+- Git commit을 통해 진행 상황을 기록하며 학습 과정을 점검합니다.
