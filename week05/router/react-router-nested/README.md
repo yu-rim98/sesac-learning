@@ -1,16 +1,72 @@
-# React + Vite
+# 중첩 라우팅(Nested Routing)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 중첩 라우팅은 라우트(Route) 안에 또 다른 라우트를 정의하는 방식이다.   
+> 특정 경로에 진입했을 때 공통된 UI 레이아웃(예: 헤더, 사이드바, 푸터 등)을 보여주면서 그 안의 내용만 URL에 따라 동적으로 변경하고 싶을 때 유용하다.
 
-Currently, two official plugins are available:
+## 핵심 - 부모 라우트와 자식 라우트의 관계
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. 부모 라우트
+   - 공통 레이아웃 역할을 하는 컴포넌트를 렌더링한다.
+   - 해당 부모 컴포넌트에는 자식 컴포넌트가 렌더링될 위치를 지정하는 `<Outlet />` 컴포넌트가 필요하다.
+2. 자식 라우트
+   - 부모의 공통 레이아웃 안에서 특정 경로에 따라 바뀌는 콘텐츠(페이지)를 렌더링한다.
 
-## React Compiler
+### 구조
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```javascript
+const RootLayout = () => {
+  return (
+    <div>
+      {/* 이 부분은 항상 보임 */}
+      <div className="flex gap-4 p-2 border-2 border-gray-300">
+        <Link to="/">홈페이지</Link>
+        <Link to="/about">소개페이지</Link>
+      </div>
+      {/* 자식 컴포넌트가 중첩될 위치 */}
+      <Outlet />
+    </div>
+  );
+};
+```
 
-## Expanding the ESLint configuration
+- 부모 라우트의 컴포넌트 안에 `<Outlet />`을 배치하면 현재 URL과 일치하는 **자식 라우트의 컴포넌트가 해당 위치에 렌더링**된다.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 중첩 라우팅 설정
+
+```javascript
+const router = createBrowserRouter([
+  // 중첩 라우팅 : 특정 부모 경로의 레이아웃이나 UI 틀을 공유하면서 그 안에서 자식 컴포넌트를 렌더링하고 싶을 때 사용한다.
+  {
+    path: "/",
+    Component: RootLayout,
+    children: [
+      // 중첩할 자식 경로 객체를 정의하는 배열
+      {
+        index: true, // 부모 경로를 기본으로 사용
+        Component: Home,
+      },
+      {
+        path: "about",
+        Component: About,
+      },
+    ],
+  },
+]);
+```
+
+- `"/"` `path`를 가진 부모 라우트가 `RootLayout` 컴포넌트를 사용한다.
+- 해당 부모 라우트는 `children` 프로퍼티를 통해 자식 라우트들을 가진다.
+  - `index: true` : 부모 경로(`"/"`)와 정확히 일치할 때 기본으로 보여줄 자식 컴포넌트 지정 (`Home`)
+  - `about` path : `"/about"` 경로로 접속하면 `RootLayout`안의 `<Outlet />` 위치에 `About` 컴포넌트를 보여준다.
+
+## 정리
+
+- 개념
+  - 중첩 라우팅은 **공통 레이아웃을 공유하는 페이지** 들을 효율적으로 관리하기 위해 **라우트를 계층 구조**로 구성하는 방식이다.
+- 구현
+  - 라우트 설정 시 부모 라우트 객체 안에 `children` 배열을 추가해 자식 라우트들을 정의한다.
+  - 부모 라우트의 컴포넌트(레이아웃 컴포넌트)에는 자식 컴포넌트가 렌더링될 위치에 `<Outlet />` 을 사용한다.
+- 장점
+  - 코드 중복 감소 : 공통 UI(헤더, 푸터 등)를 한곳에서 관리할 수 있다.
+  - 구조화 및 가독성 : URL 구조와 컴포넌트 구조가 일치해 코드를 이해하기 쉽다.
+  - 유지보수 용이 : 관련된 라우트들이 그룹화되어 있어 수정 및 확장이 편리하다.
