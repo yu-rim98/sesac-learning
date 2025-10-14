@@ -1,18 +1,80 @@
-# React + Vite
+# React에서 자주 사용하는 기본 Hook인 `useState`와 `useEffect`에 대한 정리
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. `useState`
 
-Currently, two official plugins are available:
+> `useState`는 함수형 컴포넌트에서 **상태(state)** 를 관리할 수 있도록 도와주는 Hook이다.  
+> 클래스 컴포넌트의 `this.state`, `this.setState()`를 대체한다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 문법
 
-## React Compiler
+```javascript
+const [state, setState] = useState(initialValue);
+```
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- `state` : 현재 상태 값
+- `setState` : 상태를 변경하는 함수
+- `initialValue` : 상태의 초기값
 
-Note: This will impact Vite dev & build performances.
+### 예제 : 카운터
 
-## Expanding the ESLint configuration
+```javascript
+import { useState } from "react";
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+
+  return (
+    <div>
+      <p> 카운트 : {count} </p>
+      <buttoun onClick={increment}>증가</buttoun>
+    </div>
+  );
+}
+```
+
+- 버튼이 클릭되면 count 값을 1 증가한다.
+
+---
+
+## 2. `useEffect`
+
+> React 컴포넌트가 렌더링될 때마다 특정 작업(부수 효과, Side Effect)을 수행하도록 하는 Hook이다.  
+> 클래스 컴포넌트의 `componentDidMount`, `componentDidUpdate`, `componentWillUnmount` 를 대체한다.
+
+### 문법
+
+```javascript
+useEffect(() => {
+	// 실행할 코드 (effect)
+	return () => {
+		// 정리(clean-up) 함수 (선택 사항)
+	};
+}, [의존성 배열]);
+```
+
+### 의존성 배열
+
+- `[]` : 처음 마운트될 때만 실행한다. (1번 실행)
+- `[state]` : 특정 상태가 바뀔 때만 실행한다.
+- 생략 : 매 렌더링마다 실행한다.
+
+### 예제 : API 호출
+
+```javascript
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function UserList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/users")
+      .then((response) => setUsers(response.data));
+  }, []); // 처음 한번만 실행
+}
+```
+
+- UserList 컴포넌트가 처음 마운트될 때 한번만 실행한다.
