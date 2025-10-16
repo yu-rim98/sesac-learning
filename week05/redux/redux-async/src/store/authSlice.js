@@ -64,6 +64,30 @@ const login = createAsyncThunk(
   }
 );
 
+const logout = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue, getState }) => {
+    // rejectWithValue, getState - thunkAPI 메서드. 즉, Redux Toolkit이 자동으로 넘겨줌
+    try {
+      const config = {
+        url: `${SUPABASE_URL}/auth/v1/logout`,
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          apikey: SUPABASE_ANON_KEY,
+          // 토큰 정보
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      };
+      const response = await axios(config);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   token: null,
   error: null,
@@ -96,6 +120,12 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.token = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 });
@@ -103,4 +133,4 @@ const authSlice = createSlice({
 export const { resetIsSignup } = authSlice.actions;
 export default authSlice.reducer;
 
-export { signup, login };
+export { signup, login, logout };

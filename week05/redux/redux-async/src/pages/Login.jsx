@@ -14,7 +14,7 @@ const Login = () => {
   useEffect(() => {
     if (token) {
       alert("로그인되었습니다.");
-      navigate("/");
+      navigate("/profile");
     }
   }, [token]);
   const handleSubmit = (e) => {
