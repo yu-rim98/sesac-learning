@@ -5,12 +5,19 @@ import "./index.css";
 import router from "./router/index.js";
 import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./store/index.js";
+import { persistor, store } from "./store/index.js";
+
+// Persist 스토어 적용
+
+import { PersistGate } from "redux-persist/integration/react";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      {/* Persist Gate 적용 */}
+      <PersistGate persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
   </StrictMode>
 );
