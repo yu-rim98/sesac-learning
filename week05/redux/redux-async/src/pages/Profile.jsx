@@ -18,8 +18,6 @@ const Profile = () => {
   useEffect(() => {
     if (token) {
       setDecodeToken(jwtDecode(token));
-    } else {
-      navigate("/login");
     }
   }, [token]);
 

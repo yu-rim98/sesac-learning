@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Profile from "../pages/Profile";
+import PrivateLayout from "../layouts/PrivateLayout";
+import AuthLayout from "../layouts/AuthLayout";
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -12,16 +14,26 @@ const router = createBrowserRouter([
     Component: Home,
   },
   {
-    path: "/login",
-    Component: Login,
+    Component: AuthLayout,
+    children: [
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "signup",
+        Component: Signup,
+      },
+    ],
   },
   {
-    path: "signup",
-    Component: Signup,
-  },
-  {
-    path: "/profile",
-    Component: Profile,
+    Component: PrivateLayout,
+    children: [
+      {
+        path: "/profile",
+        Component: Profile,
+      },
+    ],
   },
 ]);
 
