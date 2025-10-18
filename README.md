@@ -55,6 +55,19 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </div>
 </details>
 
+<details>
+<summary> Week 5️⃣ </summary>
+<div markdown="5">
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/router/my-react-router-app">React Router</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/router/react-router-nested">중첩 라우팅(Nested Routing)</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/router/react-router-parameter">React Router 파라미터</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/redux/redux-app">Redux Toolkit</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week05/redux/redux-app/redux-toolkit.md">Redux Toolkit — 스토어와 슬라이스 구조 정리</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/redux/redux-async">React Reudx 비동기처리 정리</a> <br />
+
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 - 각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
