@@ -68,6 +68,17 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </div>
 </details>
 
+<details>
+<summary> Week 6️⃣ </summary>
+<div markdown="6">
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week06/SQL/database-basic.md">데이터베이스 기본 개념</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week06/SQL/%EC%A0%95%EA%B7%9C%ED%98%95.md">정규형 개념</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week06/SQL/%ED%85%8C%EC%9D%B4%EB%B8%94%20%EA%B4%80%EA%B3%84.md">테이블 관계</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week06/SQL/ddl-dml.md">DDL, DML</a> <br />
+
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 - 각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
