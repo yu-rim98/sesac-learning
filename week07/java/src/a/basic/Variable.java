@@ -38,5 +38,15 @@ public class Variable {
         // 논리형
         boolean bool = true;
         System.out.println(bool);
+
+        // 형변환
+
+        // 자동 형변환 (묵시적 형변환)
+        // 작은 타입 -> 큰 타입만 가능
+
+        // 강제 형변환 (명시적 형변환)
+        // 큰 타입 -> 작은 타입
+        // (타입)으로 명시해줘야 함
     }
+
 }
