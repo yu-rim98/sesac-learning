@@ -53,6 +53,11 @@ public class Operator {
         int age = 20;
         String adult = (age > 20) ? "성인" : "청소년";
         System.out.println(adult);
+
+        // 비트 연산자
+        int intC = 123456;
+        System.out.println(intC << 1); // * 2
+        System.out.println(intC >> 1); // / 2
     }
 
 }
