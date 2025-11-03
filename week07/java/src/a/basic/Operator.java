@@ -40,6 +40,14 @@ public class Operator {
         System.out.println("str == str3 => " + (str == str3));
 
         System.out.println("str.equals(str3) => " + str.equals(str3));
+
+
+        // 단락 평가
+        // 항상 앞 조건을 먼저 연산함
+        int myX = 0;
+        if (myX != 0  && 10 / x > 1) {
+            System.out.println("실행");
+        }
     }
 
 }
