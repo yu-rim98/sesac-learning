@@ -48,6 +48,11 @@ public class Operator {
         if (myX != 0  && 10 / x > 1) {
             System.out.println("실행");
         }
+
+        // 삼항 연산자
+        int age = 20;
+        String adult = (age > 20) ? "성인" : "청소년";
+        System.out.println(adult);
     }
 
 }
