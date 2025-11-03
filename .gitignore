@@ -75,3 +75,12 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,react
 .env
+
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+*.iml
+*.xml
+*.iws
+*.idea
