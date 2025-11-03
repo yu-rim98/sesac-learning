@@ -27,6 +27,19 @@ public class Operator {
         x += 5;
         System.out.println("x += 5 => " + x);
 
+        String str = "hello";
+        String str2 = "hello";
+        String str3 = new String("hello");
+
+        // 문자열 비교
+        // == 비교는 값을 비교
+        // str, str2는 동일한 참조값을 가짐
+        System.out.println("str == str2 => " + (str == str2));
+
+        // str, str3은 다른 참조값을 가짐
+        System.out.println("str == str3 => " + (str == str3));
+
+        System.out.println("str.equals(str3) => " + str.equals(str3));
     }
 
 }
