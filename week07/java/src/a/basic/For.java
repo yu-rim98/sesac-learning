@@ -30,6 +30,15 @@ public class For {
             }
         }
 
+        // 배열
+        int[] numbers = {10, 11, 12, 13, 14};
+
+        // 향상된 for 문
+        for (int n : numbers) {
+            System.out.println(n);
+        }
+
+
     }
 
 }
