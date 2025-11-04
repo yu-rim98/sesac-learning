@@ -44,6 +44,34 @@ public class Array {
             System.out.println(score);
         }
 
+
+//        int[][] matrix = new int[5][5];
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9},
+        };
+
+
+        for (int i = 0; i < matrix.length; i++) {
+//            System.out.println(i);
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.println(matrix[i][j]);
+            }
+        }
+
+        int[][] jagged = {
+            {1},
+            {2, 3},
+            {4, 5, 6},
+            {7, 8, 9, 10}
+        };
+
+        for (int[] row : jagged) {
+            for (int item : row) {
+                System.out.println(item);
+            }
+        }
     }
 
 }
