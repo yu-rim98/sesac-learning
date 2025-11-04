@@ -38,6 +38,12 @@ public class For {
             System.out.println(n);
         }
 
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+            if (i == 5) { // i가 5가되면 중단
+                break;
+            }
+        }
 
     }
 
