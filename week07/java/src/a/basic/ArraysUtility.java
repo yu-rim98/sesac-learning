@@ -27,5 +27,16 @@ public class ArraysUtility {
         int[] copied = Arrays.copyOf(origin, origin.length);
 
         System.out.println(Arrays.toString(copied));
+
+        int[] copied2 = origin;
+        System.out.println(Arrays.toString(copied2));
+
+        System.out.println();
+        origin[0] = 100; // 원본 배열 값 변경
+        System.out.println(Arrays.toString(origin));
+        System.out.println(Arrays.toString(copied));
+
+        // 원본 배열이 가지는 참조값을 그대로 저장하므로 origin 데이터 변경 시 copied2도 같이 변경됨
+        System.out.println(Arrays.toString(copied2));
     }
 }
