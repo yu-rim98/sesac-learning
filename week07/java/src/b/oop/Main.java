@@ -21,7 +21,7 @@ public class Main {
         System.out.println(c2.radius);
         System.out.println(c3.radius);
 
-        Dog dog = new Dog(); // 기본생성자
+        Dog dog = new Dog("달구", 5, "갈색"); // 기본생성자
         System.out.println(dog.name);
         System.out.println(dog.age);
 
