@@ -49,5 +49,9 @@ public class ArraysUtility {
         System.out.println(arrA == arrB); // 참조값이 다름
         System.out.println(Arrays.equals(arrA, arrB)); // 배열 내부 데이터 값을 비교
 
+        int[][] mat = {{1, 2, 3}, {3, 4}};
+        System.out.println(Arrays.toString(mat)); // 주소값이 출력됨
+        System.out.println(Arrays.deepToString(mat)); // 데이터 출력
+
     }
 }
