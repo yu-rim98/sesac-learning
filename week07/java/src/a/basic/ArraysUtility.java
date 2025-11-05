@@ -17,5 +17,8 @@ public class ArraysUtility {
         int index = Arrays.binarySearch(numbers, 7);
         System.out.println(index);
 
+        int[] filled = new int[10];
+        Arrays.fill(filled, 99); // 배열에 값 채우기
+        System.out.println(Arrays.toString(filled));
     }
 }
