@@ -38,5 +38,11 @@ public class ArraysUtility {
 
         // 원본 배열이 가지는 참조값을 그대로 저장하므로 origin 데이터 변경 시 copied2도 같이 변경됨
         System.out.println(Arrays.toString(copied2));
+
+        // 범위 지정 복사
+        // 복사 대상에서 어디부터 어디까지 복사 (to는 제외함 즉, to-1)
+        int[] ranged = Arrays.copyOfRange(origin, 1, 3);
+        System.out.println(Arrays.toString(ranged));
+
     }
 }
