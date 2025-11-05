@@ -20,5 +20,12 @@ public class ArraysUtility {
         int[] filled = new int[10];
         Arrays.fill(filled, 99); // 배열에 값 채우기
         System.out.println(Arrays.toString(filled));
+
+        int[] origin = {1, 2, 3, 4, 5};
+        // 복사
+        // 첫번째 인자 - 복사 대상, 두번째 인자 - 갯수
+        int[] copied = Arrays.copyOf(origin, origin.length);
+
+        System.out.println(Arrays.toString(copied));
     }
 }
