@@ -44,5 +44,10 @@ public class ArraysUtility {
         int[] ranged = Arrays.copyOfRange(origin, 1, 3);
         System.out.println(Arrays.toString(ranged));
 
+        int[] arrA = {1, 2, 3};
+        int[] arrB = {1, 2, 3};
+        System.out.println(arrA == arrB); // 참조값이 다름
+        System.out.println(Arrays.equals(arrA, arrB)); // 배열 내부 데이터 값을 비교
+
     }
 }
