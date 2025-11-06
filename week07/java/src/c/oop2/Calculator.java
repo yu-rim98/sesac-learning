@@ -1,5 +1,7 @@
 package c.oop2;
 
+import java.util.Arrays;
+
 class Sample {
     int value;
 }
@@ -8,6 +10,14 @@ public class Calculator {
 
     int add(int a, int b) {
         return a + b;
+    }
+
+    int add(int... numbers) {
+        int sum = 0;
+        for (int num : numbers) {
+            sum += num;
+        }
+        return sum;
     }
 
     void printResult(int result) {
