@@ -9,5 +9,9 @@ public class Main {
 
         Person p1 = new Person();
         Person p2 = new Person("kim", 20);
+
+        Rectangle r1 = new Rectangle();
+        Rectangle r2 = new Rectangle(10);
+        Rectangle r3 = new Rectangle(20, 30);
     }
 }
