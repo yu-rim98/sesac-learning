@@ -17,6 +17,10 @@ public class Main {
         // 가변 인자
         int add = calculator.add(1, 2, 3, 4, 5, 6);
         System.out.println(add);
+
+        User user = new User("홍길동", 10);
+        // user.name = "김길동"; 외부에서 직접 수정 불가
+        user.setName("김길동"); // 메서드를 통해 수정
     }
 }
 
