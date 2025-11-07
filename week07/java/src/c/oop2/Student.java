@@ -5,11 +5,13 @@ public class Student {
     private int score;
 
     private static int totalStudent = 0;
+    private static int totalScore = 0;
 
     public Student(String name, int score) {
         this.name = name;
         this.score = score;
         totalStudent++;
+        totalScore += score;
     }
 
     public String getName() {
@@ -30,5 +32,9 @@ public class Student {
 
     public static int getTotalStudent() {
         return totalStudent;
+    }
+
+    public static double getAverageScore() {
+        return (double) totalScore / totalStudent;
     }
 }

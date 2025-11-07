@@ -8,6 +8,11 @@ public class StudentMain {
 
         System.out.println(s1.getName());
         System.out.println(Student.getTotalStudent());
+        System.out.println(Student.getAverageScore());
+
+        Student s3 = new Student("choi", 80);
+        System.out.println(Student.getAverageScore());
+
     }
 
 }
