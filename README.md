@@ -79,6 +79,24 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </div>
 </details>
 
+<details>
+<summary> Week 7️⃣ </summary>
+<div markdown="7">
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/a/basic/README.md">자바 기본 문법</a> <br />
+</div>
+</details>
+
+<details>
+<summary> Week 8️⃣ </summary>
+<div markdown="8">
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/b/oop/README.md">객체 지향 프로그래밍(OOP)1</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/c/oop2/README.md">객체 지향 프로그래밍(OOP)2</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/c/oop2/Getter%EC%99%80Setter%20%EC%A7%80%EC%96%91.md">Getter, Setter 지양</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/com.shop/README.md">com.shop 회고</a>
+
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 - 각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
