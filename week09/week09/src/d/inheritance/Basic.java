@@ -11,6 +11,7 @@ class Animal {
 }
 
 class Dog extends Animal {
+    private String breed;
 
     public void bark() {
         System.out.println("짖기");
@@ -18,6 +19,7 @@ class Dog extends Animal {
 }
 
 class Cat extends Animal{
+    private int life;
 
     public void meow() {
         System.out.println("울기");
