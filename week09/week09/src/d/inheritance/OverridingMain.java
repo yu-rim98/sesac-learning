@@ -17,10 +17,10 @@ class Child extends Parent {
         System.out.println("자식 클래스");
     }
 
-    @Override
-    void display() {
-        System.out.println("자식이 표시");
-    }
+//    @Override
+//    void display() {
+//        System.out.println("자식이 표시");
+//    }
 }
 
 
