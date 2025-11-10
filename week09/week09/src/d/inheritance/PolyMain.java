@@ -12,6 +12,10 @@ class Dog3 extends Animal3 {
     void makeSound() {
         System.out.println("멍멍");
     }
+
+    void bark() {
+        System.out.println("왈왈");
+    }
 }
 
 class Cat3 extends Animal3 {
@@ -61,6 +65,16 @@ public class PolyMain {
         for (Animal3 animal : animals) {
             soundAnimal(animal);
         }
+
+        // 그대로 저장
+        Dog3 d1 = new Dog3();
+        d1.makeSound();
+        d1.bark();
+
+        // 업캐스팅
+        Animal3 d2 = new Dog3();
+        d2.makeSound();
+        // d2.bark(); 사용할 수 없음 Animal3 타입이니까
     }
 
     static void soundAnimal(Animal3 animal) {
