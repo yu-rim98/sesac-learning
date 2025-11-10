@@ -28,6 +28,13 @@ class Bird3 extends Animal3 {
     }
 }
 
+class Rabbit3 extends Animal3 {
+    @Override
+    void makeSound() {
+        System.out.println("깡충");
+    }
+}
+
 public class PolyMain {
 
     public static void main(String[] args) {
@@ -42,10 +49,12 @@ public class PolyMain {
         Animal3 a1 = new Dog3();
         Animal3 a2 = new Cat3();
         Animal3 a3 = new Bird3();
+        Animal3 a4 = new Rabbit3();
 
         soundAnimal(a1);
         soundAnimal(a2);
         soundAnimal(a3);
+        soundAnimal(a4);
     }
 
     static void soundAnimal(Animal3 animal) {
