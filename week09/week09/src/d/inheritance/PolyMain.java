@@ -59,7 +59,7 @@ public class PolyMain {
         };
         
         for (Animal3 animal : animals) {
-            animal.makeSound();
+            soundAnimal(animal);
         }
     }
 
