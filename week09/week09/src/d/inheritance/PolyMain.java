@@ -46,15 +46,21 @@ public class PolyMain {
 //        c.makeSound();
 //        b.makeSound();
 
-        Animal3 a1 = new Dog3();
-        Animal3 a2 = new Cat3();
-        Animal3 a3 = new Bird3();
-        Animal3 a4 = new Rabbit3();
+//        Animal3 a1 = new Dog3();
+//        Animal3 a2 = new Cat3();
+//        Animal3 a3 = new Bird3();
+//        Animal3 a4 = new Rabbit3();
 
-        soundAnimal(a1);
-        soundAnimal(a2);
-        soundAnimal(a3);
-        soundAnimal(a4);
+        Animal3[] animals = {
+            new Dog3(),
+            new Cat3(),
+            new Bird3(),
+            new Rabbit3()
+        };
+        
+        for (Animal3 animal : animals) {
+            animal.makeSound();
+        }
     }
 
     static void soundAnimal(Animal3 animal) {
