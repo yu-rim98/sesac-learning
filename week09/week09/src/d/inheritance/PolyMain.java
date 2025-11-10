@@ -31,12 +31,24 @@ class Bird3 extends Animal3 {
 public class PolyMain {
 
     public static void main(String[] args) {
-        Dog3 d = new Dog3();
-        Cat3 c = new Cat3();
-        Bird3 b = new Bird3();
+//        Dog3 d = new Dog3();
+//        Cat3 c = new Cat3();
+//        Bird3 b = new Bird3();
+//
+//        d.makeSound();
+//        c.makeSound();
+//        b.makeSound();
 
-        d.makeSound();
-        c.makeSound();
-        b.makeSound();
+        Animal3 a1 = new Dog3();
+        Animal3 a2 = new Cat3();
+        Animal3 a3 = new Bird3();
+
+        soundAnimal(a1);
+        soundAnimal(a2);
+        soundAnimal(a3);
+    }
+
+    static void soundAnimal(Animal3 animal) {
+        animal.makeSound();
     }
 }
