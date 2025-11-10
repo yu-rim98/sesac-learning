@@ -1,25 +1,23 @@
 package d.inheritance;
 
-class Dog {
+class Animal {
+    // 공통으로 가져야 하는 필드와 메서드를 정의
     private String name;
     private int age;
 
     public void eat() {
         System.out.println("먹기");
     }
+}
+
+class Dog extends Animal {
 
     public void bark() {
         System.out.println("짖기");
     }
 }
 
-class Cat {
-    private String name;
-    private int age;
-
-    public void eat() {
-        System.out.println("먹기");
-    }
+class Cat extends Animal{
 
     public void meow() {
         System.out.println("울기");
