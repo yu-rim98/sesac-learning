@@ -87,7 +87,9 @@ public class PolyMain {
         // 다운캐스팅
         Cat3 c2 = (Cat3) c1;
         c2.meow();
-        
+
+        System.out.println(c2 instanceof Animal3);
+        System.out.println(c2 instanceof Cat3);
     }
 
     static void soundAnimal(Animal3 animal) {
