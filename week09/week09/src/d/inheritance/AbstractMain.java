@@ -70,6 +70,56 @@ class Rectangle4 extends Shape4 {
     }
 }
 
+abstract class Vehicle4 {
+    abstract void start();
+    abstract void stop();
+    abstract int getSpeed();
+}
+
+class Car4 extends Vehicle4 {
+
+    int speed;
+
+    @Override
+    void start() {
+        speed = 30;
+        System.out.println("차가 출발했습니다.");
+    }
+
+    @Override
+    void stop() {
+        speed = 0;
+        System.out.println("차가 멈췄습니다.");
+    }
+
+    @Override
+    int getSpeed() {
+        return speed;
+    }
+}
+
+class Bicycle4 extends Vehicle4 {
+
+    int speed;
+
+    @Override
+    void start() {
+        speed = 10;
+        System.out.println("자전거가 출발했습니다.");
+    }
+
+    @Override
+    void stop() {
+        speed = 0;
+        System.out.println("자전거가 멈췄습니다.");
+    }
+
+    @Override
+    int getSpeed() {
+        return speed;
+    }
+}
+
 public class AbstractMain {
 
     public static void main(String[] args) {
@@ -86,6 +136,12 @@ public class AbstractMain {
         r.displayColor();
         System.out.println(r.getArea());
         System.out.println(r.getPerimeter());
+
+        Vehicle4 c1 = new Car4();
+        Vehicle4 b = new Bicycle4();
+
+        c1.start();
+        System.out.println(c1.getSpeed());
     }
 
 }
