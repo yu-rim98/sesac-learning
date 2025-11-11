@@ -26,8 +26,8 @@ abstract class Shape4 {
         System.out.println(color);
     }
 
-    abstract void getArea();
-    abstract void getPerimeter();
+    abstract double getArea();
+    abstract double getPerimeter();
 }
 
 class Circle4 extends Shape4 {
@@ -39,13 +39,34 @@ class Circle4 extends Shape4 {
     }
 
     @Override
-    void getArea() {
-
+    double getArea() {
+        return 3.14 * radius * radius;
     }
 
     @Override
-    void getPerimeter() {
+    double getPerimeter() {
+        return 3.14 * radius * 2;
+    }
+}
 
+class Rectangle4 extends Shape4 {
+    double width;
+    double height;
+
+    public Rectangle4(String color, double width, double height) {
+        super(color);
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    double getArea() {
+        return width * height;
+    }
+
+    @Override
+    double getPerimeter() {
+        return 2 * (width + height);
     }
 }
 
@@ -53,6 +74,18 @@ public class AbstractMain {
 
     public static void main(String[] args) {
         // Animal4 a = new Animal4("동물");
+
+        Shape4 c = new Circle4("red", 5);
+        Shape4 r = new Rectangle4("blue", 10, 15);
+
+        c.displayColor();
+        System.out.println(c.getArea());
+        System.out.println(c.getPerimeter());
+
+
+        r.displayColor();
+        System.out.println(r.getArea());
+        System.out.println(r.getPerimeter());
     }
 
 }
