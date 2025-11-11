@@ -1,6 +1,6 @@
 package d.inheritance;
 
-class Animal4 {
+abstract class Animal4 {
     String name;
 
     public Animal4(String name) {
