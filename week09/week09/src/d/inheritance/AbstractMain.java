@@ -15,6 +15,40 @@ abstract class Animal4 {
     abstract void makeSound();
 }
 
+abstract class Shape4 {
+    String color;
+
+    public Shape4(String color) {
+        this.color = color;
+    }
+
+    void displayColor() {
+        System.out.println(color);
+    }
+
+    abstract void getArea();
+    abstract void getPerimeter();
+}
+
+class Circle4 extends Shape4 {
+    double radius;
+
+    public Circle4(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+
+    @Override
+    void getArea() {
+
+    }
+
+    @Override
+    void getPerimeter() {
+
+    }
+}
+
 public class AbstractMain {
 
     public static void main(String[] args) {
