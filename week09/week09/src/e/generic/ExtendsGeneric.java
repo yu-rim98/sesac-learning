@@ -22,5 +22,6 @@ public class ExtendsGeneric {
         NumberBox<Double> numberBox2 = new NumberBox<>(3.14);
         double d = numberBox2.getValue();
 
+        // NumberBox<String> stringBox = new NumberBox<String>("Hi");
     }
 }
