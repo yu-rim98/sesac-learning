@@ -12,6 +12,19 @@ class Box {
     }
 }
 
+class StringBox {
+    private String item;
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+}
+
 public class WithoutGeneric {
 
     public static void main(String[] args) {
@@ -24,5 +37,11 @@ public class WithoutGeneric {
         box.setItem(123);
         // System.out.println(box.getItem());
         int i = (int) box.getItem();
+
+        StringBox stringBox = new StringBox();
+        stringBox.setItem("hello");
+        String str2 = stringBox.getItem();
+
+
     }
 }
