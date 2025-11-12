@@ -12,7 +12,20 @@ class NumberBox<T extends Number> { // Number 아래 타입만 받도록 지정
     }
 
     public double getDoubleValue() {
-        return (double) value;
+        return value.doubleValue();
+    }
+}
+
+// Comparable을 구현하는 타입을 받음
+class SortedBox<T extends Comparable<T>> {
+    private T value;
+
+    public SortedBox(T value) {
+        this.value = value;
+    }
+
+    public boolean isGreaterThan(T other) {
+        return value.compareTo(other) > 0;
     }
 }
 
@@ -27,5 +40,8 @@ public class ExtendsGeneric {
         double d = numberBox2.getValue();
 
         // NumberBox<String> stringBox = new NumberBox<String>("Hi");
+
+        SortedBox<Integer> b1 = new SortedBox<>(10);
+        b1.isGreaterThan(5);
     }
 }
