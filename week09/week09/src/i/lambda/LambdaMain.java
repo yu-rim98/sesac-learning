@@ -68,5 +68,23 @@ public class LambdaMain {
         // 매개변수를 받아서 값 반환
         Function<String, Integer> f = (str) -> str.length();
         System.out.println(f.apply("안녕하세요"));
+
+
+        // 메서드 참조 ::
+        // static 메서드 참조
+        Function<String, Integer> parser1 = (str) -> Integer.parseInt(str);
+        Function<String, Integer> parser2 = Integer::parseInt; // 뭘 할지만 정해줌
+        Integer apply = parser2.apply("123");
+        System.out.println(apply);
+
+        // 인스턴스 메서드 참조
+        String prefix = "hihi";
+        Function<String, String> greeter1 = (name) -> prefix.concat(name);
+        String kim = greeter1.apply("kim");
+        System.out.println(kim);
+
+        Function<String, String> greeter2 = prefix::concat;
+        String lee = greeter2.apply("lee");
+        System.out.println(lee);
     }
 }
