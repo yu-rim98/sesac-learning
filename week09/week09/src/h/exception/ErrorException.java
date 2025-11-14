@@ -31,12 +31,36 @@ public class ErrorException {
 
 
         // Checked Exception(컴파일 예외) - 예외처리 필수
+//        try {
+//            FileReader fr = new FileReader("a.txt");
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
         try {
-            FileReader fr = new FileReader("a.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            int result = 1 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("0으로 나눌 수 없습니다.");
         }
 
+        System.out.println("next");
+
+
+        FileReader fr = null;
+        try {
+            fr = new FileReader("data.txt");
+            System.out.println("파일을 불러옴");
+
+        } catch (IOException e) {
+            System.out.println("존재하지 않는 파일입니다.");
+        } finally {
+            try {
+                // fr.close()에서도 IOException이 발생할 수 있기 때문에 잡아줘야 함
+                fr.close();
+            } catch (IOException e) {
+                System.out.println("fr close 실패");
+            }
+        }
 
     }
 
