@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 interface Calculator {
     int calculate(int a, int b);
-
+    int calculate2(int a, int b);
 }
 
 
@@ -46,6 +46,7 @@ public class LambdaMain {
 
 
         // 그럼 람다는 인터페이스에만 사용할 수 있나 ?
+        // 람다는 하나의 메서드만 가지는 인터페이스에만 사용할 수 있음
         Calculator cal = (a, b) -> a + b;
 
      }
