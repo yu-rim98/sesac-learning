@@ -2,7 +2,7 @@ package h.exception;
 
 
 // 보통 Exception을 상속받지 않고 런타임 Exception을 상속받는 이유는 무엇인가?
-class InsufficientBalanceException extends Exception {
+class InsufficientBalanceException extends RuntimeException {
 
     private int current;
     private int request;
@@ -22,7 +22,7 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    public void withdraw(int amount) throws InsufficientBalanceException {
+    public void withdraw(int amount) {
         if (amount > balance) {
             throw new InsufficientBalanceException(balance, amount);
         }
