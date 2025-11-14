@@ -2,6 +2,7 @@ package i.lambda;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
@@ -26,6 +27,27 @@ public class StreamMain {
             .map(n -> n * n)
             .reduce(0, Integer::sum);
         System.out.println(sum2);
+
+        List<Integer> numbers = Arrays.asList(5, 4, 1, 7, 5, 3, 2, 9);
+
+        // filter : true or false 값이 나오는 로직을 작성해야 함
+        List<Integer> evens = numbers.stream()
+            .filter(n -> n % 2 == 0)
+            .collect(Collectors.toList());
+
+        System.out.println(evens);
+
+        List<Integer> greaterThan5 = numbers.stream()
+            .filter(n -> n > 5)
+            .collect(Collectors.toList());
+        System.out.println(greaterThan5);
+
+        List<String> words = Arrays.asList("Apple", "Banana", "Cherry");
+        List<String> longWords = words.stream()
+            .filter(s -> s.length() > 5)
+            .collect(Collectors.toList());
+
+        System.out.println(longWords);
     }
 
 }
