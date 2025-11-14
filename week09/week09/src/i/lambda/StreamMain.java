@@ -48,6 +48,26 @@ public class StreamMain {
             .collect(Collectors.toList());
 
         System.out.println(longWords);
+
+
+        List<Integer> squares = numbers.stream()
+            .map(n -> n * n)
+            .collect(Collectors.toList());
+
+        System.out.println(squares);
+
+        List<String> upper = words.stream()
+            .map(String::toUpperCase)
+            .collect(Collectors.toList());
+
+        System.out.println(upper);
+
+        // 정렬
+        List<Integer> sorted = numbers.stream()
+            .sorted()
+            .collect(Collectors.toList());
+
+        System.out.println(sorted);
     }
 
 }
