@@ -49,6 +49,10 @@ public class LambdaMain {
         // 그럼 람다는 인터페이스에만 사용할 수 있나 ?
         // 람다는 하나의 메서드만 가지는 인터페이스에만 사용할 수 있음
         Calculator cal = (a, b) -> a + b;
+        int result2 = cal.calculate(5, 5);
+        System.out.println(result2);
 
-     }
+        Calculator cal2 = (a, b) -> a * b;
+        System.out.println(cal2.calculate(10, 10));
+    }
 }
