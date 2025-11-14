@@ -3,6 +3,8 @@ package i.lambda;
 import java.util.Comparator;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 // FunctionalInterface 어노테이션을 달아주면 메서드가 하나 이상일 때 에러를 보여줌
 @FunctionalInterface
@@ -54,5 +56,17 @@ public class LambdaMain {
 
         Calculator cal2 = (a, b) -> a * b;
         System.out.println(cal2.calculate(10, 10));
+
+        // 매개변수 없고 값은 반환
+        Supplier<String> s = () -> "hello";
+        System.out.println(s.get());
+
+        // 매개변수를 받아서 소비
+        Consumer<String> c = (str) -> System.out.println(str);
+        c.accept("인자");
+
+        // 매개변수를 받아서 값 반환
+        Function<String, Integer> f = (str) -> str.length();
+        System.out.println(f.apply("안녕하세요"));
     }
 }
