@@ -4,9 +4,10 @@ import java.util.Comparator;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
+// FunctionalInterface 어노테이션을 달아주면 메서드가 하나 이상일 때 에러를 보여줌
+@FunctionalInterface
 interface Calculator {
     int calculate(int a, int b);
-    int calculate2(int a, int b);
 }
 
 
