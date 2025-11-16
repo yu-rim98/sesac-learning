@@ -1,4 +1,4 @@
-package i.lambda;
+package i.stream;
 
 import java.util.Arrays;
 import java.util.List;
