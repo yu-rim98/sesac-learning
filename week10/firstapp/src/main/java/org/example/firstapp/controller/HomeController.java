@@ -2,8 +2,11 @@ package org.example.firstapp.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,5 +63,18 @@ public class HomeController {
 
         model.addAttribute("menu", menus.get(random.nextInt(menus.size())));
         return "lunch";
+    }
+
+    @GetMapping("/lotto")
+    public String lotto(Model model) {
+        List<Integer> numbers = IntStream.rangeClosed(1, 45).boxed().collect(Collectors.toList());
+
+        Collections.shuffle(numbers);
+
+        List<Integer> lucky = numbers.subList(0, 6);
+
+        model.addAttribute("lotto", lucky);
+
+        return "lotto";
     }
 }
