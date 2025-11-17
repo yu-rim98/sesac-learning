@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>fruits</title>
+</head>
+<body>
+  <h1>fruits List</h1>
+
+  <ul>
+<!--    <li th:text="${fruits[0]}"/>-->
+<!--    <li th:text="${fruits[1]}"/>-->
+<!--    <li th:text="${fruits[2]}"/>-->
+
+<!-- 반복문으로 출력 -->
+    <li th:each="fruit : ${fruits}" th:text="${fruit}" />
+  </ul>
+</body>
+</html>

@@ -30,4 +30,15 @@ public class HomeController {
         return "user";
     }
 
+    @GetMapping("/fruits")
+    public String fruits(Model model) {
+        List<String> fruitList = new ArrayList<>();
+        fruitList.add("apple");
+        fruitList.add("orange");
+        fruitList.add("banana");
+        fruitList.add("kiwi");
+
+        model.addAttribute("fruits", fruitList);
+        return "fruits";
+    }
 }
