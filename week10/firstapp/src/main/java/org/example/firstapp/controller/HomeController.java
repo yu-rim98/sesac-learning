@@ -41,4 +41,12 @@ public class HomeController {
         model.addAttribute("fruits", fruitList);
         return "fruits";
     }
+
+    @GetMapping("/grade")
+    public String grade(Model model) {
+        int score = 80;
+        model.addAttribute("score", score);
+
+        return "grade";
+    }
 }
