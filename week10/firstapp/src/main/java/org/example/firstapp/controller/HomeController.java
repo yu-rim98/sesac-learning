@@ -2,6 +2,7 @@ package org.example.firstapp.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -84,6 +85,17 @@ public class HomeController {
     public String profile(@PathVariable String username, Model model) {
         model.addAttribute("username", username);
         return "profile";
+    }
+
+
+    @GetMapping("/cube/{number}")
+    public String cube(@PathVariable int number, Model model) {
+        int result = number * number * number;
+
+        model.addAttribute("number", number);
+        model.addAttribute("result", result);
+
+        return "cube";
     }
 
 }
