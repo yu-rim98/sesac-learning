@@ -1,7 +1,9 @@
 package org.example.firstapp.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,5 +50,15 @@ public class HomeController {
         model.addAttribute("score", score);
 
         return "grade";
+    }
+
+    @GetMapping("/lunch")
+    public String lunch(Model model) {
+        List<String> menus = Arrays.asList("김밥", "라면", "돈까스");
+
+        Random random = new Random();
+
+        model.addAttribute("menu", menus.get(random.nextInt(menus.size())));
+        return "lunch";
     }
 }
