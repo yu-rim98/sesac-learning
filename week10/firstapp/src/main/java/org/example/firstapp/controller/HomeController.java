@@ -1,5 +1,6 @@
 package org.example.firstapp.controller;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -97,5 +98,32 @@ public class HomeController {
 
         return "cube";
     }
+    // 짝수 홀수 판별
+    // /number/{num} -> 짝수인지 홀수인지 판별해서 화면에 출력
+    @GetMapping("/number/{num}")
+    public String number(@PathVariable int num, Model model) {
+        String result = null;
 
+        if (num % 2 == 0) {
+            result = "짝수입니다.";
+        } else {
+            result = "홀수입니다.";
+        }
+
+        model.addAttribute("result", result);
+        return "number";
+    }
+
+    // 나이 계산
+    // /age/{birthYear} -> 현재 나이를 계산해서 출력
+    @GetMapping("/age/{birthYear}")
+    public String age(@PathVariable int birthYear, Model model) {
+
+        int currentYear = Year.now().getValue();
+        int age = currentYear - birthYear + 1;
+
+        model.addAttribute("age", age);
+
+        return "age";
+    }
 }
