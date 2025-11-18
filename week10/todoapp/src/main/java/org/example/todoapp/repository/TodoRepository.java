@@ -15,7 +15,11 @@ public class TodoRepository {
 
     
     public TodoDto save(TodoDto todo) {
-        todo.setId(nextId++);
+
+        if (todo.getId() == null) {
+            todo.setId(nextId++);
+        }
+
         storage.put(todo.getId(), todo);
         return todo;
     }
@@ -31,5 +35,15 @@ public class TodoRepository {
 
     public void deleteById(Long id) {
         storage.remove(id);
+    }
+
+    public TodoDto update(Long id, String title, String content, Boolean completed) {
+        TodoDto todo = findById(id);
+
+        todo.setTitle(title);
+        todo.setContent(content);
+        todo.setCompleted(completed);
+
+        return save(todo);
     }
 }

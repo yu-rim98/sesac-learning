@@ -3,6 +3,7 @@ package org.example.todoapp.controller;
 import java.util.List;
 import org.example.todoapp.dto.TodoDto;
 import org.example.todoapp.repository.TodoRepository;
+import org.springframework.boot.Banner.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class TodoController {
     }
 
     @GetMapping("/todos/{id}")
-    public String detail(@PathVariable Long id, Model model){
+    public String detail(@PathVariable Long id, Model model) {
         TodoDto todo = todoRepository.findById(id);
         model.addAttribute("todo", todo);
 
@@ -58,6 +59,22 @@ public class TodoController {
     public String delete(@PathVariable Long id) {
         todoRepository.deleteById(id);
         return "redirect:/todos";
+    }
+
+    @GetMapping("/todos/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        model.addAttribute("todo", todoRepository.findById(id));
+        return "edit";
+    }
+
+    @GetMapping("/todos/{id}/update")
+    public String update(@PathVariable Long id, @RequestParam String title,
+        @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed, Model model) {
+
+        TodoDto todo = todoRepository.update(id, title, content, completed);
+
+        model.addAttribute("todo", todo);
+        return "redirect:/todos/" + id;
     }
 
 }
