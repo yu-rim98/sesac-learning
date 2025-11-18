@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.example.todoapp.dto.TodoDto;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TodoRepository {
 
     private final Map<Long, TodoDto> storage = new ConcurrentHashMap<>();
