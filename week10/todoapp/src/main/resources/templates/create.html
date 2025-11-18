@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>todos</title>
+  <title>create</title>
 </head>
 <body>
-  <h1>할일목록</h1>
+  <h1>create</h1>
 
-  <a href="/todos/new">new</a>
-
+  <h1 th:text="${todo.getTitle()}"></h1>
+  <h1 th:text="${todo.getContent()}"></h1>
 </body>
 </html>
