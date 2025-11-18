@@ -37,7 +37,7 @@ public class TodoController {
 
         model.addAttribute("todo", saveTodo);
 
-        return "create";
+        return "redirect:/todos";
     }
 
 }
