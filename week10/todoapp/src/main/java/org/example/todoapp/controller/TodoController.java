@@ -1,5 +1,6 @@
 package org.example.todoapp.controller;
 
+import java.util.List;
 import org.example.todoapp.dto.TodoDto;
 import org.example.todoapp.repository.TodoRepository;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class TodoController {
     public String todos(Model model) {
         // 생성 시 사용한 TodoRepository와 다른 인스턴스임
 //        TodoRepository todoRepository = new TodoRepository();
+
+        List<TodoDto> todos = todoRepository.findAll();
+        model.addAttribute("todos", todos);
 
         return "todos";
     }

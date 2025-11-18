@@ -1,5 +1,7 @@
 package org.example.todoapp.repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.example.todoapp.dto.TodoDto;
@@ -17,4 +19,7 @@ public class TodoRepository {
     }
 
 
+    public List<TodoDto> findAll() {
+        return new ArrayList<>(storage.values());
+    }
 }
