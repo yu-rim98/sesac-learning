@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TodoController {
+    private final TodoRepository todoRepository = new TodoRepository();
 
     @GetMapping("/todos")
-    public String todos() {
+    public String todos(Model model) {
+        // 생성 시 사용한 TodoRepository와 다른 인스턴스임
+//        TodoRepository todoRepository = new TodoRepository();
+
         return "todos";
     }
 
@@ -24,7 +28,7 @@ public class TodoController {
     public String create(@RequestParam String title, @RequestParam String content,
         Model model) {
         TodoDto todoDto = new TodoDto(null, title, content, false);
-        TodoRepository todoRepository = new TodoRepository();
+//        TodoRepository todoRepository = new TodoRepository();
         TodoDto saveTodo = todoRepository.save(todoDto);
 
         model.addAttribute("todo", saveTodo);
