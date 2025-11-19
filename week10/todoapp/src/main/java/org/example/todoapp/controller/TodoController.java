@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,7 +55,7 @@ public class TodoController {
 
     }
 
-    @GetMapping("/create")
+    @PostMapping
     public String create(@RequestParam String title, @RequestParam String content,
         Model model) {
         TodoDto todoDto = new TodoDto(null, title, content, false);
@@ -66,28 +67,28 @@ public class TodoController {
         return "redirect:/todos";
     }
 
-    @GetMapping("/todos/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {
         todoRepository.deleteById(id);
         return "redirect:/todos";
     }
 
-    @GetMapping("/{id}/edit")
-    public String edit(@PathVariable Long id, Model model) {
+    @GetMapping("/{id}/update")
+    public String update(@PathVariable Long id, Model model) {
 
         try {
             TodoDto todo = todoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
 
             model.addAttribute("todo", todo);
-            return "edit";
+            return "update";
 
         } catch (IllegalArgumentException e) {
             return "redirect:/todos";
         }
     }
 
-    @GetMapping("/{id}/update")
+    @PostMapping("/{id}/update")
     public String update(@PathVariable Long id, @RequestParam String title,
         @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed,
         Model model) {
