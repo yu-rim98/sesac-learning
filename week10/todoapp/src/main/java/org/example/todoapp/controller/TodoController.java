@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/todos")
@@ -57,19 +58,23 @@ public class TodoController {
 
     @PostMapping
     public String create(@RequestParam String title, @RequestParam String content,
+        RedirectAttributes redirectAttributes,
         Model model) {
         TodoDto todoDto = new TodoDto(null, title, content, false);
 //        TodoRepository todoRepository = new TodoRepository();
         TodoDto saveTodo = todoRepository.save(todoDto);
 
-        model.addAttribute("todo", saveTodo);
+//        model.addAttribute("todo", saveTodo);
+        redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
 
         return "redirect:/todos";
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         todoRepository.deleteById(id);
+        redirectAttributes.addFlashAttribute("message", "Todo를 삭제했습니다.");
+        redirectAttributes.addFlashAttribute("status", "delete");
         return "redirect:/todos";
     }
 
@@ -90,16 +95,20 @@ public class TodoController {
 
     @PostMapping("/{id}/update")
     public String update(@PathVariable Long id, @RequestParam String title,
-        @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed,
+        @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed, RedirectAttributes redirectAttributes,
         Model model) {
 
         try {
             TodoDto todo = todoRepository.update(id, title, content, completed);
 
             model.addAttribute("todo", todo);
+            redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
+
             return "redirect:/todos/" + id;
 
         } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("message", "존재하지 않는 Todo입니다.");
+
             return "redirect:/todos";
         }
     }
