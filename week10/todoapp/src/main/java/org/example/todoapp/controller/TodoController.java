@@ -129,4 +129,20 @@ public class TodoController {
         return "todos";
     }
 
+    @GetMapping("/todos/{id}/toggle")
+    public String toggle(@PathVariable Long id, Model model) {
+        try {
+            TodoDto todo = todoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
+            todo.setCompleted(!todo.isCompleted());
+
+            todoRepository.save(todo);
+
+            return "redirect:/todos/" + id;
+
+        } catch (IllegalArgumentException e) {
+            return "redirect:/todos";
+        }
+    }
+
 }
