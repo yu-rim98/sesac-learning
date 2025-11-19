@@ -89,7 +89,7 @@ public class TodoController {
     public String update(@PathVariable Long id, @RequestParam String title,
         @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed,
         Model model) {
-        
+
         try {
             TodoDto todo = todoRepository.update(id, title, content, completed);
 
@@ -99,6 +99,16 @@ public class TodoController {
         } catch (IllegalArgumentException e) {
             return "redirect:/todos";
         }
+    }
+
+    @GetMapping("/todos/search")
+    public String search(@RequestParam String keyword, Model model) {
+
+        List<TodoDto> todos = todoRepository.findByTitleContaining(keyword);
+
+        model.addAttribute("todos", todos);
+
+        return "todos";
     }
 
 }
