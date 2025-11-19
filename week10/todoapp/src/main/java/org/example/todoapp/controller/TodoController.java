@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/todos")
 public class TodoController {
 
     private final TodoRepository todoRepository;
@@ -18,7 +20,7 @@ public class TodoController {
         this.todoRepository = todoRepository;
     }
 
-    @GetMapping("/todos")
+    @GetMapping
     public String todos(Model model) {
         // 생성 시 사용한 TodoRepository와 다른 인스턴스임
 //        TodoRepository todoRepository = new TodoRepository();
@@ -29,12 +31,12 @@ public class TodoController {
         return "todos";
     }
 
-    @GetMapping("/todos/new")
+    @GetMapping("/new")
     public String newTodo() {
         return "new";
     }
 
-    @GetMapping("/todos/{id}")
+    @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
         //        TodoDto todo = todoRepository.findById(id);
 
@@ -52,7 +54,7 @@ public class TodoController {
 
     }
 
-    @GetMapping("/todos/create")
+    @GetMapping("/create")
     public String create(@RequestParam String title, @RequestParam String content,
         Model model) {
         TodoDto todoDto = new TodoDto(null, title, content, false);
@@ -70,7 +72,7 @@ public class TodoController {
         return "redirect:/todos";
     }
 
-    @GetMapping("/todos/{id}/edit")
+    @GetMapping("/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
 
         try {
@@ -85,7 +87,7 @@ public class TodoController {
         }
     }
 
-    @GetMapping("/todos/{id}/update")
+    @GetMapping("/{id}/update")
     public String update(@PathVariable Long id, @RequestParam String title,
         @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed,
         Model model) {
@@ -101,7 +103,7 @@ public class TodoController {
         }
     }
 
-    @GetMapping("/todos/search")
+    @GetMapping("/search")
     public String search(@RequestParam String keyword, Model model) {
 
         List<TodoDto> todos = todoRepository.findByTitleContaining(keyword);
@@ -111,7 +113,7 @@ public class TodoController {
         return "todos";
     }
 
-    @GetMapping("/todos/active")
+    @GetMapping("/active")
     public String getActiveTodo(Model model) {
         List<TodoDto> todos = todoRepository.findByCompleted(false);
 
@@ -120,7 +122,7 @@ public class TodoController {
         return "todos";
     }
 
-    @GetMapping("/todos/completed")
+    @GetMapping("/completed")
     public String getCompletedTodo(Model model) {
         List<TodoDto> todos = todoRepository.findByCompleted(true);
 
@@ -129,7 +131,7 @@ public class TodoController {
         return "todos";
     }
 
-    @GetMapping("/todos/{id}/toggle")
+    @GetMapping("/{id}/toggle")
     public String toggle(@PathVariable Long id, Model model) {
         try {
             TodoDto todo = todoRepository.findById(id)
