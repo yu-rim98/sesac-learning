@@ -111,4 +111,22 @@ public class TodoController {
         return "todos";
     }
 
+    @GetMapping("/todos/active")
+    public String getActiveTodo(Model model) {
+        List<TodoDto> todos = todoRepository.findByCompleted(false);
+
+        model.addAttribute("todos", todos);
+
+        return "todos";
+    }
+
+    @GetMapping("/todos/completed")
+    public String getCompletedTodo(Model model) {
+        List<TodoDto> todos = todoRepository.findByCompleted(true);
+
+        model.addAttribute("todos", todos);
+
+        return "todos";
+    }
+
 }
