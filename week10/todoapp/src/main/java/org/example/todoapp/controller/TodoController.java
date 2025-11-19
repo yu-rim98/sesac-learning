@@ -34,6 +34,24 @@ public class TodoController {
         return "new";
     }
 
+    @GetMapping("/todos/{id}")
+    public String detail(@PathVariable Long id, Model model) {
+        //        TodoDto todo = todoRepository.findById(id);
+
+        try {
+            TodoDto todo = todoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
+
+            model.addAttribute("todo", todo);
+
+            return "detail";
+
+        } catch (IllegalArgumentException e) {
+            return "redirect:/todos";
+        }
+
+    }
+
     @GetMapping("/todos/create")
     public String create(@RequestParam String title, @RequestParam String content,
         Model model) {
@@ -46,14 +64,6 @@ public class TodoController {
         return "redirect:/todos";
     }
 
-    @GetMapping("/todos/{id}")
-    public String detail(@PathVariable Long id, Model model) {
-        TodoDto todo = todoRepository.findById(id);
-        model.addAttribute("todo", todo);
-
-        return "detail";
-    }
-
     @GetMapping("/todos/{id}/delete")
     public String delete(@PathVariable Long id) {
         todoRepository.deleteById(id);
@@ -62,18 +72,33 @@ public class TodoController {
 
     @GetMapping("/todos/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("todo", todoRepository.findById(id));
-        return "edit";
+
+        try {
+            TodoDto todo = todoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
+
+            model.addAttribute("todo", todo);
+            return "edit";
+
+        } catch (IllegalArgumentException e) {
+            return "redirect:/todos";
+        }
     }
 
     @GetMapping("/todos/{id}/update")
     public String update(@PathVariable Long id, @RequestParam String title,
-        @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed, Model model) {
+        @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed,
+        Model model) {
+        
+        try {
+            TodoDto todo = todoRepository.update(id, title, content, completed);
 
-        TodoDto todo = todoRepository.update(id, title, content, completed);
+            model.addAttribute("todo", todo);
+            return "redirect:/todos/" + id;
 
-        model.addAttribute("todo", todo);
-        return "redirect:/todos/" + id;
+        } catch (IllegalArgumentException e) {
+            return "redirect:/todos";
+        }
     }
 
 }
