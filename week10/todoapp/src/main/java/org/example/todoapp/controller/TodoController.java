@@ -101,7 +101,7 @@ public class TodoController {
         try {
             TodoDto todo = todoRepository.update(id, title, content, completed);
 
-            model.addAttribute("todo", todo);
+            // model.addAttribute("todo", todo);
             redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
 
             return "redirect:/todos/" + id;
