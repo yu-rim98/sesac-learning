@@ -78,4 +78,11 @@ public class TodoService {
             throw new IllegalArgumentException("제목은 50자를 초과할 수 없습니다.");
         }
     }
+
+    public void deleteCompletedTodos() {
+        List<TodoDto> todos = todoRepository.findAll();
+        todos.stream()
+            .filter(TodoDto::isCompleted)
+            .forEach(todo -> todoRepository.deleteById(todo.getId()));
+    }
 }

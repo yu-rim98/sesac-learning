@@ -147,4 +147,12 @@ public class TodoController {
         }
     }
 
+    @PostMapping("/completed")
+    public String deleteCompletedTodos(RedirectAttributes redirectAttributes) {
+        todoService.deleteCompletedTodos();
+        redirectAttributes.addFlashAttribute("message", "Todo를 삭제했습니다.");
+        redirectAttributes.addFlashAttribute("status", "delete");
+        return "redirect:/todos";
+    }
+
 }

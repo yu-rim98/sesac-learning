@@ -12,6 +12,12 @@
     <span class="badge bg-warning">진행중: <span th:text="${pendingCount}"></span></span>
   </div>
 
+  <div class="mb-3">
+    <form th:action="@{/todos/completed}" method="post">
+      <button type="submit" class="btn btn-danger">완료된 Todo 일괄 삭제</button>
+    </form>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <th>ID</th>
