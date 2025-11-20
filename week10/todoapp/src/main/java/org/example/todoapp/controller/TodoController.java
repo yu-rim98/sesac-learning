@@ -63,11 +63,14 @@ public class TodoController {
         try {
             todoService.createTodo(todo);
             redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
-        } catch (IllegalArgumentException e) {
+
             return "redirect:/todos";
+        } catch (IllegalArgumentException | NullPointerException e) {
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+
+            return "redirect:/todos/new";
         }
 
-        return "redirect:/todos";
     }
 
     @GetMapping("/{id}/delete")
@@ -106,7 +109,7 @@ public class TodoController {
         } catch (IllegalArgumentException | NullPointerException e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
 
-            return "redirect:/todos";
+            return "redirect:/todos/" + id + "/update";
         }
     }
 
