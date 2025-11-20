@@ -40,14 +40,14 @@ public class TodoRepository {
         storage.remove(id);
     }
 
-    public TodoDto update(Long id, String title, String content, Boolean completed) {
+    public TodoDto update(TodoDto todoDto, Long id) {
 //        TodoDto todo = findById(id);
         TodoDto todo = findById(id).orElseThrow(
             () -> new IllegalArgumentException("존재하지 않는 todo입니다."));
 
-        todo.setTitle(title);
-        todo.setContent(content);
-        todo.setCompleted(completed);
+        todo.setTitle(todoDto.getTitle());
+        todo.setContent(todoDto.getContent());
+        todo.setCompleted(todoDto.isCompleted());
 
         return save(todo);
     }

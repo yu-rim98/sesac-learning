@@ -6,6 +6,7 @@ import org.example.todoapp.repository.TodoRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,9 @@ public class TodoController {
     }
 
     @GetMapping("/new")
-    public String newTodo() {
-        return "new";
+    public String newTodo(Model model) {
+        model.addAttribute("todo", new TodoDto());
+        return "form";
     }
 
     @GetMapping("/{id}")
@@ -57,14 +59,12 @@ public class TodoController {
     }
 
     @PostMapping
-    public String create(@RequestParam String title, @RequestParam String content,
-        RedirectAttributes redirectAttributes,
-        Model model) {
-        TodoDto todoDto = new TodoDto(null, title, content, false);
+    public String create(@ModelAttribute TodoDto todo,
+        RedirectAttributes redirectAttributes) {
+//        TodoDto todoDto = new TodoDto(null, title, content, false);
 //        TodoRepository todoRepository = new TodoRepository();
-        TodoDto saveTodo = todoRepository.save(todoDto);
+        TodoDto saveTodo = todoRepository.save(todo);
 
-//        model.addAttribute("todo", saveTodo);
         redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
 
         return "redirect:/todos";
@@ -86,7 +86,7 @@ public class TodoController {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
 
             model.addAttribute("todo", todo);
-            return "update";
+            return "form";
 
         } catch (IllegalArgumentException e) {
             return "redirect:/todos";
@@ -94,14 +94,13 @@ public class TodoController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(@PathVariable Long id, @RequestParam String title,
-        @RequestParam String content, @RequestParam(defaultValue = "false") Boolean completed, RedirectAttributes redirectAttributes,
-        Model model) {
+    public String update(@ModelAttribute TodoDto todoDto, @PathVariable Long id,
+        RedirectAttributes redirectAttributes
+        ) {
 
         try {
-            TodoDto todo = todoRepository.update(id, title, content, completed);
+            todoRepository.update(todoDto, id);
 
-            // model.addAttribute("todo", todo);
             redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
 
             return "redirect:/todos/" + id;
