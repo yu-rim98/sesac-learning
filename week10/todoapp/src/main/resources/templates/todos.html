@@ -6,6 +6,12 @@
 
 <div layout:fragment="content">
 
+  <div class="mb-3">
+    <span class="badge bg-success">전체: <span th:text="${todos.size()}"></span></span>
+    <span class="badge bg-success">완료: <span th:text="${completedCount}"></span></span>
+    <span class="badge bg-warning">진행중: <span th:text="${pendingCount}"></span></span>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <th>ID</th>

@@ -27,7 +27,11 @@ public class TodoController {
     public String todos(Model model) {
 
         List<TodoDto> todos = todoService.getAllTodos();
+        long completedCount = todoService.getCompletedCount();
+        long pendingCount = todoService.getPendingCount();
         model.addAttribute("todos", todos);
+        model.addAttribute("completedCount", completedCount);
+        model.addAttribute("pendingCount", pendingCount);
 
         return "todos";
     }

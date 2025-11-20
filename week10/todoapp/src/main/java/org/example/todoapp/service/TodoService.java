@@ -18,6 +18,15 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
+    public long getCompletedCount() {
+        return todoRepository.findAll().stream().filter(TodoDto::isCompleted).count();
+    }
+
+    public long getPendingCount() {
+        List<TodoDto> todos = todoRepository.findAll();
+        return todos.size() - getCompletedCount();
+    }
+
     public TodoDto getTodoById(Long id) {
         return todoRepository.findById(id)
             .orElseThrow(() -> new NullPointerException("존재하지 않는 todo입니다."));
@@ -25,7 +34,7 @@ public class TodoService {
 
     public void createTodo(TodoDto todo) {
         validateTitle(todo.getTitle());
-        
+
         todoRepository.save(todo);
     }
 
@@ -49,7 +58,7 @@ public class TodoService {
     public List<TodoDto> searchTodos(String keyword) {
         return todoRepository.findByTitleContaining(keyword);
     }
-    
+
     public List<TodoDto> getTodosByCompleted(boolean completed) {
         return todoRepository.findByCompleted(completed);
     }
