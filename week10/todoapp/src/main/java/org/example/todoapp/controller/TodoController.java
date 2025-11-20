@@ -3,6 +3,7 @@ package org.example.todoapp.controller;
 import java.util.List;
 import org.example.todoapp.dto.TodoDto;
 import org.example.todoapp.repository.TodoRepository;
+import org.example.todoapp.service.TodoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,18 +18,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/todos")
 public class TodoController {
 
-    private final TodoRepository todoRepository;
+    private final TodoService todoService;
 
-    public TodoController(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
     }
 
     @GetMapping
     public String todos(Model model) {
-        // 생성 시 사용한 TodoRepository와 다른 인스턴스임
-//        TodoRepository todoRepository = new TodoRepository();
 
-        List<TodoDto> todos = todoRepository.findAll();
+        List<TodoDto> todos = todoService.getAllTodos();
         model.addAttribute("todos", todos);
 
         return "todos";
@@ -42,16 +41,12 @@ public class TodoController {
 
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
-        //        TodoDto todo = todoRepository.findById(id);
 
         try {
-            TodoDto todo = todoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
-
+            TodoDto todo = todoService.getTodoById(id);
             model.addAttribute("todo", todo);
 
             return "detail";
-
         } catch (IllegalArgumentException e) {
             return "redirect:/todos";
         }
@@ -61,10 +56,8 @@ public class TodoController {
     @PostMapping
     public String create(@ModelAttribute TodoDto todo,
         RedirectAttributes redirectAttributes) {
-//        TodoDto todoDto = new TodoDto(null, title, content, false);
-//        TodoRepository todoRepository = new TodoRepository();
-        TodoDto saveTodo = todoRepository.save(todo);
 
+        todoService.createTodo(todo);
         redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
 
         return "redirect:/todos";
@@ -72,7 +65,9 @@ public class TodoController {
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        todoRepository.deleteById(id);
+
+        // try-catch 필요성
+        todoService.deleteById(id);
         redirectAttributes.addFlashAttribute("message", "Todo를 삭제했습니다.");
         redirectAttributes.addFlashAttribute("status", "delete");
         return "redirect:/todos";
@@ -82,12 +77,10 @@ public class TodoController {
     public String update(@PathVariable Long id, Model model) {
 
         try {
-            TodoDto todo = todoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
-
+            TodoDto todo = todoService.getTodoById(id);
             model.addAttribute("todo", todo);
-            return "form";
 
+            return "form";
         } catch (IllegalArgumentException e) {
             return "redirect:/todos";
         }
@@ -99,12 +92,10 @@ public class TodoController {
         ) {
 
         try {
-            todoRepository.update(todoDto, id);
-
+            todoService.updateTodoById(todoDto, id);
             redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
 
             return "redirect:/todos/" + id;
-
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("message", "존재하지 않는 Todo입니다.");
 
@@ -115,8 +106,7 @@ public class TodoController {
     @GetMapping("/search")
     public String search(@RequestParam String keyword, Model model) {
 
-        List<TodoDto> todos = todoRepository.findByTitleContaining(keyword);
-
+        List<TodoDto> todos = todoService.searchTodos(keyword);
         model.addAttribute("todos", todos);
 
         return "todos";
@@ -124,7 +114,7 @@ public class TodoController {
 
     @GetMapping("/active")
     public String getActiveTodo(Model model) {
-        List<TodoDto> todos = todoRepository.findByCompleted(false);
+        List<TodoDto> todos = todoService.getTodosByCompleted(false);
 
         model.addAttribute("todos", todos);
 
@@ -133,24 +123,18 @@ public class TodoController {
 
     @GetMapping("/completed")
     public String getCompletedTodo(Model model) {
-        List<TodoDto> todos = todoRepository.findByCompleted(true);
-
+        List<TodoDto> todos = todoService.getTodosByCompleted(true);
         model.addAttribute("todos", todos);
 
         return "todos";
     }
 
     @GetMapping("/{id}/toggle")
-    public String toggle(@PathVariable Long id, Model model) {
+    public String toggle(@PathVariable Long id) {
         try {
-            TodoDto todo = todoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
-            todo.setCompleted(!todo.isCompleted());
-
-            todoRepository.save(todo);
+            todoService.toggleCompleted(id);
 
             return "redirect:/todos/" + id;
-
         } catch (IllegalArgumentException e) {
             return "redirect:/todos";
         }
