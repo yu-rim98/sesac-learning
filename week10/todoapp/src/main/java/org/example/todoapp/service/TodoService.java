@@ -20,10 +20,12 @@ public class TodoService {
 
     public TodoDto getTodoById(Long id) {
         return todoRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 todo입니다."));
+            .orElseThrow(() -> new NullPointerException("존재하지 않는 todo입니다."));
     }
 
     public void createTodo(TodoDto todo) {
+        validateTitle(todo.getTitle());
+        
         todoRepository.save(todo);
     }
 
@@ -34,6 +36,8 @@ public class TodoService {
 
     public void updateTodoById(TodoDto newTodo, Long id) {
         TodoDto originTodo = getTodoById(id);
+
+        validateTitle(newTodo.getTitle());
 
         originTodo.setTitle(newTodo.getTitle());
         originTodo.setContent(newTodo.getContent());
@@ -54,5 +58,15 @@ public class TodoService {
         TodoDto todo = getTodoById(id);
         todo.setCompleted(!todo.isCompleted());
         todoRepository.save(todo);
+    }
+
+    private void validateTitle(String title) {
+        if (title == null || title.isEmpty()) {
+            throw new IllegalArgumentException("제목은 필수입니다.");
+        }
+
+        if (title.length() > 50) {
+            throw new IllegalArgumentException("제목은 50자를 초과할 수 없습니다.");
+        }
     }
 }

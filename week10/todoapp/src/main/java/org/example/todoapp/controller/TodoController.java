@@ -56,8 +56,12 @@ public class TodoController {
     public String create(@ModelAttribute TodoDto todo,
         RedirectAttributes redirectAttributes) {
 
-        todoService.createTodo(todo);
-        redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
+        try {
+            todoService.createTodo(todo);
+            redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
+        } catch (IllegalArgumentException e) {
+            return "redirect:/todos";
+        }
 
         return "redirect:/todos";
     }
@@ -95,8 +99,8 @@ public class TodoController {
             redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
 
             return "redirect:/todos/" + id;
-        } catch (IllegalArgumentException e) {
-            redirectAttributes.addFlashAttribute("message", "존재하지 않는 Todo입니다.");
+        } catch (IllegalArgumentException | NullPointerException e) {
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
 
             return "redirect:/todos";
         }
