@@ -30,11 +30,11 @@ public class TodoEntity {
         this.completed = completed;
     }
 
-    public TodoEntity(String title, String content, boolean completed) {
-        this.title = title;
-        this.content = content;
-        this.completed = completed;
-    }
+//    public TodoEntity(String title, String content, boolean completed) {
+//        this.title = title;
+//        this.content = content;
+//        this.completed = completed;
+//    }
 
     public Long getId() {
         return id;
@@ -50,5 +50,15 @@ public class TodoEntity {
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public void update(String title, String content, boolean completed) {
+        this.title = title;
+        this.content = content;
+        this.completed = completed;
+    }
+
+    public void changeCompleted() {
+        this.completed = !this.completed;
     }
 }
