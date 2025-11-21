@@ -45,14 +45,10 @@ public class TodoController {
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
 
-        try {
-            TodoDto todo = todoService.getTodoById(id);
-            model.addAttribute("todo", todo);
+        TodoDto todo = todoService.getTodoById(id);
+        model.addAttribute("todo", todo);
 
-            return "detail";
-        } catch (IllegalArgumentException e) {
-            return "redirect:/todos";
-        }
+        return "detail";
 
     }
 
@@ -60,16 +56,11 @@ public class TodoController {
     public String create(@ModelAttribute TodoDto todo,
         RedirectAttributes redirectAttributes) {
 
-        try {
-            todoService.createTodo(todo);
-            redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
+        todoService.createTodo(todo);
+        redirectAttributes.addFlashAttribute("message", "Todo를 추가했습니다.");
 
-            return "redirect:/todos";
-        } catch (IllegalArgumentException | NullPointerException e) {
-            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        return "redirect:/todos";
 
-            return "redirect:/todos/new";
-        }
 
     }
 
@@ -86,31 +77,23 @@ public class TodoController {
     @GetMapping("/{id}/update")
     public String update(@PathVariable Long id, Model model) {
 
-        try {
-            TodoDto todo = todoService.getTodoById(id);
-            model.addAttribute("todo", todo);
+        TodoDto todo = todoService.getTodoById(id);
+        model.addAttribute("todo", todo);
 
-            return "form";
-        } catch (IllegalArgumentException e) {
-            return "redirect:/todos";
-        }
+        return "form";
+
     }
 
     @PostMapping("/{id}/update")
     public String update(@ModelAttribute TodoDto todoDto, @PathVariable Long id,
         RedirectAttributes redirectAttributes
-        ) {
+    ) {
 
-        try {
-            todoService.updateTodoById(todoDto, id);
-            redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
+        todoService.updateTodoById(todoDto, id);
+        redirectAttributes.addFlashAttribute("message", "Todo를 수정했습니다.");
 
-            return "redirect:/todos/" + id;
-        } catch (IllegalArgumentException | NullPointerException e) {
-            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        return "redirect:/todos/" + id;
 
-            return "redirect:/todos/" + id + "/update";
-        }
     }
 
     @GetMapping("/search")
@@ -141,13 +124,11 @@ public class TodoController {
 
     @GetMapping("/{id}/toggle")
     public String toggle(@PathVariable Long id) {
-        try {
-            todoService.toggleCompleted(id);
 
-            return "redirect:/todos/" + id;
-        } catch (IllegalArgumentException e) {
-            return "redirect:/todos";
-        }
+        todoService.toggleCompleted(id);
+
+        return "redirect:/todos/" + id;
+
     }
 
     @PostMapping("/completed")

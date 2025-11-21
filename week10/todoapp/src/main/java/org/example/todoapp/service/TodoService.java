@@ -3,6 +3,7 @@ package org.example.todoapp.service;
 import java.util.List;
 import org.example.todoapp.dto.TodoDto;
 import org.example.todoapp.entity.TodoEntity;
+import org.example.todoapp.exception.ResourceNotFoundException;
 import org.example.todoapp.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,7 +87,7 @@ public class TodoService {
 
     private void validateTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("제목은 필수입니다.");
+            throw new ResourceNotFoundException("제목은 필수입니다.");
         }
 
         if (title.length() > 50) {
@@ -105,6 +106,6 @@ public class TodoService {
 
     private TodoEntity findEntityById(Long id) {
         return todoRepository.findById(id)
-            .orElseThrow(() -> new NullPointerException("존재하지 않는 todo입니다."));
+            .orElseThrow(() -> new ResourceNotFoundException("존재하지 않는 todo입니다."));
     }
 }
