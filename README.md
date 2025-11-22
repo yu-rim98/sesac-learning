@@ -97,6 +97,22 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </div>
 </details>
 
+<details>
+<summary> Week 9️⃣ </summary>
+<div markdown="9">
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/d/inheritance">상속</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week09/week09/src/d/inheritance/%EC%83%81%EC%86%8D-%EC%83%9D%EC%84%B1%EC%9E%90.md">상속-생성자</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week09/week09/src/d/inheritance/%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4.md">추상클래스</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week09/week09/src/d/inheritance/%EB%8B%A4%ED%98%95%EC%84%B1.md">다형성</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/e/generic">제네릭</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/f/collection">컬렉션</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/h/exception">예외</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/i/lambda">람다</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/i/stream">스트림</a> <br />
+
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 - 각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
