@@ -10,8 +10,10 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter // 지양 - 지금은 컨트롤러에서 엔티티 자체를 받아서 필요함
 @Entity
 @Table(name = "post")
 @NoArgsConstructor
