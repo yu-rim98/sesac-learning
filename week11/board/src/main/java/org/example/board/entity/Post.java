@@ -9,10 +9,12 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
 @Table(name = "post")
+@NoArgsConstructor
 public class Post {
 
     @Id
@@ -39,4 +41,8 @@ public class Post {
         this.createdAt = LocalDateTime.now();
     }
 
+    public void updatePost(Post updatedPost) {
+        this.title = updatedPost.getTitle();
+        this.content = updatedPost.getContent();
+    }
 }
