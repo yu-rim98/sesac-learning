@@ -47,4 +47,34 @@ public class PostService {
         Post post = getPostById(id);
         postRepository.delete(post);
     }
+
+    // Transactional 어노테이션 없어도 됨
+    @Transactional(readOnly = true)
+    public void testFirstLevelCache() {
+        Post post1 = postRepository.findById(1L);
+        System.out.println(post1.getTitle());
+
+        Post post2 = postRepository.findById(1L);
+        System.out.println(post2.getTitle());
+
+        System.out.println(post1 == post2);
+    }
+
+    @Transactional
+    public void testWriteBehind() {
+        Post post = postRepository.findById(1L);
+
+        post.updatePost(new Post("수정", "수정"));
+        System.out.println("update1");
+
+        post.updatePost(new Post("수정2", "수정"));
+        System.out.println("update1");
+
+        System.out.println("종료");
+
+        // 변경 감지
+        // postRepository.update(post);
+
+        // 변경 감지와 쓰기 지연은 Transactional 어노테이션 필수
+    }
 }

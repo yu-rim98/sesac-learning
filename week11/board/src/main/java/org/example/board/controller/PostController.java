@@ -61,4 +61,16 @@ public class PostController {
         postService.deletePost(id);
         return "redirect:/posts";
     }
+
+    @GetMapping("/test/cache")
+    public String testCache() {
+        postService.testFirstLevelCache();
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/test/write")
+    public String testWrite() {
+        postService.testWriteBehind();
+        return "redirect:/posts";
+    }
 }
