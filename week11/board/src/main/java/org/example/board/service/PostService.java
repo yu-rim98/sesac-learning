@@ -77,4 +77,8 @@ public class PostService {
 
         // 변경 감지와 쓰기 지연은 Transactional 어노테이션 필수
     }
+
+    public List<Post> searchPosts(String keyword) {
+        return postRepository.findByTitleContaining(keyword);
+    }
 }

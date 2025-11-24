@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/posts")
@@ -61,6 +62,15 @@ public class PostController {
         postService.deletePost(id);
         return "redirect:/posts";
     }
+
+
+    @GetMapping("/search")
+    public String search(@RequestParam String keyword, Model model) {
+        model.addAttribute("posts", postService.searchPosts(keyword));
+        return "/posts/list";
+    }
+
+
 
     @GetMapping("/test/cache")
     public String testCache() {

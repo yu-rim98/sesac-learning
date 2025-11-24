@@ -35,4 +35,12 @@ public class PostRepository {
         em.remove(post);
     }
 
+    public List<Post> findByTitleContaining(String keyword) {
+        String jpql = "select p from Post p where p.title like :keyword";
+        return em.createQuery(jpql, Post.class)
+            // :keyword에 "%" + keyword + "%" 넣음
+            .setParameter("keyword", "%" + keyword + "%")
+            .getResultList();
+    }
+
 }
