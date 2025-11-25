@@ -29,7 +29,17 @@ public class PostController {
         @PageableDefault(size = 20, page = 0, sort = "id", direction = Direction.DESC) Pageable pageable) {
 //        model.addAttribute("posts", postService.getAllPosts());
         Page<Post> postPage = postService.getPostsPage(pageable);
-        model.addAttribute("postPage", postPage.getContent());
+
+        int currentPage = postPage.getNumber();
+        int totalPage = postPage.getTotalPages();
+        int startPage = Math.max(0, currentPage - 5);
+        int endPage = Math.min(totalPage - 1, currentPage + 5);
+
+
+        model.addAttribute("postPage", postPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+//        model.addAttribute("posts", postPage.getContent());
         return "posts/list";
     }
 
