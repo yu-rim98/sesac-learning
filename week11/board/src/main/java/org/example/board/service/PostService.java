@@ -90,4 +90,10 @@ public class PostService {
     public List<Post> searchPosts(String keyword) {
         return postRepository.findByTitleContaining(keyword);
     }
+
+    public List<Post> searchPostsByTitleOrContent(String keyword) {
+//        return postRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+//        return postRepository.searchByKeyword(keyword);
+        return postRepository.searchByTitleNative(keyword);
+    }
 }
