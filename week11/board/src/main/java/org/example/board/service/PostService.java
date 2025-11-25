@@ -7,6 +7,7 @@ import org.example.board.repository.PostDataJpaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -128,5 +129,9 @@ public class PostService {
 
     public Page<Post> searchPostsPage(String keyword, Pageable pageable) {
         return postRepository.findByTitleContaining(keyword, pageable);
+    }
+
+    public Slice<Post> getPostsSlice(Pageable pageable) {
+        return postRepository.findAllBy(pageable);
     }
 }
