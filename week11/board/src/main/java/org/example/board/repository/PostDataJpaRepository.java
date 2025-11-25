@@ -31,5 +31,13 @@ public interface PostDataJpaRepository extends JpaRepository<Post, Long> {
     // ...
 
 
-    List<Post> findByTitleContaining(String keyword);
+    // findBy + 필드명 + 조건 - JPA query method
+    List<Post> findByTitleContaining(String keyword); // LIKE %keyword%
+
+    List<Post> findByTitleStartingWith(String keyword); // LIKE keyword%
+
+    List<Post> findByIdGreaterThan(Long id); // > - 특정 Id보다 큰 Id의 행
+
+    List<Post> findAllByOrderByIdDesc(); // ORDER BY id DESC
+
 }
