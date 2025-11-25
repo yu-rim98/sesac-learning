@@ -84,4 +84,12 @@ public class PostController {
         postService.testWriteBehind();
         return "redirect:/posts";
     }
+
+    // 최근 게시물 3개만 출력
+    // /posts/recent
+    @GetMapping("/recent")
+    public String recentPosts(Model model) {
+        model.addAttribute("posts", postService.getRecentPosts());
+        return "/posts/list";
+    }
 }

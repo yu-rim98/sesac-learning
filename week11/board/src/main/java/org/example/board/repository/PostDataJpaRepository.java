@@ -56,4 +56,5 @@ public interface PostDataJpaRepository extends JpaRepository<Post, Long> {
     @Query(value = "select * from post where title like %:keyword% order by id desc", nativeQuery = true)
     List<Post> searchByTitleNative(@Param("keyword") String keyword);
 
+    List<Post> findTop3ByOrderByCreatedAtDesc();
 }

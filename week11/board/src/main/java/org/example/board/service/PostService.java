@@ -96,4 +96,10 @@ public class PostService {
 //        return postRepository.searchByKeyword(keyword);
         return postRepository.searchByTitleNative(keyword);
     }
+
+    public List<Post> getRecentPosts() {
+        // findTopByLastnameOrderByAgeDesc
+        // 최근 게시물 3개만 출력
+        return postRepository.findTop3ByOrderByCreatedAtDesc();
+    }
 }
