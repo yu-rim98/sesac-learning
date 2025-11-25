@@ -7,7 +7,7 @@ import org.example.board.entity.Post;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PostRepository {
+public class PostJpaRepository {
 
     @PersistenceContext
     private EntityManager em;
