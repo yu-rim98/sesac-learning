@@ -100,6 +100,9 @@ public class PostService {
     public List<Post> getRecentPosts() {
         // findTopByLastnameOrderByAgeDesc
         // 최근 게시물 3개만 출력
-        return postRepository.findTop3ByOrderByCreatedAtDesc();
+        
+        // 쿼리 메서드
+//        return postRepository.findTop3ByOrderByCreatedAtDesc();
+        return postRepository.findRecentPostsNative();
     }
 }

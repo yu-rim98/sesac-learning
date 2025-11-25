@@ -57,4 +57,9 @@ public interface PostDataJpaRepository extends JpaRepository<Post, Long> {
     List<Post> searchByTitleNative(@Param("keyword") String keyword);
 
     List<Post> findTop3ByOrderByCreatedAtDesc();
+
+
+
+    @Query(value = "select * from post order by created_at desc limit 3", nativeQuery = true)
+    List<Post> findRecentPostsNative();
 }
