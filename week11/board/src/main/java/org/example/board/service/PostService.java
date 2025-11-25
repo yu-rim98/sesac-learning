@@ -3,7 +3,9 @@ package org.example.board.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.board.entity.Post;
-import org.example.board.repository.PostRepository;
+import org.example.board.repository.PostDataJpaRepository;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class PostService {
 
-    private final PostRepository postRepository;
+    private final PostDataJpaRepository postRepository;
 
     @Transactional
     public Post createPost(Post post) {
@@ -20,7 +22,8 @@ public class PostService {
     }
 
     public Post getPostById(Long id) {
-        return postRepository.findById(id);
+        return postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
         // readOnly = false
         // 1. 엔티티 조회
         // 2. 스냅샷 저장
@@ -32,14 +35,16 @@ public class PostService {
     }
 
     public List<Post> getAllPosts() {
-        return postRepository.findAll();
+        return postRepository.findAll(
+            Sort.by(Direction.DESC, "id") // id 기준 내림차순 정렬
+        );
     }
 
     @Transactional
     public Post updatePost(Long id, Post updatedPost) {
         Post post = getPostById(id);
         post.updatePost(updatedPost);
-        return postRepository.update(post);
+        return post;
     }
 
     @Transactional
@@ -51,10 +56,12 @@ public class PostService {
     // Transactional 어노테이션 없어도 됨
     @Transactional(readOnly = true)
     public void testFirstLevelCache() {
-        Post post1 = postRepository.findById(1L);
+        Post post1 = postRepository.findById(1L)
+            .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
         System.out.println(post1.getTitle());
 
-        Post post2 = postRepository.findById(1L);
+        Post post2 = postRepository.findById(1L)
+            .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
         System.out.println(post2.getTitle());
 
         System.out.println(post1 == post2);
@@ -62,7 +69,8 @@ public class PostService {
 
     @Transactional
     public void testWriteBehind() {
-        Post post = postRepository.findById(1L);
+        Post post = postRepository.findById(1L)
+            .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
         post.updatePost(new Post("수정", "수정"));
         System.out.println("update1");
