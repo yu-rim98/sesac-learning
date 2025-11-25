@@ -125,4 +125,8 @@ public class PostService {
             postRepository.save(post);
         }
     }
+
+    public Page<Post> searchPostsPage(String keyword, Pageable pageable) {
+        return postRepository.findByTitleContaining(keyword, pageable);
+    }
 }

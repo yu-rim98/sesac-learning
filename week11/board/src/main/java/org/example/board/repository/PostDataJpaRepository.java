@@ -68,4 +68,6 @@ public interface PostDataJpaRepository extends JpaRepository<Post, Long> {
 
     // List<Post> findAll() -> 기본 구현되어 있는 메서드 존재함
     Page<Post> findAll(Pageable pageable); // 오버로딩
+
+    Page<Post> findByTitleContaining(String keyword, Pageable pageable);
 }

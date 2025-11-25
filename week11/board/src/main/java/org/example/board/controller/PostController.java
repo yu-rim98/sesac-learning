@@ -35,7 +35,6 @@ public class PostController {
         int startPage = Math.max(0, currentPage - 5);
         int endPage = Math.min(totalPage - 1, currentPage + 5);
 
-
         model.addAttribute("postPage", postPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
@@ -82,10 +81,22 @@ public class PostController {
 
 
     @GetMapping("/search")
-    public String search(@RequestParam String keyword, Model model) {
+    public String search(@RequestParam String keyword, Model model,
+        @PageableDefault(sort = "id") Pageable pageable) {
 //        model.addAttribute("posts", postService.searchPosts(keyword));
-        model.addAttribute("posts", postService.searchPostsByTitleOrContent(keyword));
-        return "/posts/list";
+        Page<Post> postPage = postService.searchPostsPage(keyword, pageable);
+
+        int currentPages = postPage.getNumber();
+        int totalPages = postPage.getTotalPages();
+        int startPage = Math.max(0, currentPages - 5);
+        int endPage = Math.min(totalPages - 1, currentPages + 5);
+
+        model.addAttribute("postPage", postPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("keyword", keyword);
+
+        return "/posts/search";
     }
 
 
