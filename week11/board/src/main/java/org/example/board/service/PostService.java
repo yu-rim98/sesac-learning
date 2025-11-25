@@ -4,6 +4,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.board.entity.Post;
 import org.example.board.repository.PostDataJpaRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -103,6 +105,11 @@ public class PostService {
         
         // 쿼리 메서드
 //        return postRepository.findTop3ByOrderByCreatedAtDesc();
-        return postRepository.findRecentPostsNative();
+
+        // nativeQuery
+//        return postRepository.findRecentPostsNative();
+
+        // jpql Pageable 사용
+        return postRepository.findRecentPosts(PageRequest.of(0, 3));
     }
 }
