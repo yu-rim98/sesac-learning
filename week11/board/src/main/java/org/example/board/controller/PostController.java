@@ -4,6 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.example.board.dto.PostDto;
 import org.example.board.entity.Post;
 import org.example.board.service.PostService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +25,11 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("posts", postService.getAllPosts());
+    public String list(Model model,
+        @PageableDefault(size = 20, page = 0, sort = "id", direction = Direction.DESC) Pageable pageable) {
+//        model.addAttribute("posts", postService.getAllPosts());
+        Page<Post> postPage = postService.getPostsPage(pageable);
+        model.addAttribute("postPage", postPage.getContent());
         return "posts/list";
     }
 
@@ -72,7 +79,6 @@ public class PostController {
     }
 
 
-
     @GetMapping("/test/cache")
     public String testCache() {
         postService.testFirstLevelCache();
@@ -91,5 +97,11 @@ public class PostController {
     public String recentPosts(Model model) {
         model.addAttribute("posts", postService.getRecentPosts());
         return "/posts/list";
+    }
+
+    @GetMapping("/dummy")
+    public String dummy() {
+        postService.createDummyPosts(100);
+        return "redirect:/posts";
     }
 }

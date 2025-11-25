@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.board.entity.Post;
 import org.example.board.repository.PostDataJpaRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -111,5 +112,17 @@ public class PostService {
 
         // jpql Pageable 사용
         return postRepository.findRecentPosts(PageRequest.of(0, 3));
+    }
+
+    public Page<Post> getPostsPage(Pageable pageable) {
+        return postRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void createDummyPosts(int count) {
+        for (int i = 1; i < count; i++) {
+            Post post = new Post(i + "번 제목", "게시글 내용");
+            postRepository.save(post);
+        }
     }
 }

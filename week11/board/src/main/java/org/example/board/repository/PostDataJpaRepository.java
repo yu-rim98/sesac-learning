@@ -2,6 +2,7 @@ package org.example.board.repository;
 
 import java.util.List;
 import org.example.board.entity.Post;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -64,4 +65,7 @@ public interface PostDataJpaRepository extends JpaRepository<Post, Long> {
 
     @Query(value = "select * from post order by created_at desc limit 3", nativeQuery = true)
     List<Post> findRecentPostsNative();
+
+    // List<Post> findAll() -> 기본 구현되어 있는 메서드 존재함
+    Page<Post> findAll(Pageable pageable); // 오버로딩
 }
