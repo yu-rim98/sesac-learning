@@ -19,7 +19,7 @@
 
 <hr>
 
-<form th:action="@{/posts/{id}/comments(id=${post.id})}" method="post" th:object="${comment}">
+<form th:action="@{/posts/{id}/comments(id=${post.id})}" method="post" th:object="*{comment}">
   <input type="text" th:field="*{content}">
   <input type="submit">
 </form>
