@@ -2,6 +2,7 @@ package org.example.board.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.example.board.entity.Comment;
 import org.example.board.entity.Post;
 import org.example.board.repository.PostDataJpaRepository;
 import org.springframework.data.domain.Page;
@@ -133,5 +134,10 @@ public class PostService {
 
     public Slice<Post> getPostsSlice(Pageable pageable) {
         return postRepository.findAllBy(pageable);
+    }
+
+    public List<Comment> getCommentsById(Long id) {
+        Post post = getPostById(id);
+        return post.getComments();
     }
 }
