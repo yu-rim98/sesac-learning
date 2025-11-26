@@ -53,4 +53,14 @@ public class Post {
         this.title = updatedPost.getTitle();
         this.content = updatedPost.getContent();
     }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        comment.registerPost(this);
+    }
+
+    public void removeComment(Comment comment) {
+        comments.remove(comment);
+        comment.registerPost(null);
+    }
 }

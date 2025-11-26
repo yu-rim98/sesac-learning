@@ -40,7 +40,9 @@ public class Comment {
 
     public Comment(String content, Post post) {
         this.content =content;
-        this.post = post;
+        if (post != null) {
+            this.post = post;
+        }
     }
 
     public void registerPost(Post post) {

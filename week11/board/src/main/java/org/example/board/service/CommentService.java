@@ -21,6 +21,15 @@ public class CommentService {
         Post post = postService.getPostById(postId);
         comment.registerPost(post);
 
+        System.out.println("댓글 추가 전 --");
+        System.out.println("댓글 수 : " + post.getComments().size());
+
+         post.addComment(comment);
+
+        Comment saved = commentDataJpaRepository.save(comment);
+        System.out.println("댓글 추가 후 --");
+        System.out.println("댓글 수 : " + post.getComments().size());
+
         commentDataJpaRepository.save(comment);
     }
 
