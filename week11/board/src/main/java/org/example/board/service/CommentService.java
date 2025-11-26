@@ -1,5 +1,6 @@
 package org.example.board.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.board.entity.Comment;
 import org.example.board.entity.Post;
@@ -21,5 +22,9 @@ public class CommentService {
         comment.registerPost(post);
 
         commentDataJpaRepository.save(comment);
+    }
+
+    public List<Comment> getCommentsByPostId(Long postId) {
+        return commentDataJpaRepository.findByPostId(postId);
     }
 }

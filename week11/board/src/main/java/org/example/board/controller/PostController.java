@@ -1,9 +1,12 @@
 package org.example.board.controller;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.board.dto.CommentDto;
 import org.example.board.dto.PostDto;
+import org.example.board.entity.Comment;
 import org.example.board.entity.Post;
+import org.example.board.service.CommentService;
 import org.example.board.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PostController {
 
     private final PostService postService;
+    private final CommentService commentService;
 
     @GetMapping
     public String list(Model model,
@@ -47,8 +51,12 @@ public class PostController {
     @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
         Post post = postService.getPostById(id);
+        List<Comment> comments = commentService.getCommentsByPostId(id);
+
         model.addAttribute("post", post);
         model.addAttribute("comment", new CommentDto());
+        model.addAttribute("comments", comments);
+
         return "posts/detail";
     }
 
