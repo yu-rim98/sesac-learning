@@ -1,5 +1,6 @@
 package org.example.board.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Post {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "post") // many 쪽에 FK를 지정
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE) // many 쪽에 FK를 지정
     private List<Comment> comments = new ArrayList<>();
 
     public Post(String title, String content) {
