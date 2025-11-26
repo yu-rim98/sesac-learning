@@ -1,6 +1,9 @@
 package org.example.board.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.board.entity.Comment;
+import org.example.board.entity.Post;
+import org.example.board.repository.CommentDataJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,4 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class CommentService {
 
+    private final PostService postService;
+    private final CommentDataJpaRepository commentDataJpaRepository;
+
+    @Transactional
+    public void createComment(Long postId, Comment comment) {
+        Post post = postService.getPostById(postId);
+        comment.registerPost(post);
+
+        commentDataJpaRepository.save(comment);
+    }
 }
