@@ -153,4 +153,11 @@ public class PostController {
         return "/posts/list-test";
     }
 
+    @GetMapping("/entity-graph")
+    public String listWithEntityGraph(Model model) {
+        List<Post> posts = postService.getAllPostsWithEntityGraph();
+        model.addAttribute("posts", posts);
+        return "/posts/list-test";
+    }
+
 }
