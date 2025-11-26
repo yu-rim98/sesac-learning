@@ -42,4 +42,8 @@ public class Comment {
         this.content =content;
         this.post = post;
     }
+
+    public void registerPost(Post post) {
+        this.post = post;
+    }
 }
