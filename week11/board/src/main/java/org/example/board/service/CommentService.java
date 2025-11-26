@@ -27,4 +27,12 @@ public class CommentService {
     public List<Comment> getCommentsByPostId(Long postId) {
         return commentDataJpaRepository.findByPostId(postId);
     }
+
+    @Transactional
+    public void deleteComment(Long commentId) {
+        Comment comment = commentDataJpaRepository.findById(commentId)
+            .orElseThrow(() -> new IllegalArgumentException("댓글이 존재하지 않습니다."));
+
+        commentDataJpaRepository.delete(comment);
+    }
 }
