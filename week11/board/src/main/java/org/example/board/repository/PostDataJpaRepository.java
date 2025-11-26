@@ -73,4 +73,7 @@ public interface PostDataJpaRepository extends JpaRepository<Post, Long> {
     Page<Post> findByTitleContaining(String keyword, Pageable pageable);
 
     Slice<Post> findAllBy(Pageable pageable);
+
+    @Query("select distinct p from Post p left join fetch p.comments")
+    List<Post> findAllWithComments();
 }

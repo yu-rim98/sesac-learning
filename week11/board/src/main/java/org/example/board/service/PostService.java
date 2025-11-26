@@ -140,4 +140,9 @@ public class PostService {
         Post post = getPostById(id);
         return post.getComments();
     }
+
+    public List<Post> getAllPostsWithFetchJoin() {
+//        return postRepository.findAll(); 1 + n 발생
+        return postRepository.findAllWithComments();
+    }
 }

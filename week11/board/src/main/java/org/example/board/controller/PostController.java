@@ -146,4 +146,11 @@ public class PostController {
         return "/posts/list-more";
     }
 
+    @GetMapping("/fetch-join")
+    public String listWithFetchJoin( Model model) {
+        List<Post> posts = postService.getAllPostsWithFetchJoin();
+        model.addAttribute("posts", posts);
+        return "/posts/list-test";
+    }
+
 }
