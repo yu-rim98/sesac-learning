@@ -1,6 +1,7 @@
 package org.example.board.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.board.dto.CommentDto;
 import org.example.board.dto.PostDto;
 import org.example.board.entity.Post;
 import org.example.board.service.PostService;
@@ -47,6 +48,7 @@ public class PostController {
     public String detail(@PathVariable Long id, Model model) {
         Post post = postService.getPostById(id);
         model.addAttribute("post", post);
+        model.addAttribute("comment", new CommentDto());
         return "posts/detail";
     }
 
@@ -134,4 +136,5 @@ public class PostController {
 
         return "/posts/list-more";
     }
+
 }
