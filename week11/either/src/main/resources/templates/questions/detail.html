@@ -7,8 +7,55 @@
 <body>
   <h1 th:text="${question.title}"></h1>
 
+  <div th:with="total=${countA + countB},
+              pctA=${total == 0 ? 0 : (countA * 100.0) / total},
+              pctB=${total == 0 ? 0 : (countB * 100.0) / total}">
+
+    <div style="width: 300px; border: 1px solid #ccc; height: 30px; display: flex;">
+      <div th:style="|width: ${pctA}%; background-color: #4CAF50;|"></div>
+      <div th:style="|width: ${pctB}%; background-color: #2196F3;|"></div>
+    </div>
+
+    <p>
+      A: <span th:text="${#numbers.formatDecimal(pctA, 1, 0)}"></span>% |
+      B: <span th:text="${#numbers.formatDecimal(pctB, 1, 0)}"></span>%
+    </p>
+  </div>
+
   <p th:text="${question.optionA}"></p>
   <p th:text="${question.optionB}"></p>
+
+  <form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post">
+    <label for="option">선택</label>
+    <select name="answerText" id="option" required>
+      <option value="">--옵션 선택--</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
+
+    <label for="content">의견</label>
+    <textarea id="content" name="content"></textarea>
+
+    <input type="submit" value="제출하기">
+  </form>
+
+  <hr>
+
+  <div th:each="answer : ${answers}">
+    <span th:text="${answer.answerText} + ' - ' + ${answer.content}"></span>
+  </div>
+  <table>
+    <tbody>
+    <tr th:each="question : ${questions}">
+      <td th:text="${question.id}"></td>
+      <td th:text="${question.title}"></td>
+      <td>
+        <a th:href="@{/questions/detail/{id}(id=${question.id})}">상세보기</a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
 
   <hr>
   <a href="/questions">목록보기</a>

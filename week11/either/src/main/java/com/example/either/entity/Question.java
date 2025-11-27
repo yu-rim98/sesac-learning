@@ -28,6 +28,9 @@ public class Question {
     @Column(nullable = false, length = 200)
     private String optionB;
 
+//    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, orphanRemoval = true)
+//    private List<Answer> answers = new ArrayList<>();
+
     public Question(String title, String optionA, String optionB) {
         this.title = title;
         this.optionA = optionA;

@@ -1,7 +1,9 @@
 package com.example.either.controller;
 
 import com.example.either.dto.QuestionDto;
+import com.example.either.entity.Answer;
 import com.example.either.entity.Question;
+import com.example.either.service.AnswerService;
 import com.example.either.service.QuestionService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final AnswerService answerService;
 
     @GetMapping("/new")
     public String getForm(Model model) {
@@ -43,7 +46,21 @@ public class QuestionController {
     @GetMapping("/detail/{id}")
     public String getQuestion(@PathVariable Long id, Model model) {
         Question question = questionService.getQuestionById(id);
+        List<Answer> answers = answerService.getAnswers();
+
+        long countA = answers.stream()
+            .filter(answer -> answer.getAnswerText().equals("A"))
+            .count();
+
+        long countB = answers.stream()
+            .filter(answer -> answer.getAnswerText().equals("B"))
+            .count();
+
         model.addAttribute("question", question);
+        model.addAttribute("answers", answers);
+        model.addAttribute("countA", countA);
+        model.addAttribute("countB", countB);
+
         return "/questions/detail";
     }
 }
