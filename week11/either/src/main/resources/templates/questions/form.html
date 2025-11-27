@@ -9,13 +9,13 @@
 
   <form action="/questions" method="post" th:object="${questionDto}">
     <label for="title">질문</label>
-    <input type="text" id="title" th:field="*{title}">
+    <input type="text" id="title" th:field="*{title}" required>
 
     <label for="optionA">선택지 A</label>
-    <input type="text" id="optionA" th:field="*{optionA}">
+    <input type="text" id="optionA" th:field="*{optionA}" required>
 
     <label for="optionB">선택지 B</label>
-    <input type="text" id="optionB" th:field="*{optionB}">
+    <input type="text" id="optionB" th:field="*{optionB}" required>
 
     <input type="submit" value="질문 등록">
   </form>
