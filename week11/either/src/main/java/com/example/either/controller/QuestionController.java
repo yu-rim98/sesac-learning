@@ -46,7 +46,7 @@ public class QuestionController {
     @GetMapping("/detail/{id}")
     public String getQuestion(@PathVariable Long id, Model model) {
         Question question = questionService.getQuestionById(id);
-        List<Answer> answers = answerService.getAnswers();
+        List<Answer> answers = question.getAnswers();
 
         long countA = answers.stream()
             .filter(answer -> answer.getAnswerText().equals("A"))

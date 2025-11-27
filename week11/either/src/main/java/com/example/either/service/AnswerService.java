@@ -18,9 +18,14 @@ public class AnswerService {
         Question question = questionService.getQuestionById(questionId);
         validationAnswer(answer);
         answer.changeQuestion(question);
+        question.addAnswer(answer);
 
         return answerRepository.save(answer);
     }
+
+//    public List<Answer> getAnswersByQuestionId(Long id) {
+//
+//    }
 
     public List<Answer> getAnswers() {
         return answerRepository.findAll(); //TODO 정렬

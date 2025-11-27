@@ -1,10 +1,14 @@
 package com.example.either.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,12 +32,16 @@ public class Question {
     @Column(nullable = false, length = 200)
     private String optionB;
 
-//    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, orphanRemoval = true)
-//    private List<Answer> answers = new ArrayList<>();
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Answer> answers = new ArrayList<>();
 
     public Question(String title, String optionA, String optionB) {
         this.title = title;
         this.optionA = optionA;
         this.optionB = optionB;
+    }
+
+    public void addAnswer(Answer answer) {
+        this.answers.add(answer);
     }
 }
