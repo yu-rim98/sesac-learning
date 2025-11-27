@@ -63,4 +63,10 @@ public class QuestionController {
 
         return "/questions/detail";
     }
+
+    @GetMapping("/random")
+    public String getRandomQuestion() {
+        Question question = questionService.getRandomQuestion();
+        return "redirect:/questions/detail/" + question.getId();
+    }
 }

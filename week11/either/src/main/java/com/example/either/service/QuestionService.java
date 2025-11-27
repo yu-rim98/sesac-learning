@@ -20,6 +20,19 @@ public class QuestionService {
         return questionRepository.save(question);
     }
 
+    public List<Question> getQuestions() {
+        return questionRepository.findAll();
+    }
+
+    public Question getQuestionById(Long id) {
+        return questionRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 질문입니다."));
+    }
+
+    public Question getRandomQuestion() {
+        return questionRepository.findRandomQuestion();
+    }
+
     private void validationQuestion(Question question) {
         if (question.getTitle().length() > 200) {
             throw new IllegalArgumentException("제목은 200자를 넘길 수 없습니다.");
@@ -28,14 +41,5 @@ public class QuestionService {
         if (question.getOptionA().length() > 200 || question.getOptionB().length() > 200) {
             throw new IllegalArgumentException("선택지는 200자를 넘길 수 없습니다.");
         }
-    }
-
-    public List<Question> getQuestions() {
-        return questionRepository.findAll();
-    }
-
-    public Question getQuestionById(Long id) {
-        return questionRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 질문입니다."));
     }
 }
