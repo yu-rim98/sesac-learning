@@ -23,7 +23,7 @@
       <td th:text="${question.id}"></td>
       <td th:text="${question.title}"></td>
       <td>
-        <a th:href="@{/questions/{id}(id=${question.id})}">상세보기</a>
+        <a th:href="@{/questions/detail/{id}(id=${question.id})}">상세보기</a>
       </td>
     </tr>
     </tbody>
