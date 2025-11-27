@@ -12,14 +12,16 @@ spring:
       enabled: true
       path: /h2-console
 
+  sql:
+    init:
+      mode: always
+
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
+    defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true
-
-  #spring.sql.init.mode=always
-  #logging.level.org.springframework.jdbc.core=DEBUG
 
