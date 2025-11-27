@@ -17,8 +17,8 @@
     </div>
 
     <p>
-      A: <span th:text="${#numbers.formatDecimal(pctA, 1, 0)}"></span>% |
-      B: <span th:text="${#numbers.formatDecimal(pctB, 1, 0)}"></span>%
+      A: <span th:text="'(' + ${countA} + '표) ' + ${#numbers.formatDecimal(pctA, 1, 0)}"></span>% |
+      B: <span th:text="'(' + ${countB} + '표) ' + ${#numbers.formatDecimal(pctB, 1, 0)}"></span>%
     </p>
   </div>
 
@@ -34,7 +34,7 @@
     </select>
 
     <label for="content">의견</label>
-    <textarea id="content" name="content"></textarea>
+    <textarea id="content" name="content" required></textarea>
 
     <input type="submit" value="제출하기">
   </form>
