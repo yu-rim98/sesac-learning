@@ -5,14 +5,14 @@
 -- 1. 질문 데이터 생성 (Question)
 -- ID를 명시적으로 지정하여 답변 데이터와 연결하기 쉽게 했습니다.
 
-INSERT INTO QUESTION (id, title, optiona, optionb)
-VALUES (1, '오늘 점심 뭐 먹을까?', '짜장면', '짬뽕');
+INSERT INTO QUESTION (title, optiona, optionb)
+VALUES ('오늘 점심 뭐 먹을까?', '짜장면', '짬뽕');
 
-INSERT INTO QUESTION (id, title, optiona, optionb)
-VALUES (2, '휴가는 어디로 갈까?', '산', '바다');
+INSERT INTO QUESTION (title, optiona, optionb)
+VALUES ('휴가는 어디로 갈까?', '산', '바다');
 
-INSERT INTO QUESTION (id, title, optiona, optionb)
-VALUES (3, '탕수육 먹는 방법은?', '부먹', '찍먹');
+INSERT INTO QUESTION (title, optiona, optionb)
+VALUES ('탕수육 먹는 방법은?', '부먹', '찍먹');
 
 
 -- 2. 답변 데이터 생성 (Answer)
