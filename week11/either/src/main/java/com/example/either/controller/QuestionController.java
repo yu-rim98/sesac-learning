@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,7 +30,7 @@ public class QuestionController {
     public String createQuestion(@ModelAttribute Question question, Model model) {
         Question savedQuestion = questionService.createQuestion(question);
         model.addAttribute("question", savedQuestion);
-        return "questions/detail"; //TODO 상세조회로 보내기
+        return "redirect:/questions/detail/" + savedQuestion.getId();
     }
 
     @GetMapping
@@ -37,5 +38,12 @@ public class QuestionController {
         List<Question> questions = questionService.getQuestions();
         model.addAttribute("questions", questions);
         return "questions/list";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String getQuestion(@PathVariable Long id, Model model) {
+        Question question = questionService.getQuestionById(id);
+        model.addAttribute("question", question);
+        return "/questions/detail";
     }
 }

@@ -33,4 +33,9 @@ public class QuestionService {
     public List<Question> getQuestions() {
         return questionRepository.findAll();
     }
+
+    public Question getQuestionById(Long id) {
+        return questionRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 질문입니다."));
+    }
 }
