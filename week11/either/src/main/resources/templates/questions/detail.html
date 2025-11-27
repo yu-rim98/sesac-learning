@@ -2,62 +2,100 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>투표 결과</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* 투표 바 애니메이션 효과 */
+    .progress-bar { transition: width 0.6s ease; }
+  </style>
 </head>
-<body>
-  <h1 th:text="${question.title}"></h1>
+<body class="bg-light">
 
-  <div th:with="total=${countA + countB},
-              pctA=${total == 0 ? 0 : (countA * 100.0) / total},
-              pctB=${total == 0 ? 0 : (countB * 100.0) / total}">
+<div class="container mt-5 pb-5">
 
-    <div style="width: 300px; border: 1px solid #ccc; height: 30px; display: flex;">
-      <div th:style="|width: ${pctA}%; background-color: #4CAF50;|"></div>
-      <div th:style="|width: ${pctB}%; background-color: #2196F3;|"></div>
+  <div class="text-center mb-5">
+    <span class="badge bg-secondary mb-2">VS Game</span>
+    <h1 class="display-5 fw-bold" th:text="${question.title}">질문 제목</h1>
+  </div>
+
+  <div class="card shadow-sm mb-5"
+       th:with="total=${countA + countB},
+                pctA=${total == 0 ? 50 : (countA * 100.0) / total},
+                pctB=${total == 0 ? 50 : (countB * 100.0) / total}">
+
+    <div class="card-body">
+      <div class="row text-center mb-3">
+        <div class="col-6 text-success">
+          <h3 th:text="${question.optionA}"></h3>
+          <small th:text="'(' + ${countA} + '표)'"></small>
+        </div>
+        <div class="col-6 text-primary">
+          <h3 th:text="${question.optionB}"></h3>
+          <small th:text="'(' + ${countB} + '표)'"></small>
+        </div>
+      </div>
+
+      <div class="progress" style="height: 40px; font-size: 1.1em; border-radius: 20px;">
+        <div class="progress-bar bg-success" role="progressbar"
+             th:style="|width: ${pctA}%;|"
+             th:text="${#numbers.formatDecimal(pctA, 1, 0) + '%'}">
+        </div>
+        <div class="progress-bar bg-primary" role="progressbar"
+             th:style="|width: ${pctB}%;|"
+             th:text="${#numbers.formatDecimal(pctB, 1, 0) + '%'}">
+        </div>
+      </div>
     </div>
-
-    <p>
-      A: <span th:text="'(' + ${countA} + '표) ' + ${#numbers.formatDecimal(pctA, 1, 0)}"></span>% |
-      B: <span th:text="'(' + ${countB} + '표) ' + ${#numbers.formatDecimal(pctB, 1, 0)}"></span>%
-    </p>
   </div>
 
-  <p th:text="${question.optionA}"></p>
-  <p th:text="${question.optionB}"></p>
+  <div class="card mb-5">
+    <div class="card-header bg-white">
+      <strong>🗳️ 투표 및 의견 남기기</strong>
+    </div>
+    <div class="card-body">
+      <form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post" class="row g-3">
 
-  <form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post">
-    <label for="option">선택</label>
-    <select name="answerText" id="option" required>
-      <option value="">--옵션 선택--</option>
-      <option value="A">A</option>
-      <option value="B">B</option>
-    </select>
+        <div class="col-md-3">
+          <label for="option" class="visually-hidden">선택</label>
+          <select name="answerText" id="option" class="form-select" required>
+            <option value="">-- 선택하세요 --</option>
+            <option value="A" th:text="'A: ' + ${question.optionA}"></option>
+            <option value="B" th:text="'B: ' + ${question.optionB}"></option>
+          </select>
+        </div>
 
-    <label for="content">의견</label>
-    <textarea id="content" name="content" required></textarea>
+        <div class="col-md-7">
+          <label for="content" class="visually-hidden">의견</label>
+          <input type="text" id="content" name="content" class="form-control" placeholder="이유를 짧게 남겨주세요!" required>
+        </div>
 
-    <input type="submit" value="제출하기">
-  </form>
-
-  <hr>
-
-  <div th:each="answer : ${answers}">
-    <span th:text="${answer.answerText} + ' - ' + ${answer.content}"></span>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-dark w-100">등록</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <table>
-    <tbody>
-    <tr th:each="question : ${questions}">
-      <td th:text="${question.id}"></td>
-      <td th:text="${question.title}"></td>
-      <td>
-        <a th:href="@{/questions/detail/{id}(id=${question.id})}">상세보기</a>
-      </td>
-    </tr>
-    </tbody>
 
-  </table>
+  <h4 class="mb-3">📢 사람들의 의견</h4>
+  <div class="list-group mb-5 shadow-sm">
+    <div th:each="answer : ${answers}" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <span th:if="${answer.answerText == 'A'}" class="badge bg-success me-2">A 선택</span>
+        <span th:if="${answer.answerText == 'B'}" class="badge bg-primary me-2">B 선택</span>
+        <span th:text="${answer.content}" class="fw-bold text-dark"></span>
+      </div>
+    </div>
+    <div th:if="${#lists.isEmpty(answers)}" class="list-group-item text-center text-muted py-4">
+      아직 등록된 의견이 없습니다. 첫 번째 의견을 남겨보세요!
+    </div>
+  </div>
 
-  <hr>
-  <a href="/questions">목록보기</a>
+  <div class="text-center">
+    <a href="/questions" class="btn btn-outline-secondary rounded-pill px-4">목록으로 돌아가기</a>
+  </div>
+
+</div>
+
 </body>
 </html>
