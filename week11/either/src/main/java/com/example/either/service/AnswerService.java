@@ -3,17 +3,19 @@ package com.example.either.service;
 import com.example.either.entity.Answer;
 import com.example.either.entity.Question;
 import com.example.either.repository.AnswerRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AnswerService {
 
     private final AnswerRepository answerRepository;
     private final QuestionService questionService;
 
+    @Transactional
     public Answer createAnswer(Answer answer, Long questionId) {
         Question question = questionService.getQuestionById(questionId);
         validationAnswer(answer);
@@ -21,14 +23,6 @@ public class AnswerService {
         question.addAnswer(answer);
 
         return answerRepository.save(answer);
-    }
-
-//    public List<Answer> getAnswersByQuestionId(Long id) {
-//
-//    }
-
-    public List<Answer> getAnswers() {
-        return answerRepository.findAll(); //TODO 정렬
     }
 
     private void validationAnswer(Answer answer) {
