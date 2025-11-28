@@ -1,5 +1,6 @@
 package com.example.either.service;
 
+import com.example.either.dto.QuestionReqDto;
 import com.example.either.entity.Question;
 import com.example.either.repository.QuestionRepository;
 import java.util.List;
@@ -15,9 +16,10 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     @Transactional
-    public Question createQuestion(Question question) {
-        validationQuestion(question);
-        return questionRepository.save(question);
+    public Question createQuestion(QuestionReqDto questionReqDto) {
+        validationQuestion(questionReqDto);
+
+        return questionRepository.save(questionReqDto.toEntity());
     }
 
     public List<Question> getQuestions() {
@@ -33,12 +35,12 @@ public class QuestionService {
         return questionRepository.findRandomQuestion();
     }
 
-    private void validationQuestion(Question question) {
-        if (question.getTitle().length() > 200) {
+    private void validationQuestion(QuestionReqDto reqDto) {
+        if (reqDto.getTitle().length() > 200) {
             throw new IllegalArgumentException("제목은 200자를 넘길 수 없습니다.");
         }
 
-        if (question.getOptionA().length() > 200 || question.getOptionB().length() > 200) {
+        if (reqDto.getOptionA().length() > 200 || reqDto.getOptionB().length() > 200) {
             throw new IllegalArgumentException("선택지는 200자를 넘길 수 없습니다.");
         }
     }

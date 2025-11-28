@@ -1,9 +1,8 @@
 package com.example.either.controller;
 
-import com.example.either.dto.QuestionDto;
+import com.example.either.dto.QuestionReqDto;
 import com.example.either.entity.Answer;
 import com.example.either.entity.Question;
-import com.example.either.service.AnswerService;
 import com.example.either.service.QuestionService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QuestionController {
 
     private final QuestionService questionService;
-    private final AnswerService answerService;
 
     @GetMapping("/new")
     public String getForm(Model model) {
-        model.addAttribute("questionDto", new QuestionDto());
+        model.addAttribute("questionDto", new QuestionReqDto());
         return "questions/form";
     }
 
     @PostMapping
-    public String createQuestion(@ModelAttribute Question question, Model model) {
-        Question savedQuestion = questionService.createQuestion(question);
+    public String createQuestion(@ModelAttribute QuestionReqDto questionReqDto, Model model) {
+        Question savedQuestion = questionService.createQuestion(questionReqDto);
         model.addAttribute("question", savedQuestion);
         return "redirect:/questions/detail/" + savedQuestion.getId();
     }
