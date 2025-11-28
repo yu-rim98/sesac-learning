@@ -20,6 +20,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(
                 auth -> auth
                     .requestMatchers("/", "/info", "/login").permitAll() // 허용
+                    .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN 권한만 접근 가능
+                    .requestMatchers("/dashboard/**")
+                    .hasAnyRole("USER", "ADMIN") // USER, ADMIN 접근 가능
                     .anyRequest().authenticated() // 로그인 필요
             )
             .formLogin(form -> form
@@ -31,7 +34,11 @@ public class SecurityConfig {
             .logout(logout -> logout
                 .logoutSuccessUrl("/login")
                 .permitAll()
-            );
+            )
+            .exceptionHandling(ex -> ex
+                .accessDeniedPage("/access-denied")
+            )
+        ;
 
         return http.build();
     }
