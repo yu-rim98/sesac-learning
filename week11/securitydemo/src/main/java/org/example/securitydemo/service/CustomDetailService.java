@@ -1,5 +1,6 @@
 package org.example.securitydemo.service;
 
+import java.io.Serializable;
 import lombok.RequiredArgsConstructor;
 import org.example.securitydemo.entity.User;
 import org.example.securitydemo.repository.UserRepository;
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class CustomDetailService implements UserDetailsService {
+public class CustomDetailService implements UserDetailsService, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private final UserRepository userRepository;
 
     @Override
