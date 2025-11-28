@@ -1,6 +1,7 @@
 package com.example.either.service;
 
 import com.example.either.dto.QuestionReqDto;
+import com.example.either.dto.QuestionResDto;
 import com.example.either.entity.Question;
 import com.example.either.repository.QuestionRepository;
 import java.util.List;
@@ -22,8 +23,11 @@ public class QuestionService {
         return questionRepository.save(questionReqDto.toEntity());
     }
 
-    public List<Question> getQuestions() {
-        return questionRepository.findAll();
+    public List<QuestionResDto> getQuestions() {
+        List<Question> questions = questionRepository.findAll();
+        return questions.stream()
+            .map(QuestionResDto::toDto)
+            .toList();
     }
 
     public Question getQuestionById(Long id) {
