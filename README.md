@@ -10,7 +10,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 교육 과정 중 학습한 내용과 추가적으로 공부한 내용을 각 주차별로 정리합니다.
 
 <details>
-<summary> Week 1️⃣ </summary>
+<summary> Week 1</summary>
 <div markdown="1">
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week01/git/basic.md">Git</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week01/html/README.md">HTML</a> <br />
@@ -20,7 +20,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 2️⃣ </summary>
+<summary> Week 2</summary>
 <div markdown="2">
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week02/javascript/README.md">JavaScript</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week02/javascript/08-function/README.md">호이스팅 (Hoisting) 정리</a> <br />
@@ -28,7 +28,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 3️⃣ </summary>
+<summary> Week 3</summary>
 <div markdown="3">
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week03/javascript/11-scope">변수 스코프</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week03/javascript/13-exception/README.md">예외처리(Exception Handling)</a> <br />
@@ -46,7 +46,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 4️⃣ </summary>
+<summary> Week 4 </summary>
 <div markdown="4">
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week04/react/event-handling">이벤트 핸들링</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week04/react/props">Props</a> <br />
@@ -56,7 +56,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 5️⃣ </summary>
+<summary> Week 5 </summary>
 <div markdown="5">
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/router/my-react-router-app">React Router</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week05/router/react-router-nested">중첩 라우팅(Nested Routing)</a> <br />
@@ -69,7 +69,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 6️⃣ </summary>
+<summary> Week 6 </summary>
 <div markdown="6">
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week06/SQL/database-basic.md">데이터베이스 기본 개념</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week06/SQL/%EC%A0%95%EA%B7%9C%ED%98%95.md">정규형 개념</a> <br />
@@ -80,14 +80,14 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 7️⃣ </summary>
+<summary> Week 7 </summary>
 <div markdown="7">
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/a/basic/README.md">자바 기본 문법</a> <br />
 </div>
 </details>
 
 <details>
-<summary> Week 8️⃣ </summary>
+<summary> Week 8 </summary>
 <div markdown="8">
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/b/oop/README.md">객체 지향 프로그래밍(OOP)1</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week07/java/src/c/oop2/README.md">객체 지향 프로그래밍(OOP)2</a> <br />
@@ -98,7 +98,7 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 9️⃣ </summary>
+<summary> Week 9 </summary>
 <div markdown="9">
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week09/week09/src/d/inheritance">상속</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/blob/main/week09/week09/src/d/inheritance/%EC%83%81%EC%86%8D-%EC%83%9D%EC%84%B1%EC%9E%90.md">상속-생성자</a> <br />
@@ -114,13 +114,14 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </details>
 
 <details>
-<summary> Week 🔟 </summary>
+<summary> Week 10 </summary>
 <div markdown="10">
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week10">스프링</a> <br />
 <a href="https://github.com/yu-rim98/sesac-learning/tree/main/week10/todoapp">todoapp</a> <br />
 
 </div>
 </details>
+
 
 ## 🗂️ 정리 방식
 
