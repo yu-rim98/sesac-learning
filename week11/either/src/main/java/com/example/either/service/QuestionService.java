@@ -44,6 +44,10 @@ public class QuestionService {
         return questionRepository.findRandomQuestion();
     }
 
+    public Question getQuestion(Long questionId) {
+        return getQuestionOrThrow(questionId);
+    }
+
     private void validationQuestion(QuestionReqDto reqDto) {
         if (reqDto.getTitle().length() > 200) {
             throw new IllegalArgumentException("제목은 200자를 넘길 수 없습니다.");

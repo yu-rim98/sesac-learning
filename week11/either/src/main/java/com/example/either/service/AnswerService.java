@@ -1,5 +1,6 @@
 package com.example.either.service;
 
+import com.example.either.dto.AnswerReqDto;
 import com.example.either.entity.Answer;
 import com.example.either.entity.Question;
 import com.example.either.repository.AnswerRepository;
@@ -16,16 +17,18 @@ public class AnswerService {
     private final QuestionService questionService;
 
     @Transactional
-    public Answer createAnswer(Answer answer, Long questionId) {
-        Question question = questionService.getQuestionById(questionId);
-        validationAnswer(answer);
-        answer.changeQuestion(question);
+    public void createAnswer(AnswerReqDto answerReqDto, Long questionId) {
+        Question question = questionService.getQuestion(questionId);
+
+        validationAnswer(answerReqDto);
+
+        Answer answer = answerReqDto.toEntity(question);
         question.addAnswer(answer);
 
-        return answerRepository.save(answer);
+        answerRepository.save(answer);
     }
 
-    private void validationAnswer(Answer answer) {
+    private void validationAnswer(AnswerReqDto answer) {
         if (answer.getAnswerText().isEmpty()) {
             throw new IllegalArgumentException("투표는 필수입니다.");
         }
