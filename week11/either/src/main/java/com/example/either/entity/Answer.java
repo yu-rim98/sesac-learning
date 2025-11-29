@@ -36,8 +36,4 @@ public class Answer {
         this.content = content;
         this.question = question;
     }
-
-    public void changeQuestion(Question question) {
-        this.question = question;
-    }
 }
