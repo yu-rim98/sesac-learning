@@ -9,13 +9,13 @@ import lombok.Getter;
 @Getter
 public class QuestionDetailResDto {
 
-    private Long id;
-    private String title;
-    private String optionA;
-    private String optionB;
+    private final Long id;
+    private final String title;
+    private final String optionA;
+    private final String optionB;
 
-    private long countA;
-    private long countB;
-    private List<AnswerResDto> answers;
+    private final long countA;
+    private final long countB;
+    private final List<AnswerResDto> answers;
 
 }

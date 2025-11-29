@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class AnswerResDto {
-    private String answerText;
-    private String content;
+    private final String answerText;
+    private final String content;
 
     public static AnswerResDto toDto(Answer answer) {
         return new AnswerResDto(answer.getAnswerText(), answer.getContent());

@@ -8,8 +8,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class QuestionResDto {
 
-    private Long id;
-    private String title;
+    private final Long id;
+    private final String title;
 
     public static QuestionResDto toDto(Question question) {
         return new QuestionResDto(question.getId(), question.getTitle());
