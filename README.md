@@ -122,6 +122,15 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </div>
 </details>
 
+<details>
+<summary> Week 11 </summary>
+<div markdown="11">
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week11/board">JPA</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week11/either">Either 회고</a> <br />
+<a href="https://github.com/yu-rim98/sesac-learning/tree/main/week11/securitydemo">Spring Security</a> <br />
+
+</div>
+</details>
 
 ## 🗂️ 정리 방식
 
