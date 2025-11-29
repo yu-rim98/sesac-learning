@@ -16,23 +16,23 @@
 
   <div class="text-center mb-5">
     <span class="badge bg-secondary mb-2">VS Game</span>
-    <h1 class="display-5 fw-bold" th:text="${question.title}">질문 제목</h1>
+    <h1 class="display-5 fw-bold" th:text="${questionDetail.title}">질문 제목</h1>
   </div>
 
   <div class="card shadow-sm mb-5"
-       th:with="total=${countA + countB},
-                pctA=${total == 0 ? 50 : (countA * 100.0) / total},
-                pctB=${total == 0 ? 50 : (countB * 100.0) / total}">
+       th:with="total=${questionDetail.countA + questionDetail.countB},
+                pctA=${total == 0 ? 50 : (questionDetail.countA * 100.0) / total},
+                pctB=${total == 0 ? 50 : (questionDetail.countB * 100.0) / total}">
 
     <div class="card-body">
       <div class="row text-center mb-3">
         <div class="col-6 text-success">
-          <h3 th:text="${question.optionA}"></h3>
-          <small th:text="'(' + ${countA} + '표)'"></small>
+          <h3 th:text="${questionDetail.optionA}"></h3>
+          <small th:text="'(' + ${questionDetail.countA} + '표)'"></small>
         </div>
         <div class="col-6 text-primary">
-          <h3 th:text="${question.optionB}"></h3>
-          <small th:text="'(' + ${countB} + '표)'"></small>
+          <h3 th:text="${questionDetail.optionB}"></h3>
+          <small th:text="'(' + ${questionDetail.countB} + '표)'"></small>
         </div>
       </div>
 
@@ -54,14 +54,14 @@
       <strong>🗳️ 투표 및 의견 남기기</strong>
     </div>
     <div class="card-body">
-      <form th:action="@{/questions/{id}/answers(id=${question.id})}" method="post" class="row g-3">
+      <form th:action="@{/questions/{id}/answers(id=${questionDetail.id})}" method="post" class="row g-3">
 
         <div class="col-md-3">
           <label for="option" class="visually-hidden">선택</label>
           <select name="answerText" id="option" class="form-select" required>
             <option value="">-- 선택하세요 --</option>
-            <option value="A" th:text="'A: ' + ${question.optionA}"></option>
-            <option value="B" th:text="'B: ' + ${question.optionB}"></option>
+            <option value="A" th:text="'A: ' + ${questionDetail.optionA}"></option>
+            <option value="B" th:text="'B: ' + ${questionDetail.optionB}"></option>
           </select>
         </div>
 
@@ -79,7 +79,7 @@
 
   <h4 class="mb-3">📢 사람들의 의견</h4>
   <div class="list-group mb-5 shadow-sm">
-    <div th:each="answer : ${answers}" class="list-group-item d-flex justify-content-between align-items-center">
+    <div th:each="answer : ${questionDetail.answers}" class="list-group-item d-flex justify-content-between align-items-center">
       <div>
         <span th:if="${answer.answerText == 'A'}" class="badge bg-success me-2">A 선택</span>
         <span th:if="${answer.answerText == 'B'}" class="badge bg-primary me-2">B 선택</span>
