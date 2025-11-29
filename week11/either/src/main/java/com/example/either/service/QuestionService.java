@@ -1,11 +1,13 @@
 package com.example.either.service;
 
+import com.example.either.dto.AnswerResDto;
 import com.example.either.dto.QuestionDetailResDto;
 import com.example.either.dto.QuestionReqDto;
 import com.example.either.dto.QuestionResDto;
 import com.example.either.entity.Answer;
 import com.example.either.entity.Question;
 import com.example.either.repository.QuestionRepository;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,9 +36,31 @@ public class QuestionService {
 
     public QuestionDetailResDto getQuestionDetail(Long id) {
         Question question = getQuestionOrThrow(id);
-        List<Answer> answers = question.getAnswers();
 
-        return QuestionDetailResDto.of(question, answers);
+        int totalCountA = 0;
+        int totalCountB = 0;
+
+        List<AnswerResDto> answerResDtos = new ArrayList<>();
+
+        for (Answer answer : question.getAnswers()) {
+            answerResDtos.add(AnswerResDto.toDto(answer));
+
+            if ("A".equals(answer.getAnswerText())) {
+                totalCountA++;
+            } else if ("B".equals(answer.getAnswerText())) {
+                totalCountB++;
+            }
+        }
+
+        return QuestionDetailResDto.builder()
+            .id(question.getId())
+            .title(question.getTitle())
+            .optionA(question.getOptionA())
+            .optionB(question.getOptionB())
+            .countA(totalCountA)
+            .countB(totalCountB)
+            .answers(answerResDtos)
+            .build();
     }
 
 
