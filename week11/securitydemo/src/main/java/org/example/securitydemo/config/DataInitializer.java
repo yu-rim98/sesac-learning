@@ -38,6 +38,7 @@ public class DataInitializer implements CommandLineRunner {
             .build();
 
         userRepository.save(user);
+        userRepository.save(user2);
         userRepository.save(admin);
 
     }
