@@ -1,6 +1,7 @@
-package org.example.securitydemo.repository;
+package org.example.securitydemo.service;
 
 import java.util.Optional;
+import org.example.securitydemo.dto.SignupDto;
 import org.example.securitydemo.entity.User;
 
 public interface UserService {
@@ -9,4 +10,7 @@ public interface UserService {
 
     boolean existsByUsername(String namber);
 
+    User register(SignupDto signupDto);
+
+    boolean existsByEmail(String email);
 }
