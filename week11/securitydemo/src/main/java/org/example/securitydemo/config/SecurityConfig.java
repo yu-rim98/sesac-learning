@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(
                 auth -> auth
-                    .requestMatchers("/", "/info", "/login", "/h2-console/**").permitAll() // 허용
+                    .requestMatchers("/", "/info", "/login", "/signup", "/h2-console/**").permitAll() // 허용
                     .requestMatchers("/admin/**").hasRole("ADMIN") // ADMIN 권한만 접근 가능
                     .requestMatchers("/dashboard/**")
                     .hasAnyRole("USER", "ADMIN") // USER, ADMIN 접근 가능
