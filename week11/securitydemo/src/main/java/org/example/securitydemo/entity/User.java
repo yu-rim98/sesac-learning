@@ -32,10 +32,14 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String role;
 
+    @Column(nullable = false)
+    private String email;
+
     @Builder
-    public User(String username, String password, String role) {
+    public User(String username, String password, String role, String email) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 }
