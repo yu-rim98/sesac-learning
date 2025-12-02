@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,6 +39,13 @@ public class PostController {
 
         postService.create(request, userDetails.getId());
         return "redirect:/";
+    }
+
+    @GetMapping("/{postId}")
+    public String detail(@PathVariable Long postId, Model model) {
+
+        model.addAttribute("post", postService.getPost(postId));
+        return "post/detail";
     }
 
 

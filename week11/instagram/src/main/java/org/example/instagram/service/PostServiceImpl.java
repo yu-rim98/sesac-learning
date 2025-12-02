@@ -1,5 +1,6 @@
 package org.example.instagram.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.request.PostCreateRequest;
 import org.example.instagram.dto.response.PostResponse;
@@ -29,4 +30,22 @@ public class PostServiceImpl implements PostService {
 
         return PostResponse.from(postRepository.save(post));
     }
+
+    @Override
+    public PostResponse getPost(Long id) {
+        return PostResponse.from(findById(id));
+    }
+
+    @Override
+    public Post findById(Long id) {
+        return postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
+    }
+
+    @Override
+    public List<PostResponse> getAllPosts() {
+        return postRepository.findAllByOrderByCreatedAtDesc().stream().map(PostResponse::from)
+            .toList();
+    }
+
 }
