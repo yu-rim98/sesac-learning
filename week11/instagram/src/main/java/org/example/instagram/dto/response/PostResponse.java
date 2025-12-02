@@ -1,0 +1,28 @@
+package org.example.instagram.dto.response;
+
+import java.time.LocalDateTime;
+import lombok.Builder;
+import lombok.Getter;
+import org.example.instagram.entity.Post;
+
+@Getter
+@Builder
+public class PostResponse {
+    
+    private Long id;
+    private String content;
+    private LocalDateTime createdAt;
+
+    private Long userId;
+    private String username;
+
+    public static PostResponse from(Post saved) {
+        return PostResponse.builder()
+            .id(saved.getId())
+            .content(saved.getContent())
+            .createdAt(saved.getCreatedAt())
+            .userId(saved.getUser().getId())
+            .username(saved.getUser().getUsername())
+            .build();
+    }
+}
