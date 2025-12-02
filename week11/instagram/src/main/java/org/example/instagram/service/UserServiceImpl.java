@@ -34,4 +34,10 @@ public class UserServiceImpl implements UserService {
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
+
+    @Override
+    public User findById(Long userId) {
+        return userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+    }
 }
