@@ -25,4 +25,16 @@ public class ProfileResponse {
             .name(user.getName())
             .build();
     }
+
+    public static ProfileResponse from(User user, long postCount, long followerCount, long followingCount) {
+        return ProfileResponse.builder()
+            .id(user.getId())
+            .username(user.getUsername())
+            .bio(user.getBio())
+            .name(user.getName())
+            .postCount(postCount)
+            .followerCount(followerCount)
+            .followingCount(followingCount)
+            .build();
+    }
 }

@@ -55,4 +55,9 @@ public class PostServiceImpl implements PostService {
             .map(PostResponse::from).toList();
     }
 
+    @Override
+    public long countByUserId(Long userId) {
+        return postRepository.countByUserId(userId);
+    }
+
 }

@@ -20,6 +20,13 @@ public class FollowServiceImpl implements FollowService{
         User follower = userService.findById(followerId);
         User following = userService.findByUsername(followingUsername);
 
+        validateNotSelfFollow(follower.getId(), following.getId());
+
+        if (isFollowing(follower.getId(), following.getId())) {
+            followRepository.deleteByFollowerIdAndFollowingId(follower.getId(), following.getId());
+            return;
+        }
+
         Follow follow = Follow.builder()
             .follower(follower)
             .following(following)
@@ -27,10 +34,26 @@ public class FollowServiceImpl implements FollowService{
 
         followRepository.save(follow);
     }
-//
-//    @Override
-//    public boolean isFollowed(User follower, User following) {
-//        followRepository
-//        return false;
-//    }
+
+    @Override
+    public boolean isFollowing(Long followerId, Long followingId) {
+        return followRepository.existsByFollowerIdAndFollowingId(followerId, followingId);
+    }
+
+    @Override
+    public long countByFollowerId(Long followerId) {
+        return followRepository.countByFollowerId(followerId);
+    }
+
+    @Override
+    public long countByFollowingId(Long followingId) {
+        return followRepository.countByFollowingId(followingId);
+    }
+
+    private void validateNotSelfFollow(Long followerId, Long followingId) {
+        if ( followerId.equals(followingId)) {
+            throw new RuntimeException("자기 자신은 팔로우 할 수 없습니다.");
+        }
+    }
+
 }

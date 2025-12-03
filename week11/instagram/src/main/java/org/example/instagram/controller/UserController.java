@@ -1,6 +1,7 @@
 package org.example.instagram.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.security.CustomUserDetails;
 import org.example.instagram.service.FollowService;
 import org.example.instagram.service.PostService;
@@ -26,8 +27,12 @@ public class UserController {
     public String profile(@PathVariable String username, Model model, @AuthenticationPrincipal
     CustomUserDetails userDetails) {
 
-        model.addAttribute("profile", userService.getProfile(username));
+        ProfileResponse profile = userService.getProfile(username);
+
+        model.addAttribute("profile", profile);
         model.addAttribute("posts", postService.getPostsByUsername(username));
+        model.addAttribute("isFollowing",
+            followService.isFollowing(userDetails.getId(), profile.getId()));
 
         return "user/profile";
     }
