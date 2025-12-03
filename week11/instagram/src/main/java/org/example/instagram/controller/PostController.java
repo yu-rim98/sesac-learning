@@ -2,6 +2,7 @@ package org.example.instagram.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.instagram.dto.request.CommentCreateRequest;
 import org.example.instagram.dto.request.PostCreateRequest;
 import org.example.instagram.security.CustomUserDetails;
 import org.example.instagram.service.PostService;
@@ -45,6 +46,7 @@ public class PostController {
     public String detail(@PathVariable Long postId, Model model) {
 
         model.addAttribute("post", postService.getPost(postId));
+        model.addAttribute("commentCreateRequest", new CommentCreateRequest());
         return "post/detail";
     }
 
