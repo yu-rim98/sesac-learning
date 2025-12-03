@@ -44,6 +44,6 @@ public class LikeServiceImpl implements LikeService{
 
     @Override
     public long getLikeCount(Long postId) {
-        return 0;
+        return likeRepository.countByPostId(postId);
     }
 }
