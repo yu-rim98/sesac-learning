@@ -24,6 +24,16 @@
         <!-- 게시물 내용 -->
         <div class="card-body">
           <p class="card-text" th:text="${post.content}">게시물 내용</p>
+          <!-- 좋아요 버튼 시작 -->
+            <div sec:authorize="isAuthenticated()">
+              <form th:action="@{/posts/{id}/like(id=${post.id})}" method="post">
+                <button type="submit" class="btn btn-link text-decoration-none">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+              </form>
+            </div>
+            <div sec:authorize="!isAuthenticated()"></div>
+          <!-- 좋아요 버튼 끝 -->
           <p class="text-muted small" th:text="${#temporals.format(post.createdAt, 'yyyy년 MM월 dd일 HH:mm')}">
             2024년 1월 1일 12:00
           </p>
@@ -39,10 +49,10 @@
       </div>
 
       <!-- 댓글 섹션 -->
-<!--      <div class="card mt-3">-->
-<!--&lt;!&ndash;        <div class="card-header">&ndash;&gt;-->
-<!--&lt;!&ndash;          <span th:text="'댓글 ' + ${comments.size()} + '개'">댓글 0개</span>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+      <div class="card mt-3">
+        <div class="card-header">
+          <span th:text="'댓글 ' + ${comments.size()} + '개'">댓글 0개</span>
+        </div>
 
         <!-- 댓글 목록 -->
         <ul class="list-group list-group-flush">

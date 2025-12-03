@@ -6,6 +6,7 @@ import org.example.instagram.dto.request.CommentRequest;
 import org.example.instagram.dto.request.PostCreateRequest;
 import org.example.instagram.security.CustomUserDetails;
 import org.example.instagram.service.CommentService;
+import org.example.instagram.service.LikeService;
 import org.example.instagram.service.PostService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class PostController {
 
     private final PostService postService;
     private final CommentService commentService;
+    private final LikeService likeService;
 
     @GetMapping("/new")
     public String createForm(Model model) {
@@ -55,7 +57,7 @@ public class PostController {
     @PostMapping("/{postId}/comments")
     public String createComment(@PathVariable Long postId,
         @Valid @ModelAttribute CommentRequest request, BindingResult bindingResult,
-        @AuthenticationPrincipal CustomUserDetails userDetails , Model model) {
+        @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("post", postService.getPost(postId));
@@ -65,6 +67,13 @@ public class PostController {
 
         commentService.create(postId, request, userDetails.getId());
 
+        return "redirect:/posts/" + postId;
+    }
+
+    @PostMapping("/{postId}/like")
+    public String toggleLike(@PathVariable Long postId,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        likeService.toggleLike(postId, userDetails.getId());
         return "redirect:/posts/" + postId;
     }
 
