@@ -78,7 +78,7 @@
         <!-- 댓글 작성 폼 (로그인한 경우만) -->
         <div sec:authorize="isAuthenticated()" class="card-footer">
           <form th:action="@{'/posts/' + ${post.id} + '/comments'}"
-                th:object="${commentCreateRequest}" method="post">
+                th:object="${commentRequest}" method="post">
             <div class="input-group">
               <input type="text" th:field="*{content}" class="form-control"
                      placeholder="댓글 달기..."

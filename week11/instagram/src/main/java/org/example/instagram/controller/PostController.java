@@ -2,7 +2,7 @@ package org.example.instagram.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.instagram.dto.request.CommentCreateRequest;
+import org.example.instagram.dto.request.CommentRequest;
 import org.example.instagram.dto.request.PostCreateRequest;
 import org.example.instagram.security.CustomUserDetails;
 import org.example.instagram.service.CommentService;
@@ -47,17 +47,19 @@ public class PostController {
     public String detail(@PathVariable Long postId, Model model) {
 
         model.addAttribute("post", postService.getPost(postId));
-        model.addAttribute("commentCreateRequest", new CommentCreateRequest());
+        model.addAttribute("commentRequest", new CommentRequest());
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
         return "post/detail";
     }
 
     @PostMapping("/{postId}/comments")
     public String createComment(@PathVariable Long postId,
-        @Valid @ModelAttribute CommentCreateRequest request, BindingResult bindingResult,
-        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        @Valid @ModelAttribute CommentRequest request, BindingResult bindingResult,
+        @AuthenticationPrincipal CustomUserDetails userDetails , Model model) {
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("post", postService.getPost(postId));
+            model.addAttribute("comments", commentService.getCommentsByPostId(postId));
             return "post/detail";
         }
 

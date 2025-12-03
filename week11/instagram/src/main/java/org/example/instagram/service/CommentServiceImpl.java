@@ -2,7 +2,7 @@ package org.example.instagram.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.example.instagram.dto.request.CommentCreateRequest;
+import org.example.instagram.dto.request.CommentRequest;
 import org.example.instagram.dto.response.CommentResponse;
 import org.example.instagram.entity.Comment;
 import org.example.instagram.entity.Post;
@@ -21,7 +21,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public CommentResponse create(Long postId, CommentCreateRequest request, Long userId) {
+    public CommentResponse create(Long postId, CommentRequest request, Long userId) {
         Post post = postService.findById(postId);
         User user = userService.findById(userId);
 
