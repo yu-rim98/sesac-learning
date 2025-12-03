@@ -2,6 +2,7 @@ package org.example.instagram.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.request.SignUpRequest;
+import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.entity.Role;
 import org.example.instagram.entity.User;
 import org.example.instagram.repository.UserRepository;
@@ -38,6 +39,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long userId) {
         return userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
+    }
+
+    @Override
+    public ProfileResponse getProfile(String username) {
+        User user = findByUsername(username);
+        return ProfileResponse.from(user);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
             .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
     }
 }

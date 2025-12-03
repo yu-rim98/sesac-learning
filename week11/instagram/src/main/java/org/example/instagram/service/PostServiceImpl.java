@@ -48,4 +48,11 @@ public class PostServiceImpl implements PostService {
             .toList();
     }
 
+    @Override
+    public List<PostResponse> getPostsByUsername(String username) {
+        User user = userService.findByUsername(username);
+        return postRepository.findByUserIdOrderByCreatedAtDesc(user.getId()).stream()
+            .map(PostResponse::from).toList();
+    }
+
 }
