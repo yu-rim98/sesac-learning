@@ -46,11 +46,15 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public String detail(@PathVariable Long postId, Model model) {
+    public String detail(@PathVariable Long postId, Model model,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
 
         model.addAttribute("post", postService.getPost(postId));
         model.addAttribute("commentRequest", new CommentRequest());
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
+        model.addAttribute("liked", likeService.isLiked(postId, userDetails.getId()));
+        model.addAttribute("likeCount", likeService.getLikeCount(postId));
+
         return "post/detail";
     }
 
@@ -62,6 +66,9 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("post", postService.getPost(postId));
             model.addAttribute("comments", commentService.getCommentsByPostId(postId));
+            model.addAttribute("liked", likeService.isLiked(postId, userDetails.getId()));
+            model.addAttribute("likeCount", likeService.getLikeCount(postId));
+
             return "post/detail";
         }
 
