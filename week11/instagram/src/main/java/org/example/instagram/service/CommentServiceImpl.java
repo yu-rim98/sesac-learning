@@ -1,5 +1,6 @@
 package org.example.instagram.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.request.CommentCreateRequest;
 import org.example.instagram.dto.response.CommentResponse;
@@ -31,5 +32,13 @@ public class CommentServiceImpl implements CommentService {
             .build();
 
         return CommentResponse.from(commentRepository.save(comment));
+    }
+
+
+    @Override
+    public List<CommentResponse> getCommentsByPostId(Long postId) {
+        Post post = postService.findById(postId);
+        return commentRepository.findByPostIdOrderByCreatedAtDesc(postId).stream()
+            .map(CommentResponse::from).toList();
     }
 }

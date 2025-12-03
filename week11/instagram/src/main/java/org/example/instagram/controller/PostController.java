@@ -48,6 +48,7 @@ public class PostController {
 
         model.addAttribute("post", postService.getPost(postId));
         model.addAttribute("commentCreateRequest", new CommentCreateRequest());
+        model.addAttribute("comments", commentService.getCommentsByPostId(postId));
         return "post/detail";
     }
 
