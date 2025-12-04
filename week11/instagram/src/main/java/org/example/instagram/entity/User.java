@@ -42,7 +42,7 @@ public class User extends BaseEntity{
     @Column(length = 200)
     private String bio;
 
-    @Column(name = "prifile_image_url")
+    @Column(name = "profile_image_url")
     private String profileImageUrl;
 
     @Builder
