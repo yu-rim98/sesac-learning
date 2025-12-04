@@ -7,6 +7,7 @@ import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.security.CustomUserDetails;
 import org.example.instagram.service.FollowService;
 import org.example.instagram.service.PostService;
+import org.example.instagram.service.ProfileService;
 import org.example.instagram.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,13 @@ public class UserController {
     private final UserService userService;
     private final PostService postService;
     private final FollowService followService;
+    private final ProfileService profileService;
 
     @GetMapping("/{username}")
     public String profile(@PathVariable String username, Model model, @AuthenticationPrincipal
     CustomUserDetails userDetails) {
 
-        ProfileResponse profile = userService.getProfile(username);
+        ProfileResponse profile = profileService.getProfile(username);
 
         model.addAttribute("profile", profile);
         model.addAttribute("posts", postService.getPostsByUsername(username));

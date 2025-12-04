@@ -1,9 +1,6 @@
 package org.example.instagram.service;
 
-import jakarta.validation.Valid;
-import org.example.instagram.dto.request.ProfileUpdateRequest;
 import org.example.instagram.dto.request.SignUpRequest;
-import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.dto.response.UserResponse;
 import org.example.instagram.entity.User;
 
@@ -15,15 +12,10 @@ public interface UserService {
 
     User findById(Long userId);
 
-    ProfileResponse getProfile(String username);
-
     User findByUsername(String username);
 
     boolean isOwner(String username, String profileUsername);
 
     UserResponse getUserById(Long userId);
 
-    ProfileUpdateRequest getProfileForUpdate(Long userId);
-
-    void updateProfile(ProfileUpdateRequest request, Long userId);
 }
