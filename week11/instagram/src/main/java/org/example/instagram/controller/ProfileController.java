@@ -40,11 +40,8 @@ public class ProfileController {
         @AuthenticationPrincipal CustomUserDetails userDetails) {
 
         if (bindingResult.hasErrors()) {
-            ProfileUpdateRequest updateRequest = userService.getProfileForUpdate(
-                userDetails.getId());
             UserResponse userResponse = userService.getUserById(userDetails.getId());
 
-            model.addAttribute("profileUpdateRequest", updateRequest);
             model.addAttribute("currentUser", userResponse);
             return "profile/edit";
         }
