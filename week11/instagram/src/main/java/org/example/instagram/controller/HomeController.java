@@ -16,7 +16,7 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model) {
-        model.addAttribute("posts", postService.getAllPosts());
+        model.addAttribute("posts", postService.getAllPostsWithStats());
         return "home";
     }
 }
