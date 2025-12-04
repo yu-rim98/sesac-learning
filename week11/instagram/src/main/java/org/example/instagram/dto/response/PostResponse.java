@@ -16,6 +16,9 @@ public class PostResponse {
     private Long userId;
     private String username;
 
+    private long commentCount;
+    private long likeCount;
+
     public static PostResponse from(Post saved) {
         return PostResponse.builder()
             .id(saved.getId())
@@ -23,6 +26,18 @@ public class PostResponse {
             .createdAt(saved.getCreatedAt())
             .userId(saved.getUser().getId())
             .username(saved.getUser().getUsername())
+            .build();
+    }
+
+    public static PostResponse from(Post saved, long commentCount, long likeCount) {
+        return PostResponse.builder()
+            .id(saved.getId())
+            .content(saved.getContent())
+            .createdAt(saved.getCreatedAt())
+            .userId(saved.getUser().getId())
+            .username(saved.getUser().getUsername())
+            .commentCount(commentCount)
+            .likeCount(likeCount)
             .build();
     }
 }

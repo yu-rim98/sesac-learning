@@ -6,6 +6,8 @@ import org.example.instagram.dto.request.PostCreateRequest;
 import org.example.instagram.dto.response.PostResponse;
 import org.example.instagram.entity.Post;
 import org.example.instagram.entity.User;
+import org.example.instagram.repository.CommentRepository;
+import org.example.instagram.repository.LikeRepository;
 import org.example.instagram.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ public class PostServiceImpl implements PostService {
 
     private final UserService userService;
     private final PostRepository postRepository;
+    private final LikeRepository likeRepository;
+    private final CommentRepository commentRepository;
 
     @Override
     @Transactional
@@ -58,6 +62,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public long countByUserId(Long userId) {
         return postRepository.countByUserId(userId);
+    }
+
+    @Override
+    public List<PostResponse> getAllPostsWithStats() {
+        return postRepository.findAllByOrderByCreatedAtDesc().stream()
+            .map(post -> {
+                long likeCount = likeRepository.countByPostId(post.getId());
+                long commentCount = commentRepository.countByPostId(post.getId());
+                return PostResponse.from(post, commentCount, likeCount);
+            }).toList();
     }
 
 }
