@@ -1,5 +1,7 @@
 package org.example.instagram.controller;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.security.CustomUserDetails;
@@ -41,6 +43,7 @@ public class UserController {
     public String toggleFollow(@PathVariable String username,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         followService.toggleFollow(username, userDetails.getId());
-        return "redirect:/users/" + username;
+        String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8);
+        return "redirect:/users/" + encodedUsername;
     }
 }
