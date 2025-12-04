@@ -30,10 +30,9 @@ public class ProfileController {
     public String editForm(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
 
         ProfileUpdateRequest request = profileService.getProfileForUpdate(userDetails.getId());
-        UserResponse userResponse = userService.getUserById(userDetails.getId());
 
         model.addAttribute("profileUpdateRequest", request);
-        model.addAttribute("currentUser", userResponse);
+        addCurrentUserAttributes(model, userService.getUserById(userDetails.getId()));
         return "profile/edit";
     }
 
@@ -46,14 +45,17 @@ public class ProfileController {
         MultipartFile profileImg) {
 
         if (bindingResult.hasErrors()) {
-            UserResponse userResponse = userService.getUserById(userDetails.getId());
+            addCurrentUserAttributes(model, userService.getUserById(userDetails.getId()));
 
-            model.addAttribute("currentUser", userResponse);
             return "profile/edit";
         }
 
         profileService.updateProfile(request, userDetails.getId(), profileImg);
 
         return "redirect:/profile/edit";
+    }
+
+    private void addCurrentUserAttributes(Model model, UserResponse userResponse) {
+        model.addAttribute("currentUser", userResponse);
     }
 }

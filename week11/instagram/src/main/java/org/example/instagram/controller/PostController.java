@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.request.CommentRequest;
 import org.example.instagram.dto.request.PostCreateRequest;
+import org.example.instagram.dto.response.PostResponse;
 import org.example.instagram.security.CustomUserDetails;
 import org.example.instagram.service.CommentService;
 import org.example.instagram.service.LikeService;
@@ -52,12 +53,8 @@ public class PostController {
     public String detail(@PathVariable Long postId, Model model,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
 
-        model.addAttribute("post", postService.getPost(postId));
         model.addAttribute("commentRequest", new CommentRequest());
-        model.addAttribute("comments", commentService.getCommentsByPostId(postId));
-        model.addAttribute("liked", likeService.isLiked(postId, userDetails.getId()));
-        model.addAttribute("likeCount", likeService.getLikeCount(postId));
-
+        addPostDetailAttributes(model, postId, userDetails.getId());
         return "post/detail";
     }
 
@@ -67,11 +64,7 @@ public class PostController {
         @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("post", postService.getPost(postId));
-            model.addAttribute("comments", commentService.getCommentsByPostId(postId));
-            model.addAttribute("liked", likeService.isLiked(postId, userDetails.getId()));
-            model.addAttribute("likeCount", likeService.getLikeCount(postId));
-
+            addPostDetailAttributes(model, postId, userDetails.getId());
             return "post/detail";
         }
 
@@ -85,6 +78,13 @@ public class PostController {
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         likeService.toggleLike(postId, userDetails.getId());
         return "redirect:/posts/" + postId;
+    }
+
+    private void addPostDetailAttributes(Model model, Long postId, Long userId) {
+        model.addAttribute("post", postService.getPost(postId));
+        model.addAttribute("comments", commentService.getCommentsByPostId(postId));
+        model.addAttribute("liked", likeService.isLiked(postId, userId));
+        model.addAttribute("likeCount", likeService.getLikeCount(postId));
     }
 
 
