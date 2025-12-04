@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/posts")
@@ -35,13 +37,14 @@ public class PostController {
 
     @PostMapping
     public String create(@Valid @ModelAttribute PostCreateRequest request,
+        @RequestParam(required = false, value = "image") MultipartFile image,
         BindingResult bindingResult, @AuthenticationPrincipal CustomUserDetails userDetails) {
 
         if (bindingResult.hasErrors()) {
             return "post/form";
         }
 
-        postService.create(request, userDetails.getId());
+        postService.create(request, image, userDetails.getId());
         return "redirect:/";
     }
 

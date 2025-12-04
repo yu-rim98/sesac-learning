@@ -11,6 +11,7 @@ import org.example.instagram.repository.LikeRepository;
 import org.example.instagram.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -21,15 +22,23 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
+    private final FileService fileService;
 
     @Override
     @Transactional
-    public PostResponse create(PostCreateRequest request, Long userId) {
+    public PostResponse create(PostCreateRequest request, MultipartFile image, Long userId) {
         User user = userService.findById(userId);
+        String imageUrl = null;
+
+        if (image != null && !image.isEmpty()) {
+            String fileName = fileService.saveFile(image);
+            imageUrl = "/uploads/" + fileName;
+        }
 
         Post post = Post.builder()
             .content(request.getContent())
             .user(user)
+            .imageUrl(imageUrl)
             .build();
 
         return PostResponse.from(postRepository.save(post));
