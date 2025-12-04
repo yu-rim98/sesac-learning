@@ -1,5 +1,6 @@
 package org.example.instagram.service;
 
+import org.example.instagram.dto.request.ProfileUpdateRequest;
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.dto.response.UserResponse;
@@ -20,4 +21,6 @@ public interface UserService {
     boolean isOwner(String username, String profileUsername);
 
     UserResponse getUserById(Long userId);
+
+    ProfileUpdateRequest getProfileForUpdate(Long userId);
 }

@@ -1,6 +1,7 @@
 package org.example.instagram.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.instagram.dto.request.ProfileUpdateRequest;
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.ProfileResponse;
 import org.example.instagram.dto.response.UserResponse;
@@ -74,5 +75,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse getUserById(Long userId) {
         return UserResponse.from(findById(userId));
+    }
+
+    @Override
+    public ProfileUpdateRequest getProfileForUpdate(Long userId) {
+        User user = findById(userId);
+        ProfileUpdateRequest request = new ProfileUpdateRequest();
+        request.setName(user.getName());
+        request.setBio(user.getBio());
+        return request;
     }
 }

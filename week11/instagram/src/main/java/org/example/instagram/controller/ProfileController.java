@@ -21,11 +21,8 @@ public class ProfileController {
     @GetMapping("/edit")
     public String editForm(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
 
+        ProfileUpdateRequest request = userService.getProfileForUpdate(userDetails.getId());
         UserResponse userResponse = userService.getUserById(userDetails.getId());
-        ProfileUpdateRequest request = new ProfileUpdateRequest();
-
-        request.setBio(userResponse.getBio());
-        request.setName(userResponse.getName());
 
         model.addAttribute("profileUpdateRequest", request);
         model.addAttribute("currentUser", userResponse);
