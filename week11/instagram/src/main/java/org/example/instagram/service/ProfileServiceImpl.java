@@ -40,10 +40,8 @@ public class ProfileServiceImpl implements ProfileService{
     @Transactional
     public void updateProfile(ProfileUpdateRequest request, Long userId, MultipartFile profileImg) {
         User user = userService.findById(userId);
-
+        String imageUrl = fileService.upload(profileImg);
         if (profileImg != null && !profileImg.isEmpty()) {
-            String filename = fileService.saveFile(profileImg);
-            String imageUrl = "/uploads/" + filename;
             user.updateProfileImage(imageUrl);
         }
 

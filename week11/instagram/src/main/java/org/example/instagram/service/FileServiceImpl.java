@@ -21,16 +21,23 @@ public class FileServiceImpl implements FileService {
         ".gif");
 
     @Override
-    public String saveFile(MultipartFile file) {
-        try {
-            if (file == null || file.isEmpty()) {
-                return null;
-            }
+    public String upload(MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            return null;
+        }
 
+        String filename = saveFile(file);
+
+        return "/" + uploadDir + "/" + filename;
+    }
+
+    private String saveFile(MultipartFile file) {
+        try {
             String extension = getExtension(file.getOriginalFilename());
             validationExtension(extension);
 
             Path uploadPath = Paths.get(uploadDir);
+
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }

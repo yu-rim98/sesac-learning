@@ -28,12 +28,7 @@ public class PostServiceImpl implements PostService {
     @Transactional
     public PostResponse create(PostCreateRequest request, MultipartFile image, Long userId) {
         User user = userService.findById(userId);
-        String imageUrl = null;
-
-        if (image != null && !image.isEmpty()) {
-            String fileName = fileService.saveFile(image);
-            imageUrl = "/uploads/" + fileName;
-        }
+        String imageUrl = fileService.upload(image);
 
         Post post = Post.builder()
             .content(request.getContent())
