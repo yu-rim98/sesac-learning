@@ -35,6 +35,8 @@ public class UserController {
         model.addAttribute("posts", postService.getPostsByUsername(username));
         model.addAttribute("isFollowing",
             followService.isFollowing(userDetails.getId(), profile.getId()));
+        model.addAttribute("isOwner",
+            userService.isOwner(userDetails.getUsername(), profile.getUsername()));
 
         return "user/profile";
     }

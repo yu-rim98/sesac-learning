@@ -15,4 +15,6 @@ public interface UserService {
     ProfileResponse getProfile(String username);
 
     User findByUsername(String username);
+
+    boolean isOwner(String username, String profileUsername);
 }

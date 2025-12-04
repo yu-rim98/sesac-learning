@@ -64,4 +64,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username)
             .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
     }
+
+    @Override
+    public boolean isOwner(String username, String profileUsername) {
+        return username.equals(profileUsername);
+    }
 }
