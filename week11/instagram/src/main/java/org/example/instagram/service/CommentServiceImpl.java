@@ -7,6 +7,7 @@ import org.example.instagram.dto.response.CommentResponse;
 import org.example.instagram.entity.Comment;
 import org.example.instagram.entity.Post;
 import org.example.instagram.entity.User;
+import org.example.instagram.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

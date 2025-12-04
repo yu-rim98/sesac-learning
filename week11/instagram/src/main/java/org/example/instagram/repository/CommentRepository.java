@@ -1,4 +1,4 @@
-package org.example.instagram.service;
+package org.example.instagram.repository;
 
 import java.util.List;
 import org.example.instagram.entity.Comment;
