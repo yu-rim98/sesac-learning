@@ -2,6 +2,7 @@ package org.example.instagram.service;
 
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.ProfileResponse;
+import org.example.instagram.dto.response.UserResponse;
 import org.example.instagram.entity.User;
 
 public interface UserService {
@@ -17,4 +18,6 @@ public interface UserService {
     User findByUsername(String username);
 
     boolean isOwner(String username, String profileUsername);
+
+    UserResponse getUserById(Long userId);
 }

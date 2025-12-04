@@ -3,6 +3,7 @@ package org.example.instagram.service;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.ProfileResponse;
+import org.example.instagram.dto.response.UserResponse;
 import org.example.instagram.entity.Role;
 import org.example.instagram.entity.User;
 import org.example.instagram.repository.FollowRepository;
@@ -68,5 +69,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isOwner(String username, String profileUsername) {
         return username.equals(profileUsername);
+    }
+
+    @Override
+    public UserResponse getUserById(Long userId) {
+        return UserResponse.from(findById(userId));
     }
 }
