@@ -85,4 +85,11 @@ public class UserServiceImpl implements UserService {
         request.setBio(user.getBio());
         return request;
     }
+
+    @Override
+    @Transactional
+    public void updateProfile(ProfileUpdateRequest request, Long userId) {
+        User user = findById(userId);
+        user.updateProfile(request.getName(), request.getBio());
+    }
 }

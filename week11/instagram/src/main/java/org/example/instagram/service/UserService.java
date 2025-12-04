@@ -1,5 +1,6 @@
 package org.example.instagram.service;
 
+import jakarta.validation.Valid;
 import org.example.instagram.dto.request.ProfileUpdateRequest;
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.ProfileResponse;
@@ -23,4 +24,6 @@ public interface UserService {
     UserResponse getUserById(Long userId);
 
     ProfileUpdateRequest getProfileForUpdate(Long userId);
+
+    void updateProfile(ProfileUpdateRequest request, Long userId);
 }
