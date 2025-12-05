@@ -3,6 +3,7 @@ package org.example.instagram.exception;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
@@ -24,6 +25,12 @@ public class GlobalExceptionHandler {
             case BAD_REQUEST -> "error/400";
             default -> "error/500";
         };
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public String handleMaxUploadSizeException(MaxUploadSizeExceededException e, Model model) {
+        model.addAttribute("message", "파일 크기가 10MB를 초과했습니다.");
+        return "error/400";
     }
 
     // 모든 예외 처리
