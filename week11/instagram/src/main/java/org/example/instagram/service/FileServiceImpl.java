@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import org.example.instagram.exception.BusinessException;
+import org.example.instagram.exception.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,7 +58,7 @@ public class FileServiceImpl implements FileService {
 
     private String getExtension(String filename) {
         if (filename == null || !filename.contains(".")) {
-            throw new RuntimeException("유효하지 않은 파일");
+            throw new BusinessException(ErrorCode.INVALID_FILE_TYPE);
         }
 
         return filename.substring(filename.lastIndexOf("."));
@@ -64,7 +66,7 @@ public class FileServiceImpl implements FileService {
 
     private void validationExtension(String extension) {
         if (!ALLOWED_EXTENSIONS.contains(extension.toLowerCase())) {
-            throw new RuntimeException("허용되지 않는 확장자");
+            throw new BusinessException(ErrorCode.INVALID_FILE_TYPE);
         }
     }
 
