@@ -6,6 +6,8 @@ import org.example.instagram.dto.request.PostCreateRequest;
 import org.example.instagram.dto.response.PostResponse;
 import org.example.instagram.entity.Post;
 import org.example.instagram.entity.User;
+import org.example.instagram.exception.BusinessException;
+import org.example.instagram.exception.ErrorCode;
 import org.example.instagram.repository.CommentRepository;
 import org.example.instagram.repository.FollowRepository;
 import org.example.instagram.repository.LikeRepository;
@@ -52,7 +54,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post findById(Long id) {
         return postRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
+            .orElseThrow(() -> new BusinessException(ErrorCode.POST_NOT_FOUND));
     }
 
     @Override

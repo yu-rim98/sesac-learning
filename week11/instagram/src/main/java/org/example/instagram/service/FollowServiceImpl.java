@@ -3,6 +3,8 @@ package org.example.instagram.service;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.entity.Follow;
 import org.example.instagram.entity.User;
+import org.example.instagram.exception.BusinessException;
+import org.example.instagram.exception.ErrorCode;
 import org.example.instagram.repository.FollowRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +54,7 @@ public class FollowServiceImpl implements FollowService{
 
     private void validateNotSelfFollow(Long followerId, Long followingId) {
         if ( followerId.equals(followingId)) {
-            throw new RuntimeException("자기 자신은 팔로우 할 수 없습니다.");
+            throw new BusinessException(ErrorCode.SELF_FOLLOW);
         }
     }
 
