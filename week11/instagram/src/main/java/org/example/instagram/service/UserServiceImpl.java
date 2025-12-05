@@ -1,5 +1,6 @@
 package org.example.instagram.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.UserResponse;
@@ -56,6 +57,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse getUserById(Long userId) {
         return UserResponse.from(findById(userId));
+    }
+
+    @Override
+    public List<UserResponse> searchUsers(String keyword) {
+        List<User> users = userRepository.searchByKeyword(keyword);
+
+        return users.stream().map(UserResponse::from).toList();
     }
 
 

@@ -32,4 +32,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     // 전체 게시물 (페이징)
     @Query("select p from Post p join fetch p.user order by p.createdAt desc ")
     Slice<Post> findAllWithUserPaging(Pageable pageable);
+
+    @Query("select p from Post p join fetch p.user where p.content like %:keyword% order by p.createdAt desc")
+    Slice<Post> searchByKeyword(@Param("keyword") String keyword, Pageable pageable);
 }

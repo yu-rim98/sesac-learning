@@ -1,5 +1,6 @@
 package org.example.instagram.service;
 
+import java.util.List;
 import org.example.instagram.dto.request.SignUpRequest;
 import org.example.instagram.dto.response.UserResponse;
 import org.example.instagram.entity.User;
@@ -18,4 +19,5 @@ public interface UserService {
 
     UserResponse getUserById(Long userId);
 
+    List<UserResponse> searchUsers(String keyword);
 }
