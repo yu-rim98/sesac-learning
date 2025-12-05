@@ -7,8 +7,12 @@ import org.example.instagram.dto.response.PostResponse;
 import org.example.instagram.entity.Post;
 import org.example.instagram.entity.User;
 import org.example.instagram.repository.CommentRepository;
+import org.example.instagram.repository.FollowRepository;
 import org.example.instagram.repository.LikeRepository;
 import org.example.instagram.repository.PostRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +27,7 @@ public class PostServiceImpl implements PostService {
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
     private final FileService fileService;
+    private final FollowRepository followRepository;
 
     @Override
     @Transactional
@@ -71,11 +76,32 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostResponse> getAllPostsWithStats() {
         return postRepository.findAllByOrderByCreatedAtDesc().stream()
-            .map(post -> {
-                long likeCount = likeRepository.countByPostId(post.getId());
-                long commentCount = commentRepository.countByPostId(post.getId());
-                return PostResponse.from(post, commentCount, likeCount);
-            }).toList();
+            .map(this::toResponse).toList();
     }
+
+    @Override
+    public Slice<PostResponse> getFeedPosts(Long userId, Pageable pageable) {
+        List<Long> followingIds = followRepository.findFollowingIdsByFollowerId(userId);
+
+        Slice<Post> posts = postRepository.findFeedPostsByUserIds(followingIds, pageable);
+        List<PostResponse> content = posts.stream()
+            .map(this::toResponse).toList();
+        return new SliceImpl<>(content, pageable, posts.hasNext());
+    }
+
+    @Override
+    public Slice<PostResponse> getAllPostsPaging(Pageable pageable) {
+        Slice<Post> posts = postRepository.findAllWithUserPaging(pageable);
+        List<PostResponse> content = posts.stream()
+            .map(this::toResponse).toList();
+        return new SliceImpl<>(content, pageable, posts.hasNext());
+    }
+
+    private PostResponse toResponse(Post post) {
+        long likeCount = likeRepository.countByPostId(post.getId());
+        long commentCount = commentRepository.countByPostId(post.getId());
+        return PostResponse.from(post, commentCount, likeCount);
+    }
+
 
 }
