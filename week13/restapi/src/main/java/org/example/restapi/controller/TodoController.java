@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.restapi.dto.request.TodoCreateReq;
 import org.example.restapi.dto.response.TodoResponse;
 import org.example.restapi.service.TodoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,7 @@ public class TodoController {
     private final TodoService todoService;
 
     @PostMapping
-    public TodoResponse createTodo(@Valid @RequestBody TodoCreateReq req) {
-        return todoService.create(req);
+    public ResponseEntity<TodoResponse> createTodo(@Valid @RequestBody TodoCreateReq req) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(todoService.create(req));
     }
 }
