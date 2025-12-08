@@ -11,4 +11,6 @@ public interface TodoService {
     List<TodoResponse> findAll();
 
     TodoResponse findById(Long todoId);
+
+    void deleteById(Long todoId);
 }

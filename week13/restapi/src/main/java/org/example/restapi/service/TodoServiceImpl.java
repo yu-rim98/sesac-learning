@@ -31,8 +31,19 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public TodoResponse findById(Long todoId) {
-        Todo todo = todoRepository.findById(todoId)
-            .orElseThrow(() -> new RuntimeException("존재하지 않는 Todo입니다."));
+        Todo todo = findTodo(todoId);
         return TodoResponse.from(todo);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long todoId) {
+        Todo todo = findTodo(todoId);
+        todoRepository.delete(todo);
+    }
+
+    private Todo findTodo(Long todoId) {
+        return todoRepository.findById(todoId)
+            .orElseThrow(() -> new RuntimeException("존재하지 않는 Todo입니다."));
     }
 }
