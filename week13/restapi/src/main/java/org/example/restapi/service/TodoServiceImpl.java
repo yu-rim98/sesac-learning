@@ -3,6 +3,7 @@ package org.example.restapi.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.restapi.dto.request.TodoCreateReq;
+import org.example.restapi.dto.request.TodoUpdateReq;
 import org.example.restapi.dto.response.TodoResponse;
 import org.example.restapi.entity.Todo;
 import org.example.restapi.repository.TodoRepository;
@@ -40,6 +41,15 @@ public class TodoServiceImpl implements TodoService {
     public void deleteById(Long todoId) {
         Todo todo = findTodo(todoId);
         todoRepository.delete(todo);
+    }
+
+    @Override
+    @Transactional
+    public TodoResponse update(Long todoId, TodoUpdateReq req) {
+        Todo todo = findTodo(todoId);
+        todo.update(req.getTitle(), req.getContent());
+
+        return TodoResponse.from(todo);
     }
 
     private Todo findTodo(Long todoId) {

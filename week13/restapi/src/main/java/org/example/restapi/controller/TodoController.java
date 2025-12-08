@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.restapi.dto.request.TodoCreateReq;
+import org.example.restapi.dto.request.TodoUpdateReq;
 import org.example.restapi.dto.response.TodoResponse;
 import org.example.restapi.service.TodoService;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,5 +44,11 @@ public class TodoController {
     public ResponseEntity<String> deleteById(@PathVariable Long todoId) {
         todoService.deleteById(todoId);
         return ResponseEntity.ok("삭제되었습니다.");
+    }
+
+    @PutMapping("/{todoId}")
+    public ResponseEntity<TodoResponse> update(@PathVariable Long todoId,
+        @Valid @RequestBody TodoUpdateReq req) {
+        return ResponseEntity.ok(todoService.update(todoId, req));
     }
 }
