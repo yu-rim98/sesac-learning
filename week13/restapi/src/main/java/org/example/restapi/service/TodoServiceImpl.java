@@ -6,6 +6,8 @@ import org.example.restapi.dto.request.TodoCreateReq;
 import org.example.restapi.dto.request.TodoUpdateReq;
 import org.example.restapi.dto.response.TodoResponse;
 import org.example.restapi.entity.Todo;
+import org.example.restapi.exception.CustomException;
+import org.example.restapi.exception.ErrorCode;
 import org.example.restapi.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +56,6 @@ public class TodoServiceImpl implements TodoService {
 
     private Todo findTodo(Long todoId) {
         return todoRepository.findById(todoId)
-            .orElseThrow(() -> new RuntimeException("존재하지 않는 Todo입니다."));
+            .orElseThrow(() -> new CustomException(ErrorCode.TODO_NOT_FOUND));
     }
 }
