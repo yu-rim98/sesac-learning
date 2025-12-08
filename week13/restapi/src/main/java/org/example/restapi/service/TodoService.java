@@ -9,4 +9,6 @@ public interface TodoService {
     TodoResponse create(TodoCreateReq req);
 
     List<TodoResponse> findAll();
+
+    TodoResponse findById(Long todoId);
 }

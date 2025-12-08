@@ -28,4 +28,11 @@ public class TodoServiceImpl implements TodoService {
     public List<TodoResponse> findAll() {
         return todoRepository.findAll().stream().map(TodoResponse::from).toList();
     }
+
+    @Override
+    public TodoResponse findById(Long todoId) {
+        Todo todo = todoRepository.findById(todoId)
+            .orElseThrow(() -> new RuntimeException("존재하지 않는 Todo입니다."));
+        return TodoResponse.from(todo);
+    }
 }

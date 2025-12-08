@@ -9,6 +9,7 @@ import org.example.restapi.service.TodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +30,10 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<List<TodoResponse>> getAll() {
         return ResponseEntity.ok(todoService.findAll());
+    }
+
+    @GetMapping("/{todoId}")
+    public ResponseEntity<TodoResponse> findById(@PathVariable Long todoId) {
+        return ResponseEntity.ok(todoService.findById(todoId));
     }
 }
