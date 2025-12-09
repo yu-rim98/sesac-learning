@@ -7,9 +7,11 @@ import org.example.restapi.dto.request.TodoCreateReq;
 import org.example.restapi.dto.request.TodoUpdateReq;
 import org.example.restapi.dto.response.ApiResponse;
 import org.example.restapi.dto.response.TodoResponse;
+import org.example.restapi.secutity.CustomUserDetails;
 import org.example.restapi.service.TodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +30,8 @@ public class TodoController {
 
     @PostMapping
     public ResponseEntity<ApiResponse<TodoResponse>> createTodo(
-        @Valid @RequestBody TodoCreateReq req) {
-        TodoResponse todoResponse = todoService.create(req);
+        @Valid @RequestBody TodoCreateReq req, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        TodoResponse todoResponse = todoService.create(req, userDetails.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(todoResponse));
     }
 

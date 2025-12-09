@@ -6,6 +6,7 @@ import org.example.restapi.dto.request.TodoCreateReq;
 import org.example.restapi.dto.request.TodoUpdateReq;
 import org.example.restapi.dto.response.TodoResponse;
 import org.example.restapi.entity.Todo;
+import org.example.restapi.entity.User;
 import org.example.restapi.exception.CustomException;
 import org.example.restapi.exception.ErrorCode;
 import org.example.restapi.repository.TodoRepository;
@@ -18,11 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository todoRepository;
+    private final UserService userService;
 
     @Override
     @Transactional
-    public TodoResponse create(TodoCreateReq req) {
-        Todo todo = Todo.of(req.getTitle(), req.getContent());
+    public TodoResponse create(TodoCreateReq req, Long userId) {
+        User user = userService.findById(userId);
+        Todo todo = Todo.of(req.getTitle(), req.getContent(), user);
 
         return TodoResponse.from(todoRepository.save(todo));
     }
