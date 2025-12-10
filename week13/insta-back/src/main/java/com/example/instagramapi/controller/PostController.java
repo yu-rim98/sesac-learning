@@ -39,8 +39,10 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<PostResponse>>> findAll() {
-        return ResponseEntity.ok(ApiResponse.success(postService.findAll()));
+    public ResponseEntity<ApiResponse<List<PostResponse>>> findAll(
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long userId = userDetails != null ? userDetails.getId() : null;
+        return ResponseEntity.ok(ApiResponse.success(postService.findAll(userId)));
     }
 
     @GetMapping("/{id}")
