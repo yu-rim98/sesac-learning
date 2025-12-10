@@ -42,4 +42,7 @@ public class Comment extends BaseTimeEntity {
         return new Comment(content, user, post);
     }
 
+    public boolean isOwner(Long userId) {
+        return this.user.getId().equals(userId);
+    }
 }
