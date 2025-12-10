@@ -36,4 +36,13 @@ public class CommentService {
         return CommentResponse.from(comment);
     }
 
+    public List<CommentResponse> findByPostId(Long postId) {
+        if (!postRepository.existsById(postId)) {
+            throw new CustomException(ErrorCode.POST_NOT_FOUND);
+        }
+
+        List<Comment> comments = commentRepository.findByPostIdWithUser(postId);
+        return comments.stream().map(CommentResponse::from).toList();
+    }
+
 }
