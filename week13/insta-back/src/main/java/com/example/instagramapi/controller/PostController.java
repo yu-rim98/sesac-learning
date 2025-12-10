@@ -62,4 +62,12 @@ public class PostController {
             ApiResponse.success(postLikeService.like(userDetails.getId(), id)));
     }
 
+    @DeleteMapping("/{id}/like")
+    public ResponseEntity<ApiResponse<LikeResponse>> unlike(@PathVariable Long id,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        return ResponseEntity.ok(
+            ApiResponse.success(postLikeService.unlike(userDetails.getId(), id)));
+    }
+
+
 }
