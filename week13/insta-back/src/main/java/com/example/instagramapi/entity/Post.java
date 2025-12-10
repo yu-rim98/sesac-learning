@@ -42,4 +42,7 @@ public class Post extends BaseTimeEntity {
         return new Post(content, imageUrl, user);
     }
 
+    public boolean isOwner(Long userId) {
+        return this.user.getId().equals(userId);
+    }
 }
