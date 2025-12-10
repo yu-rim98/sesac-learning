@@ -2,8 +2,10 @@ package com.example.instagramapi.controller;
 
 import com.example.instagramapi.dto.request.PostCreateRequest;
 import com.example.instagramapi.dto.response.ApiResponse;
+import com.example.instagramapi.dto.response.LikeResponse;
 import com.example.instagramapi.dto.response.PostResponse;
 import com.example.instagramapi.security.CustomUserDetails;
+import com.example.instagramapi.service.PostLikeService;
 import com.example.instagramapi.service.PostService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
 
     private final PostService postService;
+    private final PostLikeService postLikeService;
 
 
     @PostMapping
@@ -50,6 +53,13 @@ public class PostController {
         @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         postService.delete(id, customUserDetails.getId());
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/like")
+    public ResponseEntity<ApiResponse<LikeResponse>> like(@PathVariable Long id,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        return ResponseEntity.ok(
+            ApiResponse.success(postLikeService.like(userDetails.getId(), id)));
     }
 
 }
