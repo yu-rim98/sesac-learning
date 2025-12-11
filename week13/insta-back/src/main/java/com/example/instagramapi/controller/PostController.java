@@ -41,13 +41,15 @@ public class PostController {
     @GetMapping
     public ResponseEntity<ApiResponse<List<PostResponse>>> findAll(
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        Long userId = userDetails != null ? userDetails.getId() : null;
+        Long userId = getUserId(userDetails);
         return ResponseEntity.ok(ApiResponse.success(postService.findAll(userId)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<PostResponse>> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(ApiResponse.success(postService.findById(id)));
+    public ResponseEntity<ApiResponse<PostResponse>> findById(@PathVariable Long id,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long userId = getUserId(userDetails);
+        return ResponseEntity.ok(ApiResponse.success(postService.findById(id, userId)));
     }
 
     @DeleteMapping("/{id}")
@@ -77,6 +79,10 @@ public class PostController {
         Long userId = userDetails != null ? userDetails.getId() : null;
         return ResponseEntity.ok(ApiResponse.success(postLikeService.getLikeStatus(userId, id)));
 
+    }
+
+    private Long getUserId(CustomUserDetails userDetails) {
+        return userDetails != null ? userDetails.getId() : null;
     }
 
 }

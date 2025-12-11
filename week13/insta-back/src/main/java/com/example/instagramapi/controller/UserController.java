@@ -39,8 +39,8 @@ public class UserController {
         @Parameter(description = "사용자명")
         @PathVariable String username,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
-        Long currentUserId = userDetails != null ? userDetails.getId() : null;
-        UserProfileResponse response = userService.getProfile(username, currentUserId);
+        Long userId = getUserId(userDetails);
+        UserProfileResponse response = userService.getProfile(username, userId);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
@@ -59,8 +59,10 @@ public class UserController {
     // GET /api/users/{username}/posts
     @GetMapping("/{username}/posts")
     public ResponseEntity<ApiResponse<List<PostResponse>>> getUserPosts(
-        @PathVariable String username) {
-        return ResponseEntity.ok(ApiResponse.success(postService.findByUsername(username)));
+        @PathVariable String username, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long userId = getUserId(userDetails);
+
+        return ResponseEntity.ok(ApiResponse.success(postService.findByUsername(username, userId)));
     }
 
     // TODO: 팔로워 목록 조회 API 추가
@@ -68,4 +70,8 @@ public class UserController {
 
     // TODO: 팔로잉 목록 조회 API 추가
     // GET /api/users/{username}/following
+
+    private Long getUserId(CustomUserDetails userDetails) {
+        return userDetails != null ? userDetails.getId() : null;
+    }
 }
