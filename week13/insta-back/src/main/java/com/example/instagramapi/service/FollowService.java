@@ -48,6 +48,20 @@ public class FollowService {
         return getFollowCounts(following.getId(), true);
     }
 
+    @Transactional
+    public FollowResponse unfollow(String username, Long followerId) {
+        // 대상 조회
+        User following = userRepository.findByUsername(username)
+            .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        Follow follow = followRepository.findByFollowerIdAndFollowingId(followerId, following.getId())
+            .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOLLOWING));
+
+        followRepository.delete(follow);
+
+        return getFollowCounts(following.getId(), false);
+    }
+
     // 팔로워/팔로잉 수 조회
     private FollowResponse getFollowCounts(Long userId, boolean isFollowing) {
         long followerCount = followRepository.countByFollowingId(userId);

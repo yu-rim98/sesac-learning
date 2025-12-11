@@ -18,6 +18,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,6 +71,13 @@ public class UserController {
     public ResponseEntity<ApiResponse<FollowResponse>> follow(@PathVariable String username,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         FollowResponse response = followService.follow(username, userDetails.getId());
+        return ResponseEntity.ok(ApiResponse.success(response));
+    }
+
+    @DeleteMapping("/{username}/follow")
+    public ResponseEntity<ApiResponse<FollowResponse>> unfollow(@PathVariable String username,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        FollowResponse response = followService.unfollow(username, userDetails.getId());
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
