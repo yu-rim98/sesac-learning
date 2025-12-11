@@ -81,11 +81,21 @@ public class UserController {
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
-    // TODO: 팔로워 목록 조회 API 추가
     // GET /api/users/{username}/followers
+    @GetMapping("/{username}/followers")
+    public ResponseEntity<ApiResponse<List<UserResponse>>> getFollowers(
+        @PathVariable String username) {
+        List<UserResponse> userResponses = followService.getFollowers(username);
+        return ResponseEntity.ok(ApiResponse.success(userResponses));
+    }
 
-    // TODO: 팔로잉 목록 조회 API 추가
     // GET /api/users/{username}/following
+    @GetMapping("/{username}/following")
+    public ResponseEntity<ApiResponse<List<UserResponse>>> getFollowings(
+        @PathVariable String username) {
+        List<UserResponse> userResponses = followService.getFollowings(username);
+        return ResponseEntity.ok(ApiResponse.success(userResponses));
+    }
 
     private Long getUserId(CustomUserDetails userDetails) {
         return userDetails != null ? userDetails.getId() : null;
