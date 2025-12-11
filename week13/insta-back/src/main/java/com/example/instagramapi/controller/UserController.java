@@ -2,10 +2,12 @@ package com.example.instagramapi.controller;
 
 import com.example.instagramapi.dto.request.ProfileUpdateRequest;
 import com.example.instagramapi.dto.response.ApiResponse;
+import com.example.instagramapi.dto.response.FollowResponse;
 import com.example.instagramapi.dto.response.PostResponse;
 import com.example.instagramapi.dto.response.UserProfileResponse;
 import com.example.instagramapi.dto.response.UserResponse;
 import com.example.instagramapi.security.CustomUserDetails;
+import com.example.instagramapi.service.FollowService;
 import com.example.instagramapi.service.PostService;
 import com.example.instagramapi.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +34,12 @@ public class UserController {
 
     private final UserService userService;
     private final PostService postService;
-    // TODO: PostService, FollowService 추가 후 주입
+    private final FollowService followService;
 
     @Operation(summary = "프로필 조회")
     @GetMapping("/{username}")
     public ResponseEntity<ApiResponse<UserProfileResponse>> getProfile(
-        @Parameter(description = "사용자명")
-        @PathVariable String username,
+        @Parameter(description = "사용자명") @PathVariable String username,
         @AuthenticationPrincipal CustomUserDetails userDetails) {
         Long userId = getUserId(userDetails);
         UserProfileResponse response = userService.getProfile(username, userId);
@@ -47,8 +49,7 @@ public class UserController {
     @Operation(summary = "프로필 수정")
     @PutMapping("/{username}")
     public ResponseEntity<ApiResponse<UserResponse>> updateProfile(
-        @Parameter(description = "사용자명")
-        @PathVariable String username,
+        @Parameter(description = "사용자명") @PathVariable String username,
         @AuthenticationPrincipal CustomUserDetails userDetails,
         @Valid @RequestBody ProfileUpdateRequest request) {
         UserResponse response = userService.updateProfile(username, userDetails.getId(), request);
@@ -63,6 +64,13 @@ public class UserController {
         Long userId = getUserId(userDetails);
 
         return ResponseEntity.ok(ApiResponse.success(postService.findByUsername(username, userId)));
+    }
+
+    @PostMapping("/{username}/follow")
+    public ResponseEntity<ApiResponse<FollowResponse>> follow(@PathVariable String username,
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
+        FollowResponse response = followService.follow(username, userDetails.getId());
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
 
     // TODO: 팔로워 목록 조회 API 추가
