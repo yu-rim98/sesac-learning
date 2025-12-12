@@ -2,8 +2,11 @@ package com.example.instagramapi.service;
 
 import com.example.instagramapi.dto.request.LoginRequest;
 import com.example.instagramapi.dto.request.SignupRequest;
+import com.example.instagramapi.dto.response.KakaoTokenResponse;
+import com.example.instagramapi.dto.response.KakaoUserResponse;
 import com.example.instagramapi.dto.response.TokenResponse;
 import com.example.instagramapi.dto.response.UserResponse;
+import com.example.instagramapi.entity.AuthProvider;
 import com.example.instagramapi.entity.User;
 import com.example.instagramapi.exception.CustomException;
 import com.example.instagramapi.exception.ErrorCode;
@@ -22,6 +25,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final KakaoOauthService kakaoOauthService;
 
     @Transactional
     public UserResponse signup(SignupRequest request) {
@@ -33,11 +37,11 @@ public class AuthService {
         }
 
         User user = User.builder()
-                .username(request.getUsername())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .name(request.getName())
-                .build();
+            .username(request.getUsername())
+            .email(request.getEmail())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .name(request.getName())
+            .build();
 
         User savedUser = userRepository.save(user);
         return UserResponse.from(savedUser);
@@ -45,7 +49,7 @@ public class AuthService {
 
     public TokenResponse login(LoginRequest request) {
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAILED));
+            .orElseThrow(() -> new CustomException(ErrorCode.LOGIN_FAILED));
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new CustomException(ErrorCode.LOGIN_FAILED);
@@ -54,14 +58,56 @@ public class AuthService {
         String token = jwtProvider.createToken(user.getUsername());
 
         return TokenResponse.builder()
-                .accessToken(token)
-                .tokenType("Bearer")
-                .build();
+            .accessToken(token)
+            .tokenType("Bearer")
+            .build();
     }
 
     public UserResponse getMe(Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+            .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         return UserResponse.from(user);
+    }
+
+    // 카카오 소셜 로그인 기능
+    @Transactional
+    public TokenResponse kakaoLogin(String code) {
+        // 1. Auth code를 이용해 Access Token 발급
+        KakaoTokenResponse tokenResponse = kakaoOauthService.getToken(code);
+
+        // 2. Access Token 사용자 정보 조회
+        KakaoUserResponse userInfo = kakaoOauthService.getUserInfo(
+            tokenResponse.getAccessToken());
+
+        // 3. 기존 카카오 사용자 조회 없으면 새로 가입
+        User user = userRepository.findByProviderAndProviderId(AuthProvider.KAKAO,
+                String.valueOf(userInfo.getId()))
+            .orElseGet(() ->
+                userRepository.save(createKakaoUser(userInfo))// 신규 사용자 생성
+            );
+
+        // 4. 프로필 정보 업데이트
+        user.updateOAuthProfile(userInfo.getKakaoAccount().getProfile().getNickname(),
+            userInfo.getKakaoAccount().getProfile().getProfileImageUrl());
+
+        // 5. JWT 발급
+        String token = jwtProvider.createToken(user.getUsername());
+
+        return TokenResponse.builder()
+            .accessToken(token)
+            .tokenType("Bearer")
+            .build();
+    }
+
+    // 카카오 신규 사용자 생성
+    private User createKakaoUser(KakaoUserResponse userInfo) {
+        String username = "kakao_" + userInfo.getId();
+        return User.builder()
+            .username(username)
+            .password(passwordEncoder.encode(username))
+            .name(userInfo.getKakaoAccount().getProfile().getNickname())
+            .provider(AuthProvider.KAKAO)
+            .providerId(String.valueOf(userInfo.getId()))
+            .build();
     }
 }

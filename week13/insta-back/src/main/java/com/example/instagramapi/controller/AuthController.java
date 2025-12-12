@@ -1,5 +1,6 @@
 package com.example.instagramapi.controller;
 
+import com.example.instagramapi.dto.request.KakaoLoginRequest;
 import com.example.instagramapi.dto.request.LoginRequest;
 import com.example.instagramapi.dto.request.SignupRequest;
 import com.example.instagramapi.dto.response.ApiResponse;
@@ -27,16 +28,16 @@ public class AuthController {
     @Operation(summary = "회원가입")
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<UserResponse>> signup(
-            @Valid @RequestBody SignupRequest request) {
+        @Valid @RequestBody SignupRequest request) {
         UserResponse response = authService.signup(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(response));
+            .body(ApiResponse.success(response));
     }
 
     @Operation(summary = "로그인")
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<TokenResponse>> login(
-            @Valid @RequestBody LoginRequest request) {
+        @Valid @RequestBody LoginRequest request) {
         TokenResponse response = authService.login(request);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
@@ -44,8 +45,15 @@ public class AuthController {
     @Operation(summary = "내 정보 조회")
     @GetMapping("/me")
     public ResponseEntity<ApiResponse<UserResponse>> getMe(
-            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        @AuthenticationPrincipal CustomUserDetails userDetails) {
         UserResponse response = authService.getMe(userDetails.getId());
+        return ResponseEntity.ok(ApiResponse.success(response));
+    }
+
+    @PostMapping("/kakao")
+    public ResponseEntity<ApiResponse<TokenResponse>> kakaoLogin(
+        @Valid @RequestBody KakaoLoginRequest request) {
+        TokenResponse response = authService.kakaoLogin(request.getCode());
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 }
