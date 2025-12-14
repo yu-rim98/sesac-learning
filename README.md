@@ -140,6 +140,14 @@ SeSac 아카데미에서 진행 중인 **풀스택 개발자 실전 과정**에�
 </div>
 </details>
 
+<details>
+<summary> Week 13 </summary>
+<div markdown="13">
+<a href="https://github.com/yu-rim98/sesac-learning/blob/main/week13/insta-back/OAuth.md">OAuth</a> <br />
+
+</div>
+</details>
+
 ## 🗂️ 정리 방식
 
 - 각 주차별로 배운 내용을 **Markdown** 형식으로 기록하여 정리합니다.
