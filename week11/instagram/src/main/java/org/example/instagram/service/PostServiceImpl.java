@@ -33,12 +33,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
-    public PostResponse create(PostCreateRequest request, MultipartFile image, Long userId) {
+    public PostResponse create(PostCreateRequest createRequest, MultipartFile image, Long userId) {
         User user = userService.findById(userId);
         String imageUrl = fileService.upload(image);
 
         Post post = Post.builder()
-            .content(request.getContent())
+            .content(createRequest.getContent())
             .user(user)
             .imageUrl(imageUrl)
             .build();
