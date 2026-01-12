@@ -32,6 +32,12 @@ CMD ["cat", "hello.txt"]
 ENV MY_NAME=KIM
 ENV MY_ENV=LOCAL
 
+# -e로 환경변수 덮어쓸 수 있음 (docker run -e MY_ENV=DEV -it myapp:v6 sh)
+
+# .env 파일의 환경변수 사용 가능 (gitignore 처리 필요함)
+# .env 파일 안에 환경변수 정의
+# docker run --env-file .env(파일명) -it myapp:v6 sh
+
 # 빌드 명령어
 # 실행할 Dockerfile이 존재하는 폴더 안에서 명령어를 실행해야 함
 # docker build -t <이미지명>:<태그> <빌드컨텍스트>
