@@ -30,8 +30,8 @@ public class PhotoService {
     }
 
     @Transactional
-    public PhotoResponse save(PhotoRequest request, MultipartFile file) {
-        String imageUrl = fileStorageService.upload(file);
+    public PhotoResponse save(PhotoRequest request) {
+        String imageUrl = fileStorageService.upload(request.getFile());
 
         return PhotoResponse.from(photoRepository.save(Photo.builder()
             .title(request.getTitle())
