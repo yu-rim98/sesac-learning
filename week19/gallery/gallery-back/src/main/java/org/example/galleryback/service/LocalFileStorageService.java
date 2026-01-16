@@ -21,7 +21,7 @@ public class LocalFileStorageService implements FileStorageService {
         try {
             String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
             Path filePath = Paths.get(uploadPath, fileName);
-            Files.createDirectory(filePath.getParent());
+            Files.createDirectories(filePath.getParent());
             Files.write(filePath, file.getBytes());
 
             return "/uploads/" + fileName;
